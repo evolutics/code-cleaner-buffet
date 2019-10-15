@@ -10,6 +10,10 @@ main() {
 
   pushd "${project_folder}"
 
+  local -r image_id="$(docker build --quiet \
+    .)"
+  docker run --rm --volume "$(pwd)":/workdir "${image_id}" ci/check.sh
+
   popd
 }
 
