@@ -11,6 +11,8 @@ main() {
   pushd "${project_folder}"
 
   local -r image_id="$(docker build --quiet \
+    --build-arg git=2.22.0-r0 \
+    --build-arg hadolint=1.17.2 \
     .)"
   docker run --rm --volume "$(pwd)":/workdir "${image_id}" ci/check.sh
 
