@@ -23,11 +23,16 @@ check_with_hunspell() {
     'echo "Misspelling: $@"; exit 1' --
 }
 
+check_with_prettier() {
+  prettier --check '**/*.+(json|md|yaml|yml)'
+}
+
 main() {
   check_with_git
   check_with_gitlint
   check_with_hadolint
   check_with_hunspell
+  check_with_prettier
 }
 
 main "$@"
