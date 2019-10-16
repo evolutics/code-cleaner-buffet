@@ -13,6 +13,7 @@ main() {
   local -r image_id="$(docker build --quiet \
     --build-arg git=2.22.0-r0 \
     --build-arg hadolint=1.17.2 \
+    --build-arg hunspell=1.7.0-r0 \
     .)"
   docker run --rm --volume "$(pwd)":/workdir "${image_id}" ci/check.sh
 
