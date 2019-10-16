@@ -8,6 +8,10 @@ check_with_git() {
   git diff --check HEAD^
 }
 
+check_with_gitlint() {
+  gitlint --config ci/.gitlint
+}
+
 check_with_hadolint() {
   git ls-files -z -- '*/Dockerfile' Dockerfile '*.Dockerfile' \
     | xargs -0 hadolint
@@ -21,6 +25,7 @@ check_with_hunspell() {
 
 main() {
   check_with_git
+  check_with_gitlint
   check_with_hadolint
   check_with_hunspell
 }
