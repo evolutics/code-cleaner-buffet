@@ -1,0 +1,53 @@
+# Code Cleaner Buffet 🍜
+
+[![Build](https://img.shields.io/travis/evolutics/code-cleaner-buffet.svg)](https://travis-ci.org/evolutics/code-cleaner-buffet)
+
+## Utilities
+
+{{#dishes}}
+{{#option}}{{> utility_link.md.mustache}}{{/option}}
+{{/dishes}}
+{{#dishes}}
+
+### `{{option}}`
+
+[**{{title}}**]({{url}})
+
+[↻ Available versions]({{#tags.info_evolutics_buffet_versions-url}}{{.}}{{/tags.info_evolutics_buffet_versions-url}})
+
+[🏷 Categories:](#by-category)
+{{#tags.info_evolutics_buffet_categories}}
+{{> gap.md.mustache}}{{.}}
+{{/tags.info_evolutics_buffet_categories}}
+{{^tags.info_evolutics_buffet_categories}}
+{{> gap.md.mustache}}–
+{{/tags.info_evolutics_buffet_categories}}
+
+[📜 Languages:](#by-language)
+{{#tags.info_evolutics_buffet_languages}}
+{{> gap.md.mustache}}{{.}}
+{{/tags.info_evolutics_buffet_languages}}
+{{^tags.info_evolutics_buffet_languages}}
+{{> gap.md.mustache}}–
+{{/tags.info_evolutics_buffet_languages}}
+
+[… Dockerfile]({{dockerfile_path}})
+{{/dishes}}
+
+## Index
+
+{{#dishes}}
+{{#option}}{{> utility_link.md.mustache}}{{/option}}
+{{/dishes}}
+
+### By category
+
+{{#tag_groups.info_evolutics_buffet_categories}}
+{{> tag_group.md.mustache}}
+{{/tag_groups.info_evolutics_buffet_categories}}
+
+### By language
+
+{{#tag_groups.info_evolutics_buffet_languages}}
+{{> tag_group.md.mustache}}
+{{/tag_groups.info_evolutics_buffet_languages}}
