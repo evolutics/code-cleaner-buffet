@@ -4,11 +4,11 @@
 
 ## Utilities
 
-&emsp;[`git`](#git)
-&emsp;[`gitlint`](#gitlint)
-&emsp;[`hadolint`](#hadolint)
-&emsp;[`hunspell`](#hunspell)
-&emsp;[`prettier`](#prettier)
+[`git`](#git)&emsp;
+[`gitlint`](#gitlint)&emsp;
+[`hadolint`](#hadolint)&emsp;
+[`hunspell`](#hunspell)&emsp;
+[`prettier`](#prettier)&emsp;
 
 ### `git`
 
@@ -91,11 +91,11 @@
 
 ## Index
 
-&emsp;[`git`](#git)
-&emsp;[`gitlint`](#gitlint)
-&emsp;[`hadolint`](#hadolint)
-&emsp;[`hunspell`](#hunspell)
-&emsp;[`prettier`](#prettier)
+[`git`](#git)&emsp;
+[`gitlint`](#gitlint)&emsp;
+[`hadolint`](#hadolint)&emsp;
+[`hunspell`](#hunspell)&emsp;
+[`prettier`](#prettier)&emsp;
 
 ### By category
 
