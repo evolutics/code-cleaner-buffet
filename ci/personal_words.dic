@@ -1,5 +1,6 @@
 Dockerfile
 gitlint
+hindent
 JSON
 readme
 YAML
