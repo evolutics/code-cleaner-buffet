@@ -2,5 +2,6 @@ git: 2.22.0
 gitlint: 0.12.0
 hadolint: 1.17.2
 hindent: 5.3.1
+hlint: 2.2.3
 hunspell: 1.7.0
 prettier: 1.18.2
