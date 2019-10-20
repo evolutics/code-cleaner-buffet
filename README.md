@@ -4,11 +4,28 @@
 
 ## Utilities
 
+[`brittany`](#brittany)&emsp;
 [`git`](#git)&emsp;
 [`gitlint`](#gitlint)&emsp;
 [`hadolint`](#hadolint)&emsp;
+[`hindent`](#hindent)&emsp;
+[`hlint`](#hlint)&emsp;
 [`hunspell`](#hunspell)&emsp;
 [`prettier`](#prettier)&emsp;
+
+### `brittany`
+
+[**brittany**](https://github.com/lspitzner/brittany)
+
+[↻ Available versions](https://hackage.haskell.org/package/brittany)
+
+[🏷 Categories:](#by-category)
+&emsp;Formatter
+
+[📜 Languages:](#by-language)
+&emsp;Haskell
+
+[… Dockerfile](dishes/brittany/Dockerfile)
 
 ### `git`
 
@@ -52,6 +69,34 @@
 
 [… Dockerfile](dishes/hadolint/Dockerfile)
 
+### `hindent`
+
+[**hindent**](https://github.com/chrisdone/hindent)
+
+[↻ Available versions](https://hackage.haskell.org/package/hindent)
+
+[🏷 Categories:](#by-category)
+&emsp;Formatter
+
+[📜 Languages:](#by-language)
+&emsp;Haskell
+
+[… Dockerfile](dishes/hindent/Dockerfile)
+
+### `hlint`
+
+[**HLint**](https://github.com/ndmitchell/hlint)
+
+[↻ Available versions](https://hackage.haskell.org/package/hlint)
+
+[🏷 Categories:](#by-category)
+&emsp;Linter
+
+[📜 Languages:](#by-language)
+&emsp;Haskell
+
+[… Dockerfile](dishes/hlint/Dockerfile)
+
 ### `hunspell`
 
 [**Hunspell**](https://hunspell.github.io)
@@ -91,20 +136,26 @@
 
 ## Index
 
+[`brittany`](#brittany)&emsp;
 [`git`](#git)&emsp;
 [`gitlint`](#gitlint)&emsp;
 [`hadolint`](#hadolint)&emsp;
+[`hindent`](#hindent)&emsp;
+[`hlint`](#hlint)&emsp;
 [`hunspell`](#hunspell)&emsp;
 [`prettier`](#prettier)&emsp;
 
 ### By category
 
 - Formatter:
+  &emsp;[`brittany`](#brittany)
+  &emsp;[`hindent`](#hindent)
   &emsp;[`prettier`](#prettier)
 - Linter:
   &emsp;[`git`](#git)
   &emsp;[`gitlint`](#gitlint)
   &emsp;[`hadolint`](#hadolint)
+  &emsp;[`hlint`](#hlint)
 - Spell checker:
   &emsp;[`hunspell`](#hunspell)
 
@@ -118,6 +169,10 @@
   &emsp;[`prettier`](#prettier)
 - GraphQL:
   &emsp;[`prettier`](#prettier)
+- Haskell:
+  &emsp;[`brittany`](#brittany)
+  &emsp;[`hindent`](#hindent)
+  &emsp;[`hlint`](#hlint)
 - HTML:
   &emsp;[`prettier`](#prettier)
 - JavaScript:
