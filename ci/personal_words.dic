@@ -1,5 +1,6 @@
 brittany
 Dockerfile
+eslint
 gitlint
 hindent
 hlint
