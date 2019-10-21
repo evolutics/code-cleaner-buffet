@@ -1,4 +1,5 @@
 addons_linter: 1.15.1
+black: 19.3b0
 brittany: 0.12.1.0
 eslint: 6.5.1
 git: 2.22.0
