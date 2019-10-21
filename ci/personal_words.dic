@@ -6,4 +6,5 @@ hindent
 hlint
 JSON
 readme
+xo
 YAML
