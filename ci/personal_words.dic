@@ -1,3 +1,4 @@
+addons
 brittany
 Dockerfile
 eslint
@@ -5,6 +6,7 @@ gitlint
 hindent
 hlint
 JSON
+linter
 readme
 xo
 YAML
