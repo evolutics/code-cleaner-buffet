@@ -2,7 +2,7 @@ ARG alpine='3.11.3'
 
 FROM alpine:"${alpine}"
 
-ARG ghc='8.8.2'
+ARG ghcs='8.6.5 8.8.2'
 ARG ghcup='0.0.8'
 ARG stack='v2.1.3'
 
@@ -26,8 +26,10 @@ RUN apk add --no-cache \
   && wget "https://gitlab.haskell.org/haskell/ghcup/raw/${ghcup}/ghcup" \
   && chmod +x ghcup \
   && echo 'BuildFlavour = quick' > build.mk \
-  && LD=ld.gold ./ghcup --verbose compile --build-config build.mk --force \
-    --jobs "$(nproc)" "${ghc}" ghc \
+  && for ghc in ${ghcs}; do \
+      LD=ld.gold ./ghcup --verbose compile --build-config build.mk --force \
+        --jobs "$(nproc)" "${ghc}" ghc \
+    ; done \
   && rm build.mk ghcup \
   && apk del ghc \
   \
