@@ -1,8 +1,8 @@
 ARG _alpine='3.10.2'
 
 FROM alpine:"${_alpine}"
+ARG _apk_hunspell_en='2018.04.16'
 ARG hunspell
-ARG hunspell_hunspell_en='2018.04.16'
 
 LABEL org.opencontainers.image.title='Hunspell'
 LABEL org.opencontainers.image.url='https://hunspell.github.io'
@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?
 
 RUN apk add --no-cache \
     "hunspell~=${hunspell}" \
-    "hunspell-en~=${hunspell_hunspell_en}"
+    "hunspell-en~=${_apk_hunspell_en}"
 
 WORKDIR /workdir
 
