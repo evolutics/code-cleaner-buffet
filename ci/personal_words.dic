@@ -8,6 +8,7 @@ hlint
 JSON
 linter
 pyflakes
+pylint
 readme
 repolinter
 styleguide
