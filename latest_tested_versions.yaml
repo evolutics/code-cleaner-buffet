@@ -4,6 +4,7 @@ brittany: 0.12.1.0
 eslint: 6.5.1
 git: 2.22.0
 gitlint: 0.12.0
+google_java_format: "1.7"
 hadolint: 1.17.2
 hindent: 5.3.1
 hlint: 2.2.3
