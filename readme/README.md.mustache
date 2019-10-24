@@ -2,11 +2,25 @@
 
 [![Build](https://img.shields.io/travis/evolutics/code-cleaner-buffet.svg)](https://travis-ci.org/evolutics/code-cleaner-buffet)
 
-## Dishes
+## Index
 
 {{#dishes}}
 {{#option}}{{> dish_link.md.mustache}}{{> gap.md.mustache}}{{/option}}
 {{/dishes}}
+
+### By category
+
+{{#tag_groups.info_evolutics_buffet_categories}}
+{{> tag_group.md.mustache}}
+{{/tag_groups.info_evolutics_buffet_categories}}
+
+### By language
+
+{{#tag_groups.info_evolutics_buffet_languages}}
+{{> tag_group.md.mustache}}
+{{/tag_groups.info_evolutics_buffet_languages}}
+
+## Dishes
 {{#dishes}}
 
 ### `{{option}}`
@@ -33,21 +47,3 @@
 
 [… Dockerfile]({{dockerfile_path}})
 {{/dishes}}
-
-## Index
-
-{{#dishes}}
-{{#option}}{{> dish_link.md.mustache}}{{> gap.md.mustache}}{{/option}}
-{{/dishes}}
-
-### By category
-
-{{#tag_groups.info_evolutics_buffet_categories}}
-{{> tag_group.md.mustache}}
-{{/tag_groups.info_evolutics_buffet_categories}}
-
-### By language
-
-{{#tag_groups.info_evolutics_buffet_languages}}
-{{> tag_group.md.mustache}}
-{{/tag_groups.info_evolutics_buffet_languages}}
