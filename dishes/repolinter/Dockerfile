@@ -10,8 +10,7 @@ LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages=''
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/repolinter#changelog'
 
-RUN apk add --no-cache \
-    "yarn~=${_apk_yarn}" \
+RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "repolinter@${repolinter}"
 
 WORKDIR /workdir

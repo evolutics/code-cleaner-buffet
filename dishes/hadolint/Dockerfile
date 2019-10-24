@@ -10,8 +10,7 @@ LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Dockerfile'
 LABEL info.evolutics.buffet.versions-url='https://github.com/hadolint/hadolint/releases'
 
-RUN apk add --no-cache \
-    "curl~=${_apk_curl}" \
+RUN apk add --no-cache "curl~=${_apk_curl}" \
   && curl --fail --location --show-error --silent \
     "https://github.com/hadolint/hadolint/releases/download/v${hadolint}/hadolint-Linux-x86_64" \
     > /usr/local/bin/hadolint \

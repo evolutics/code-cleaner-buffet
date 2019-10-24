@@ -10,8 +10,7 @@ LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='CSS,HTML,JavaScript'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/addons-linter'
 
-RUN apk add --no-cache \
-    "yarn~=${_apk_yarn}" \
+RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "addons-linter@${addons_linter}"
 
 WORKDIR /workdir

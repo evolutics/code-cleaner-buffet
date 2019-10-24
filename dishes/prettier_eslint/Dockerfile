@@ -10,8 +10,7 @@ LABEL info.evolutics.buffet.categories='Formatter,Linter'
 LABEL info.evolutics.buffet.languages='JavaScript'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/prettier-eslint-cli#changelog'
 
-RUN apk add --no-cache \
-    "yarn~=${_apk_yarn}" \
+RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "prettier-eslint-cli@${prettier_eslint}"
 
 WORKDIR /workdir

@@ -10,8 +10,7 @@ LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/yapf/#history'
 
-RUN apk add --no-cache \
-    "python3~=${_apk_python3}" \
+RUN apk add --no-cache "python3~=${_apk_python3}" \
   && pip3 install "yapf==${yapf}"
 
 WORKDIR /workdir
