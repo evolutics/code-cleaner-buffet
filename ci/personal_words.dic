@@ -9,6 +9,8 @@ JSON
 linter
 readme
 repolinter
+styleguide
+wemake
 xo
 YAML
 yapf
