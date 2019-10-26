@@ -1,5 +1,6 @@
 addons
 brittany
+cURL
 Dockerfile
 eslint
 gitlint
@@ -15,6 +16,7 @@ repolinter
 spotbugs
 styleguide
 wemake
+Wget
 xo
 YAML
 yapf

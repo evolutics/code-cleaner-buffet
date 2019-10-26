@@ -23,15 +23,14 @@ RUN apk add --no-cache \
     python3~=3.7.5 \
     xz~=5.2.4 \
   \
-  && curl --fail --location --remote-name --show-error --silent \
-    "https://gitlab.haskell.org/haskell/ghcup/raw/${ghcup}/ghcup" \
+  && wget "https://gitlab.haskell.org/haskell/ghcup/raw/${ghcup}/ghcup" \
   && chmod +x ghcup \
   && echo 'BuildFlavour = quick' > build.mk \
   && LD=ld.gold ./ghcup --verbose compile --build-config build.mk --force \
     --jobs "$(nproc)" "${ghc}" ghc \
   && rm build.mk ghcup \
   \
-  && curl --fail --location --show-error --silent \
+  && wget --output-document - \
     "https://raw.githubusercontent.com/commercialhaskell/stack/${stack}/etc/scripts/get-stack.sh" \
     | sh \
   && stack config set system-ghc --global true

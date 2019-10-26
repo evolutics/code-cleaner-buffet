@@ -1,7 +1,6 @@
 ARG _alpine='3.10.2'
 
 FROM alpine:"${_alpine}"
-ARG _apk_curl='7.66.0'
 ARG _apk_openjdk11_jre_headless='11.0.4'
 ARG spotbugs
 
@@ -14,10 +13,9 @@ LABEL info.evolutics.buffet.versions-url='https://github.com/spotbugs/spotbugs/r
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 RUN apk add --no-cache \
-    "curl~=${_apk_curl}" \
     "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}" \
   && mkdir /opt/spotbugs \
-  && curl --fail --location --show-error --silent \
+  && wget --output-document - \
     "http://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz" \
     | tar --directory /opt/spotbugs --extract --file - --gzip \
       --strip-components 1 \

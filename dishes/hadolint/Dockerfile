@@ -1,7 +1,6 @@
 ARG _alpine='3.10.2'
 
 FROM alpine:"${_alpine}"
-ARG _apk_curl='7.66.0'
 ARG hadolint
 
 LABEL org.opencontainers.image.title='Haskell Dockerfile Linter'
@@ -10,10 +9,8 @@ LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Dockerfile'
 LABEL info.evolutics.buffet.versions-url='https://github.com/hadolint/hadolint/releases'
 
-RUN apk add --no-cache "curl~=${_apk_curl}" \
-  && curl --fail --location --show-error --silent \
+RUN wget --output-document /usr/local/bin/hadolint \
     "https://github.com/hadolint/hadolint/releases/download/v${hadolint}/hadolint-Linux-x86_64" \
-    > /usr/local/bin/hadolint \
   && chmod +x /usr/local/bin/hadolint
 
 WORKDIR /workdir
