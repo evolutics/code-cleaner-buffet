@@ -7,15 +7,16 @@ set -o pipefail
 build_and_push() {
   pushd "$1"
 
-  local -r alpine='3.10.2'
   local -r image='evolutics/code-cleaner-buffet'
 
   local -r image_if_disabled="${image}:${1//_/-}-"
-  docker tag "alpine:${alpine}" "${image_if_disabled}"
+  docker tag "alpine:3.10.2" "${image_if_disabled}"
   docker push "${image_if_disabled}"
 
-  local -r image_if_enabled="${image_if_disabled}${alpine}"
-  docker build --tag "${image_if_enabled}" --build-arg "alpine=${alpine}" .
+  local -r hash="$(find . -type f -exec sha256sum {} + \
+    | sort | sha256sum | cut --characters -16)"
+  local -r image_if_enabled="${image_if_disabled}${hash}"
+  docker build --tag "${image_if_enabled}" .
   docker push "${image_if_enabled}"
 
   popd
