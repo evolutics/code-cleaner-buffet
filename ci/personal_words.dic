@@ -4,6 +4,7 @@ cURL
 Dockerfile
 eslint
 gitlint
+gofmt
 hindent
 hlint
 JSON
