@@ -15,5 +15,6 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '{ "rules": { "semi": ["error", "always"] } }' > .eslintrc \
+HEALTHCHECK CMD \
+  echo '{ "rules": { "semi": ["error", "always"] } }' > .eslintrc \
   && echo 'var foo = "bar";' | eslint --stdin

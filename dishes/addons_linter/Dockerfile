@@ -17,4 +17,4 @@ WORKDIR /workdir
 
 HEALTHCHECK CMD \
   echo '{ "manifest_version": 2, "name": "Borderify", "version": "1.0" }' \
-  > manifest.json && addons-linter .
+    > manifest.json && addons-linter .

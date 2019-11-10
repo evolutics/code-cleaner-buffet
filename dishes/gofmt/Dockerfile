@@ -19,4 +19,4 @@ WORKDIR /workdir
 
 HEALTHCHECK CMD \
   printf 'package main\nimport  "fmt"\nfunc main() { fmt.Println ("Hi") }\n' \
-  | gofmt
+    | gofmt

@@ -15,5 +15,5 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'var foo =  "bar"; console.log(foo)' \
-  | standard --fix --stdin
+HEALTHCHECK CMD \
+  echo 'var foo =  "bar"; console.log(foo)' | standard --fix --stdin

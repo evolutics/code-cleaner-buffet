@@ -16,5 +16,6 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 WORKDIR /workdir
 
 HEALTHCHECK CMD echo \
-  '{ "rules": { "all": { "license-detectable-by-licensee": ["info"] } } }' \
-  > repolint.json && repolinter
+    '{ "rules": { "all": { "license-detectable-by-licensee": ["info"] } } }' \
+    > repolint.json \
+  && repolinter
