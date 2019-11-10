@@ -2,6 +2,7 @@ addons_linter: 1.15.1
 black: 19.3b0
 brittany: 0.12.1.0
 clang_format: 8.0.0
+cpplint: 1.4.4
 eslint: 6.5.1
 git: 2.22.0
 gitlint: 0.12.0
