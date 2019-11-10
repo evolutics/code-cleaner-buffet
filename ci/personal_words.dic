@@ -5,6 +5,7 @@ Dockerfile
 eslint
 gitlint
 gofmt
+golangci
 hindent
 hlint
 JSON
