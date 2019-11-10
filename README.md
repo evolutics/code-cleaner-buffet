@@ -11,6 +11,8 @@
 [`eslint`](#eslint)&emsp;
 [`git`](#git)&emsp;
 [`gitlint`](#gitlint)&emsp;
+[`gofmt`](#gofmt)&emsp;
+[`golangci_lint`](#golangci_lint)&emsp;
 [`google_java_format`](#google_java_format)&emsp;
 [`hadolint`](#hadolint)&emsp;
 [`hindent`](#hindent)&emsp;
@@ -34,6 +36,7 @@
   &emsp;[`black`](#black)
   &emsp;[`brittany`](#brittany)
   &emsp;[`clang_format`](#clang_format)
+  &emsp;[`gofmt`](#gofmt)
   &emsp;[`google_java_format`](#google_java_format)
   &emsp;[`hindent`](#hindent)
   &emsp;[`prettier`](#prettier)
@@ -46,6 +49,7 @@
   &emsp;[`eslint`](#eslint)
   &emsp;[`git`](#git)
   &emsp;[`gitlint`](#gitlint)
+  &emsp;[`golangci_lint`](#golangci_lint)
   &emsp;[`hadolint`](#hadolint)
   &emsp;[`hlint`](#hlint)
   &emsp;[`pmd`](#pmd)
@@ -83,6 +87,8 @@
 - Fortran:
   &emsp;[`pmd`](#pmd)
 - Go:
+  &emsp;[`gofmt`](#gofmt)
+  &emsp;[`golangci_lint`](#golangci_lint)
   &emsp;[`pmd`](#pmd)
 - GraphQL:
   &emsp;[`prettier`](#prettier)
@@ -258,6 +264,34 @@
 &emsp;–
 
 [… Dockerfile](dishes/gitlint/Dockerfile)
+
+### `gofmt`
+
+[**gofmt**](https://golang.org/cmd/gofmt/)
+
+[↻ Available versions](https://golang.org/dl/)
+
+[🏷 Categories:](#by-category)
+&emsp;Formatter
+
+[📜 Languages:](#by-language)
+&emsp;Go
+
+[… Dockerfile](dishes/gofmt/Dockerfile)
+
+### `golangci_lint`
+
+[**GolangCI-Lint**](https://github.com/golangci/golangci-lint)
+
+[↻ Available versions](https://github.com/golangci/golangci-lint/releases)
+
+[🏷 Categories:](#by-category)
+&emsp;Linter
+
+[📜 Languages:](#by-language)
+&emsp;Go
+
+[… Dockerfile](dishes/golangci_lint/Dockerfile)
 
 ### `google_java_format`
 
