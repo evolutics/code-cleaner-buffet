@@ -21,6 +21,7 @@ pylint: 2.4.3
 repolinter: 0.7.0
 spotbugs: 4.0.0-beta4
 standard: 14.3.1
+tslint: 5.20.1
 wemake_python_styleguide: 0.12.5
 xo: 0.24.0
 yapf: 0.28.0

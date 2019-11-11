@@ -18,6 +18,7 @@ readme
 repolinter
 spotbugs
 styleguide
+tslint
 wemake
 Wget
 xo
