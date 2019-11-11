@@ -15,6 +15,7 @@ hlint: 2.2.3
 hunspell: 1.7.0
 pmd: 6.18.0
 prettier_eslint: 5.0.0
+prettier_php: 0.11.2
 prettier: 1.18.2
 pyflakes: 2.1.1
 pylint: 2.4.3

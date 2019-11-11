@@ -11,6 +11,7 @@ hindent
 hlint
 JSON
 linter
+php
 pmd
 pyflakes
 pylint
