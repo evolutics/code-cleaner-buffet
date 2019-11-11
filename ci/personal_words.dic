@@ -16,6 +16,7 @@ pyflakes
 pylint
 readme
 repolinter
+rubocop
 spotbugs
 styleguide
 tslint
