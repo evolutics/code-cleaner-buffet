@@ -13,6 +13,7 @@ hadolint: 1.17.2
 hindent: 5.3.1
 hlint: 2.2.3
 hunspell: 1.7.0
+phplint: 1.1.9
 pmd: 6.18.0
 prettier_eslint: 5.0.0
 prettier_php: 0.11.2
