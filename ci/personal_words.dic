@@ -1,4 +1,5 @@
 addons
+astyle
 brittany
 cpplint
 cURL
