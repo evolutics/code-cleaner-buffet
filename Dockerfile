@@ -1,8 +1,10 @@
 ARG _alpine='3.10.2'
 ARG addons_linter=''
+ARG astyle=''
 ARG black=''
 ARG brittany=''
 ARG clang_format=''
+ARG cpplint=''
 ARG eslint=''
 ARG git=''
 ARG gitlint=''
@@ -15,14 +17,18 @@ ARG hindent=''
 ARG hindent_haskell_stack="haskell-stack-${hindent:+e3dae61404118f78}"
 ARG hlint=''
 ARG hunspell=''
+ARG phplint=''
 ARG pmd=''
 ARG prettier=''
 ARG prettier_eslint=''
+ARG prettier_php=''
 ARG pyflakes=''
 ARG pylint=''
 ARG repolinter=''
+ARG rubocop=''
 ARG spotbugs=''
 ARG standard=''
+ARG tslint=''
 ARG wemake_python_styleguide=''
 ARG xo=''
 ARG yapf=''
@@ -35,7 +41,9 @@ RUN if [ -n "${hindent}" ]; then \
 
 FROM alpine:"${_alpine}"
 ARG _apk_bash='5.0.0'
+ARG _apk_build_base='0.5'
 ARG _apk_cabal='2.4.1.0'
+ARG _apk_composer='1.8.6'
 ARG _apk_gcc='8.3.0'
 ARG _apk_ghc='8.4.3'
 ARG _apk_git='2.22.0'
@@ -49,12 +57,18 @@ ARG _apk_ncurses_dev='6.1_p20190518'
 ARG _apk_openjdk11_jre_headless='11.0.4'
 ARG _apk_python3='3.7.5'
 ARG _apk_python3_dev='3.7.5'
+ARG _apk_ruby_dev='2.5.7'
+ARG _apk_ruby_full='2.5.7'
 ARG _apk_wget='1.20.3'
 ARG _apk_yarn='1.16.0'
+ARG _yarn_prettier='1.19.1'
+ARG _yarn_typescript='3.7.2'
 ARG addons_linter
+ARG astyle
 ARG black
 ARG brittany
 ARG clang_format
+ARG cpplint
 ARG eslint
 ARG git
 ARG gitlint
@@ -65,20 +79,27 @@ ARG hadolint
 ARG hindent
 ARG hlint
 ARG hunspell
+ARG phplint
 ARG pmd
 ARG prettier
 ARG prettier_eslint
+ARG prettier_php
 ARG pyflakes
 ARG pylint
 ARG repolinter
+ARG rubocop
 ARG spotbugs
 ARG standard
+ARG tslint
 ARG wemake_python_styleguide
 ARG xo
 ARG yapf
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN if [ -n "${addons_linter}" ]; then \
     apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add "addons-linter@${addons_linter}" \
+  ; fi \
+  && if [ -n "${astyle}" ]; then \
+    apk add --no-cache "astyle~=${astyle}" \
   ; fi \
   && if [ -n "${black}" ]; then \
     apk add --no-cache "python3~=${_apk_python3}"   && pip3 install "black==${black}" \
@@ -88,6 +109,9 @@ RUN if [ -n "${addons_linter}" ]; then \
   ; fi \
   && if [ -n "${clang_format}" ]; then \
     apk add --no-cache "clang~=${clang_format}" \
+  ; fi \
+  && if [ -n "${cpplint}" ]; then \
+    apk add --no-cache "python3~=${_apk_python3}"   && pip3 install "cpplint==${cpplint}" \
   ; fi \
   && if [ -n "${eslint}" ]; then \
     apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add "eslint@${eslint}" \
@@ -119,6 +143,9 @@ RUN if [ -n "${addons_linter}" ]; then \
   && if [ -n "${hunspell}" ]; then \
     apk add --no-cache     "hunspell~=${hunspell}"     "hunspell-en~=${_apk_hunspell_en}" \
   ; fi \
+  && if [ -n "${phplint}" ]; then \
+    apk add --no-cache "composer~=${_apk_composer}"   && composer global require "overtrue/phplint:${phplint}"   && ln -s "${HOME}/.composer/vendor/bin/phplint" /usr/local/bin/phplint \
+  ; fi \
   && if [ -n "${pmd}" ]; then \
     apk add --no-cache     "bash~=${_apk_bash}"     "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}"   && wget --output-document /tmp/pmd.zip     "https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmd}/pmd-bin-${pmd}.zip"   && unzip -d /opt /tmp/pmd.zip   && rm /tmp/pmd.zip   && mv "/opt/pmd-bin-${pmd}" /opt/pmd   && ln -s /opt/pmd/bin/run.sh /usr/local/bin/pmd \
   ; fi \
@@ -127,6 +154,9 @@ RUN if [ -n "${addons_linter}" ]; then \
   ; fi \
   && if [ -n "${prettier_eslint}" ]; then \
     apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add "prettier-eslint-cli@${prettier_eslint}" \
+  ; fi \
+  && if [ -n "${prettier_php}" ]; then \
+    apk add --no-cache     "git~=${_apk_git}"     "yarn~=${_apk_yarn}"   && yarn global add     "@prettier/plugin-php@${prettier_php}"     "prettier@${_yarn_prettier}" \
   ; fi \
   && if [ -n "${pyflakes}" ]; then \
     apk add --no-cache "python3~=${_apk_python3}"   && pip3 install "pyflakes==${pyflakes}" \
@@ -137,11 +167,17 @@ RUN if [ -n "${addons_linter}" ]; then \
   && if [ -n "${repolinter}" ]; then \
     apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add "repolinter@${repolinter}" \
   ; fi \
+  && if [ -n "${rubocop}" ]; then \
+    apk add --no-cache     "build-base~=${_apk_build_base}"     "ruby-dev~=${_apk_ruby_dev}"     "ruby-full~=${_apk_ruby_full}"   && gem install --no-document "rubocop:${rubocop}" \
+  ; fi \
   && if [ -n "${spotbugs}" ]; then \
     apk add --no-cache     "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}"   && mkdir /opt/spotbugs   && wget --output-document -     "http://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz"     | tar --directory /opt/spotbugs --extract --file - --gzip       --strip-components 1   && ln -s /opt/spotbugs/bin/spotbugs /usr/local/bin/spotbugs \
   ; fi \
   && if [ -n "${standard}" ]; then \
     apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add "standard@${standard}" \
+  ; fi \
+  && if [ -n "${tslint}" ]; then \
+    apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add     "tslint@${tslint}"     "typescript@${_yarn_typescript}" \
   ; fi \
   && if [ -n "${wemake_python_styleguide}" ]; then \
     apk add --no-cache "python3~=${_apk_python3}"   && pip3 install "wemake-python-styleguide==${wemake_python_styleguide}" \
