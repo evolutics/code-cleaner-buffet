@@ -14,7 +14,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN apk add --no-cache "go~=${_apk_go}" \
   && wget --output-document - \
     https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh \
-    | sh -s "${golangci_lint}"
+    | sh -s "v${golangci_lint}"
 
 WORKDIR /workdir
 
