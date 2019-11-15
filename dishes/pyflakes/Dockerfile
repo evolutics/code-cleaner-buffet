@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.title='Pyflakes'
 LABEL org.opencontainers.image.url='https://github.com/PyCQA/pyflakes'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Python'
-LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/pyflakes/#history'
+LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/pyflakes/'
 
 RUN apk add --no-cache "python3~=${_apk_python3}" \
   && pip3 install "pyflakes==${pyflakes}"

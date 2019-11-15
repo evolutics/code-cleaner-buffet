@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.title='prettier-eslint'
 LABEL org.opencontainers.image.url='https://github.com/prettier/prettier-eslint-cli'
 LABEL info.evolutics.buffet.categories='Formatter,Linter'
 LABEL info.evolutics.buffet.languages='JavaScript'
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/prettier-eslint-cli#changelog'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/prettier-eslint-cli'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "prettier-eslint-cli@${prettier_eslint}"

@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.title='TSLint'
 LABEL org.opencontainers.image.url='https://palantir.github.io/tslint/'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='TypeScript'
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/tslint#changelog'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/tslint'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add \

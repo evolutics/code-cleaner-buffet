@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.title='ESLint'
 LABEL org.opencontainers.image.url='https://eslint.org'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='JavaScript,JSX'
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/eslint#changelog'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/eslint'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "eslint@${eslint}"

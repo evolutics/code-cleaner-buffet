@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.title='Repo Linter'
 LABEL org.opencontainers.image.url='https://github.com/todogroup/repolinter'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages=''
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/repolinter#changelog'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/repolinter'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "repolinter@${repolinter}"

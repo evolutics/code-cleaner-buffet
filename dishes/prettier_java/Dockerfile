@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.title='Prettier Java Plugin'
 LABEL org.opencontainers.image.url='https://github.com/jhipster/prettier-java'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Java'
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/prettier-plugin-java#changelog'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/prettier-plugin-java'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add \
