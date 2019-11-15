@@ -28,6 +28,7 @@ toml
 tslint
 wemake
 Wget
+xml
 xo
 YAML
 yapf
