@@ -1,5 +1,6 @@
 addons
 astyle
+bootlint
 brittany
 cpplint
 csscomb
