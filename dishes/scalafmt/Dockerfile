@@ -13,13 +13,14 @@ LABEL info.evolutics.buffet.versions-url='https://oss.sonatype.org/content/repos
 
 RUN apk add --no-cache \
     "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}" \
-  && wget --directory-prefix /tmp \
+  && coursier_executable="$(mktemp)" \
+  && wget --output-document "${coursier_executable}" \
     "https://github.com/coursier/coursier/releases/download/v${_coursier}/coursier" \
-  && chmod +x /tmp/coursier \
-  && /tmp/coursier bootstrap "org.scalameta:scalafmt-cli_2.12:${scalafmt}" \
+  && chmod +x "${coursier_executable}" \
+  && "${coursier_executable}" bootstrap "org.scalameta:scalafmt-cli_2.12:${scalafmt}" \
     --main org.scalafmt.cli.Cli --output /usr/local/bin/scalafmt \
     --repository sonatype:snapshots --standalone \
-  && rm /tmp/coursier
+  && rm "${coursier_executable}"
 
 WORKDIR /workdir
 
