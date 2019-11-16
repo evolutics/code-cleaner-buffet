@@ -18,9 +18,15 @@ check_with_hadolint() {
 }
 
 check_with_hunspell() {
-  git log -1 --format=%B | hunspell -l -d en_US -p ci/personal_words.dic \
+  dishes_dictionary="$(mktemp)"
+  ls -1 dishes | sed 's/_/\n/g' > "${dishes_dictionary}"
+
+  git log -1 --format=%B | \
+    hunspell -l -d en_US -p ci/personal_words.dic -p "${dishes_dictionary}" \
     | sort | uniq | tr '\n' '\0' | xargs -0 -r -n 1 sh -c \
     'echo "Misspelling: $@"; exit 1' --
+
+  rm "${dishes_dictionary}"
 }
 
 check_with_prettier() {
