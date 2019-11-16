@@ -30,6 +30,7 @@ tslint
 wemake
 Wget
 xml
+xmllint
 xo
 YAML
 yapf
