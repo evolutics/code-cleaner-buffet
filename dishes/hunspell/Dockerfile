@@ -7,7 +7,7 @@ ARG hunspell
 LABEL org.opencontainers.image.title='Hunspell'
 LABEL org.opencontainers.image.url='https://hunspell.github.io'
 LABEL info.evolutics.buffet.categories='Spell checker'
-LABEL info.evolutics.buffet.languages=''
+LABEL info.evolutics.buffet.languages='Natural language'
 LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=hunspell&branch=v3.10'
 
 RUN apk add --no-cache \
