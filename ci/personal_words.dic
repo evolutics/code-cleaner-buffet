@@ -2,6 +2,7 @@ addons
 astyle
 brittany
 cpplint
+csscomb
 cURL
 Dockerfile
 eslint
