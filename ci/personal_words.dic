@@ -3,6 +3,7 @@ astyle
 brittany
 cpplint
 csscomb
+csslint
 cURL
 Dockerfile
 eslint
