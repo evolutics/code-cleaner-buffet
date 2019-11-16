@@ -27,6 +27,7 @@ scalafmt
 shellcheck
 spotbugs
 styleguide
+stylelint
 toml
 tslint
 wemake
