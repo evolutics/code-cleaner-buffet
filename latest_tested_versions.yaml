@@ -36,4 +36,5 @@ tslint: 5.20.1
 wemake_python_styleguide: 0.12.5
 xmllint: 2.9.9
 xo: 0.24.0
+yamllint: 1.18.0
 yapf: 0.28.0
