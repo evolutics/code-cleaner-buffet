@@ -6,6 +6,7 @@ csscomb
 csslint
 cURL
 Dockerfile
+doiuse
 eslint
 gitlint
 gofmt

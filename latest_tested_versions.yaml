@@ -6,6 +6,7 @@ clang_format: 8.0.0
 cpplint: 1.4.4
 csscomb: 4.3.0
 csslint: 1.0.5
+doiuse: 4.2.0
 eslint: 6.5.1
 git: 2.22.0
 gitlint: 0.12.0
