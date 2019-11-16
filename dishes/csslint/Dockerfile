@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/CSSLint/csslint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='CSS'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/csslint'
+LABEL info.evolutics.buffet.version-example='1.0.5'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "csslint@${csslint}"

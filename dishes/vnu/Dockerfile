@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://validator.github.io/validator/'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='CSS,HTML,SVG'
 LABEL info.evolutics.buffet.versions-url='https://github.com/validator/validator/releases'
+LABEL info.evolutics.buffet.version-example='18.11.5'
 
 RUN apk add --no-cache \
     "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}" \

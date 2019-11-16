@@ -8,6 +8,7 @@ LABEL org.opencontainers.image.url='https://golang.org/cmd/gofmt/'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Go'
 LABEL info.evolutics.buffet.versions-url='https://golang.org/dl/'
+LABEL info.evolutics.buffet.version-example='1.13.4'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN wget --output-document - \

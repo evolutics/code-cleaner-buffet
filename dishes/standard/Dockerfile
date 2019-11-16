@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://standardjs.com'
 LABEL info.evolutics.buffet.categories='Formatter,Linter'
 LABEL info.evolutics.buffet.languages='JavaScript'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/standard'
+LABEL info.evolutics.buffet.version-example='14.3.1'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "standard@${standard}"

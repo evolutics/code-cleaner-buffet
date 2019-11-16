@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/psf/black'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/black/'
+LABEL info.evolutics.buffet.version-example='19.3b0'
 
 RUN apk add --no-cache "python3~=${_apk_python3}" \
   && pip3 install "black==${black}"

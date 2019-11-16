@@ -10,6 +10,7 @@ LABEL org.opencontainers.image.url='https://github.com/prettier/plugin-xml'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='XML'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/@prettier/plugin-xml'
+LABEL info.evolutics.buffet.version-example='0.3.0'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add \

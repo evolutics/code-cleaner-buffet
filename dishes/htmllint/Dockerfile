@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/htmllint/htmllint-cli'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='HTML'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/htmllint-cli'
+LABEL info.evolutics.buffet.version-example='0.0.7'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "htmllint-cli@${htmllint}"

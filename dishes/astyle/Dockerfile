@@ -8,6 +8,7 @@ LABEL org.opencontainers.image.url='http://astyle.sourceforge.net'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='C,C#,C++,Java,Objective‑C'
 LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=astyle&branch=v3.10'
+LABEL info.evolutics.buffet.version-example='3.1'
 
 RUN apk add --no-cache "astyle~=${astyle}"
 

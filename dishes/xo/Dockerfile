@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/xojs/xo'
 LABEL info.evolutics.buffet.categories='Formatter,Linter'
 LABEL info.evolutics.buffet.languages='JavaScript,JSX'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/xo'
+LABEL info.evolutics.buffet.version-example='0.24.0'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "xo@${xo}"

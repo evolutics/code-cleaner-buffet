@@ -11,6 +11,7 @@ LABEL org.opencontainers.image.url='https://github.com/prettier/plugin-php'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='PHP'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/@prettier/plugin-php'
+LABEL info.evolutics.buffet.version-example='0.11.2'
 
 RUN apk add --no-cache \
     "git~=${_apk_git}" \

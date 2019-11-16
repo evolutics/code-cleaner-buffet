@@ -8,6 +8,7 @@ LABEL org.opencontainers.image.url='https://clang.llvm.org/docs/ClangFormat.html
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='C,C#,C++,Java,JavaScript,Objective-C,Protocol buffers'
 LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=clang&branch=v3.10'
+LABEL info.evolutics.buffet.version-example='8.0.0'
 
 RUN apk add --no-cache "clang~=${clang_format}"
 

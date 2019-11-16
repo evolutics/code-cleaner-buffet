@@ -12,6 +12,7 @@ LABEL org.opencontainers.image.url='https://stylelint.io'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='CSS'
 LABEL info.evolutics.buffet.versions-url='https://www.npmjs.com/package/stylelint'
+LABEL info.evolutics.buffet.version-example='11.1.1'
 
 RUN apk add --no-cache "npm~=${_apk_npm}" \
   && npm install --global \

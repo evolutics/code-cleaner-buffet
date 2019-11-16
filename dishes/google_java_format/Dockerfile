@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/google/google-java-format
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Java'
 LABEL info.evolutics.buffet.versions-url='https://github.com/google/google-java-format/releases'
+LABEL info.evolutics.buffet.version-example='1.7'
 
 RUN apk add --no-cache \
     "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}" \

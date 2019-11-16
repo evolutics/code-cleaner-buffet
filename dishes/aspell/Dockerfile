@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='http://aspell.net'
 LABEL info.evolutics.buffet.categories='Spell checker'
 LABEL info.evolutics.buffet.languages='Natural language'
 LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=aspell&branch=v3.10'
+LABEL info.evolutics.buffet.version-example='0.60.6.1'
 
 RUN apk add --no-cache \
     "aspell~=${aspell}" \

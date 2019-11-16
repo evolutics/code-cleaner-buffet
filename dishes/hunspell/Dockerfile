@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://hunspell.github.io'
 LABEL info.evolutics.buffet.categories='Spell checker'
 LABEL info.evolutics.buffet.languages='Natural language'
 LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=hunspell&branch=v3.10'
+LABEL info.evolutics.buffet.version-example='1.7.0'
 
 RUN apk add --no-cache \
     "hunspell~=${hunspell}" \

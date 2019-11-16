@@ -15,6 +15,7 @@ LABEL org.opencontainers.image.url='https://www.shellcheck.net'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Shell'
 LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/ShellCheck'
+LABEL info.evolutics.buffet.version-example='0.7.0'
 
 RUN apk add --no-cache "gmp-dev~=${_apk_gmp_dev}"
 COPY --from=shellcheck /root/.local/bin/shellcheck /usr/local/bin/

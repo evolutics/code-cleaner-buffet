@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/overtrue/phplint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='PHP'
 LABEL info.evolutics.buffet.versions-url='https://packagist.org/packages/overtrue/phplint'
+LABEL info.evolutics.buffet.version-example='1.1.9'
 
 RUN apk add --no-cache "composer~=${_apk_composer}" \
   && composer global require "overtrue/phplint:${phplint}" \

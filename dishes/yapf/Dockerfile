@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/google/yapf'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/yapf/'
+LABEL info.evolutics.buffet.version-example='0.28.0'
 
 RUN apk add --no-cache "python3~=${_apk_python3}" \
   && pip3 install "yapf==${yapf}"

@@ -10,6 +10,7 @@ LABEL org.opencontainers.image.url='http://jorisroovers.github.io/gitlint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages=''
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/gitlint/'
+LABEL info.evolutics.buffet.version-example='0.12.0'
 
 RUN apk add --no-cache \
     "git~=${_apk_git}" \

@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.url='https://spotbugs.github.io'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Java'
 LABEL info.evolutics.buffet.versions-url='https://github.com/spotbugs/spotbugs/releases'
+LABEL info.evolutics.buffet.version-example='4.0.0-beta4'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
