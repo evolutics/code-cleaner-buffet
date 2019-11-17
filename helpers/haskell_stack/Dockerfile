@@ -1,4 +1,4 @@
-ARG alpine='3.10.2'
+ARG alpine='3.10.3'
 
 FROM alpine:"${alpine}"
 

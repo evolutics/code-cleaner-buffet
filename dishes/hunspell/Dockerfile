@@ -1,4 +1,4 @@
-ARG _alpine='3.10.2'
+ARG _alpine='3.10.3'
 
 FROM alpine:"${_alpine}"
 ARG _apk_hunspell_en='2018.04.16'

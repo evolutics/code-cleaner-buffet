@@ -1,4 +1,4 @@
-ARG _alpine='3.10.2'
+ARG _alpine='3.10.3'
 ARG shellcheck
 ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+e3dae61404118f78}"
 
