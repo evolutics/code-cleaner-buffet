@@ -25,4 +25,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'object Main { println ("Hi") }' | scalafmt --stdin
+HEALTHCHECK CMD scalafmt --version \
+  && echo 'object Main { println ("Hi") }' | scalafmt --stdin

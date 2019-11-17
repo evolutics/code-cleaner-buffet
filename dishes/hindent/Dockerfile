@@ -22,4 +22,5 @@ COPY --from=hindent /root/.local/bin/hindent /usr/local/bin/
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'example = case x of Just p -> foo bar' | hindent
+HEALTHCHECK CMD hindent --version \
+  && echo 'example = case x of Just p -> foo bar' | hindent

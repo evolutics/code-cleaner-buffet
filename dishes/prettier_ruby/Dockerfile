@@ -22,4 +22,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'puts "Hi"' | prettier --stdin-filepath main.rb
+HEALTHCHECK CMD prettier --version \
+  && echo 'puts "Hi"' | prettier --stdin-filepath main.rb

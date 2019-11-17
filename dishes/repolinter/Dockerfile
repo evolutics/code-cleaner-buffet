@@ -16,7 +16,8 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo \
+HEALTHCHECK CMD echo 'No version or help.' \
+  && echo \
     '{ "rules": { "all": { "license-detectable-by-licensee": ["info"] } } }' \
     > repolint.json \
   && repolinter

@@ -17,4 +17,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'example' | hunspell -d en_US
+HEALTHCHECK CMD hunspell --version \
+  && echo 'example' | hunspell -d en_US

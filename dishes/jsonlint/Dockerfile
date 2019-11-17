@@ -16,4 +16,5 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '{"foo": "bar"}' | jsonlint
+HEALTHCHECK CMD jsonlint --version ; [ "$?" -eq 1 ] \
+  && echo '{"foo": "bar"}' | jsonlint

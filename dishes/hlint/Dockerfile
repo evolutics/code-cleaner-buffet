@@ -33,4 +33,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'foo = fmap . fmap' | hlint -
+HEALTHCHECK CMD hlint --version \
+  && echo 'foo = fmap . fmap' | hlint -

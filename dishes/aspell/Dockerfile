@@ -17,4 +17,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'example' | aspell --lang en_US list
+HEALTHCHECK CMD aspell --version \
+  && echo 'example' | aspell --lang en_US list

@@ -19,6 +19,7 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD tslint --init \
+HEALTHCHECK CMD tslint --version \
+  && tslint --init \
   && echo 'const foo = "bar";' > main.ts \
   && tslint '*.ts'

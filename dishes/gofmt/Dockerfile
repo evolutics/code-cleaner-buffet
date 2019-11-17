@@ -18,6 +18,7 @@ RUN wget --output-document - \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD \
-  printf 'package main\nimport  "fmt"\nfunc main() { fmt.Println ("Hi") }\n' \
+HEALTHCHECK CMD gofmt --help ; [ "$?" -eq 2 ] \
+  && printf \
+    'package main\nimport  "fmt"\nfunc main() { fmt.Println ("Hi") }\n' \
     | gofmt

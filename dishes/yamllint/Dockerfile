@@ -16,4 +16,5 @@ RUN apk add --no-cache "python3~=${_apk_python3}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'foo: bar' | yamllint -
+HEALTHCHECK CMD yamllint --version \
+  && echo 'foo: bar' | yamllint -

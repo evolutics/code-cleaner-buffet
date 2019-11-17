@@ -16,5 +16,6 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '.a { display: none; }' > main.css \
+HEALTHCHECK CMD csslint --version \
+  && echo '.a { display: none; }' > main.css \
   && csslint main.css

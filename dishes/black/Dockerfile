@@ -16,4 +16,5 @@ RUN apk add --no-cache "python3~=${_apk_python3}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'j = [1,  2,3]' | black -
+HEALTHCHECK CMD black --version \
+  && echo 'j = [1,  2,3]' | black -

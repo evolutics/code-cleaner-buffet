@@ -21,5 +21,6 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'ONE = 1' > main.py \
+HEALTHCHECK CMD pylint --version \
+  && echo 'ONE = 1' > main.py \
   && pylint --disable missing-module-docstring main.py

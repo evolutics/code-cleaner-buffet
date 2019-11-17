@@ -14,6 +14,6 @@ RUN apk add --no-cache "clang~=${clang_format}"
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD \
-  printf '#include <stdio.h> \nint main(void) { printf ("Hi\\n"); }\n' \
+HEALTHCHECK CMD clang-format -version \
+  && printf '#include <stdio.h> \nint main(void) { printf ("Hi\\n"); }\n' \
     | clang-format

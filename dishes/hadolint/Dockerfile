@@ -16,4 +16,5 @@ RUN wget --output-document /usr/local/bin/hadolint \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'FROM foo:bar' | hadolint -
+HEALTHCHECK CMD hadolint --version \
+  && echo 'FROM foo:bar' | hadolint -

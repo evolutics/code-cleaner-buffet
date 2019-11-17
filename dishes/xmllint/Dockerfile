@@ -14,4 +14,5 @@ RUN apk add --no-cache "libxml2-utils~=${xmllint}"
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '<?xml version="1.0"?><message>Hi</message>' | xmllint -
+HEALTHCHECK CMD xmllint --version \
+  && echo '<?xml version="1.0"?><message>Hi</message>' | xmllint -

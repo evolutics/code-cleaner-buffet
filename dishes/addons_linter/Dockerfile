@@ -16,7 +16,7 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD \
-  echo '{ "manifest_version": 2, "name": "Borderify", "version": "1.0" }' \
+HEALTHCHECK CMD addons-linter --version \
+  && echo '{ "manifest_version": 2, "name": "Borderify", "version": "1.0" }' \
     > manifest.json \
   && addons-linter .

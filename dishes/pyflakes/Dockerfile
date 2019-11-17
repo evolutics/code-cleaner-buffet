@@ -16,4 +16,5 @@ RUN apk add --no-cache "python3~=${_apk_python3}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'one = 1' | pyflakes
+HEALTHCHECK CMD pyflakes --version \
+  && echo 'one = 1' | pyflakes

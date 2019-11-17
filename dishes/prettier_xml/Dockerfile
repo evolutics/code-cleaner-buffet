@@ -19,5 +19,6 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '<?xml version="1.0"?><message>Hi</message>' \
+HEALTHCHECK CMD prettier --version \
+  && echo '<?xml version="1.0"?><message>Hi</message>' \
     | prettier --stdin-filepath main.xml

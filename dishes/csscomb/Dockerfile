@@ -16,4 +16,5 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '.a { display: none; }' | csscomb -
+HEALTHCHECK CMD csscomb --help \
+  && echo '.a { display: none; }' | csscomb -

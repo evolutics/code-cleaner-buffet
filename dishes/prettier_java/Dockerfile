@@ -19,5 +19,5 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD \
-  echo 'class Foo { void bar() {} }' | prettier --stdin-filepath Foo.java
+HEALTHCHECK CMD prettier --version \
+  && echo 'class Foo { void bar() {} }' | prettier --stdin-filepath Foo.java

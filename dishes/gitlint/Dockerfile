@@ -19,4 +19,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD printf 'Change foo\n\nBecause bar is missing.\n' | gitlint
+HEALTHCHECK CMD gitlint --version \
+  && printf 'Change foo\n\nBecause bar is missing.\n' | gitlint

@@ -16,6 +16,7 @@ RUN apk add --no-cache "python3~=${_apk_python3}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '[isort]' > setup.cfg \
+HEALTHCHECK CMD flake8 --version \
+  && echo '[isort]' > setup.cfg \
   && printf '# coding=utf-8\n\n\none = 1\n' > main.py \
   && flake8 --ignore D100,D103

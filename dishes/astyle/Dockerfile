@@ -14,6 +14,7 @@ RUN apk add --no-cache "astyle~=${astyle}"
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD \
-  echo 'class Main { public static void Main(string[] args) { } }' > Main.cs \
+HEALTHCHECK CMD astyle --version \
+  && echo 'class Main { public static void Main(string[] args) { } }' \
+    > Main.cs \
   && astyle Main.cs

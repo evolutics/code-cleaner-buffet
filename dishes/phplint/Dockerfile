@@ -17,5 +17,6 @@ RUN apk add --no-cache "composer~=${_apk_composer}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '<?php echo "Hi"; ?>' > main.php \
+HEALTHCHECK CMD phplint --version \
+  && echo '<?php echo "Hi"; ?>' > main.php \
   && phplint main.php

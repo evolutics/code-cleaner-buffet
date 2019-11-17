@@ -19,4 +19,5 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'foo  =  "bar"' | prettier --stdin-filepath main.toml
+HEALTHCHECK CMD prettier --version \
+  && echo 'foo  =  "bar"' | prettier --stdin-filepath main.toml

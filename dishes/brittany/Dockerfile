@@ -32,4 +32,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'example = case x of Just p -> foo bar' | brittany
+HEALTHCHECK CMD brittany --version \
+  && echo 'example = case x of Just p -> foo bar' | brittany

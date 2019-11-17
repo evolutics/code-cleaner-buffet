@@ -24,4 +24,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD spotbugs -textui /opt/spotbugs/lib/spotbugs.jar
+HEALTHCHECK CMD spotbugs -version \
+  && spotbugs -textui /opt/spotbugs/lib/spotbugs.jar

@@ -23,6 +23,6 @@ RUN apk add --no-cache "npm~=${_apk_npm}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD \
-  echo '{ "extends": "stylelint-config-standard" }' > .stylelintrc.json \
+HEALTHCHECK CMD stylelint --version \
+  && echo '{ "extends": "stylelint-config-standard" }' > .stylelintrc.json \
   && echo '.a { display: none; }' | stylelint

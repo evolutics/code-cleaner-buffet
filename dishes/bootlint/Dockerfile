@@ -16,6 +16,7 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo \
+HEALTHCHECK CMD bootlint --version \
+  && echo \
     '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Hi</title></head></html>' \
     | bootlint --disable W002,W003,W005

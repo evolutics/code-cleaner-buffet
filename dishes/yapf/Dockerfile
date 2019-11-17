@@ -16,4 +16,5 @@ RUN apk add --no-cache "python3~=${_apk_python3}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'y = "hello ""world"' | yapf
+HEALTHCHECK CMD yapf --version \
+  && echo 'y = "hello ""world"' | yapf

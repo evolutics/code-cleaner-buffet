@@ -22,5 +22,6 @@ COPY --from=shellcheck /root/.local/bin/shellcheck /usr/local/bin/
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD printf '#!/bin/bash\necho "Hi"\n' > main.sh \
+HEALTHCHECK CMD shellcheck --version \
+  && printf '#!/bin/bash\necho "Hi"\n' > main.sh \
   && shellcheck main.sh

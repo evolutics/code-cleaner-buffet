@@ -21,6 +21,6 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD \
-  printf "# frozen_string_literal: true\n\nputs 'Hi'\n" > main.rb \
+HEALTHCHECK CMD rubocop --version \
+  && printf "# frozen_string_literal: true\n\nputs 'Hi'\n" > main.rb \
   && rubocop

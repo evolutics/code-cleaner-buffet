@@ -25,4 +25,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '<!DOCTYPE html><title>Hi</title>' | vnu -
+HEALTHCHECK CMD vnu --version \
+  && echo '<!DOCTYPE html><title>Hi</title>' | vnu -

@@ -16,7 +16,8 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD htmllint init \
+HEALTHCHECK CMD htmllint --version \
+  && htmllint init \
   && echo \
     '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Hi</title></head></html>' \
     > main.html \

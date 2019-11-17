@@ -16,4 +16,5 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '.a { display: none; }' | prettier --stdin-filepath b.css
+HEALTHCHECK CMD prettier --version \
+  && echo '.a { display: none; }' | prettier --stdin-filepath b.css

@@ -19,7 +19,7 @@ RUN apk add --no-cache "go~=${_apk_go}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD \
-  printf 'package main\nimport "fmt"\nfunc main() { fmt.Println("Hi") }\n' \
+HEALTHCHECK CMD golangci-lint --version \
+  && printf 'package main\nimport "fmt"\nfunc main() { fmt.Println("Hi") }\n' \
     > main.go \
   && golangci-lint run

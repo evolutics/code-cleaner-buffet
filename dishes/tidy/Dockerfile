@@ -14,4 +14,5 @@ RUN apk add --no-cache "tidyhtml~=${tidy}"
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '<!DOCTYPE html><title>Hi</title>' | tidy
+HEALTHCHECK CMD tidy -version \
+  && echo '<!DOCTYPE html><title>Hi</title>' | tidy

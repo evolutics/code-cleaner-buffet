@@ -16,4 +16,5 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'const x=true' | xo --fix --stdin
+HEALTHCHECK CMD xo --version \
+  && echo 'const x=true' | xo --fix --stdin

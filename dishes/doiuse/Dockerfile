@@ -16,5 +16,6 @@ RUN apk add --no-cache "yarn~=${_apk_yarn}" \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '.a { display: none; }' \
+HEALTHCHECK CMD doiuse --version \
+  && echo '.a { display: none; }' \
     | doiuse --browsers 'ie >= 9, > 1%, last 2 versions'

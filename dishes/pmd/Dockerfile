@@ -25,6 +25,7 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD mkdir foo \
+HEALTHCHECK CMD pmd pmd -help \
+  && mkdir foo \
   && printf 'package foo;\nclass Bar {}\n' > foo/Bar.java \
   && pmd pmd -dir . -rulesets rulesets/java/quickstart.xml

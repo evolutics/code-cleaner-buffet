@@ -22,4 +22,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo '<?php echo "Hi" ; ?>' | prettier --stdin-filepath main.php
+HEALTHCHECK CMD prettier --version \
+  && echo '<?php echo "Hi" ; ?>' | prettier --stdin-filepath main.php

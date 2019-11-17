@@ -22,4 +22,5 @@ RUN apk add --no-cache \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD echo 'class Foo { void bar() {} }' | google-java-format -
+HEALTHCHECK CMD google-java-format --version \
+  && echo 'class Foo { void bar() {} }' | google-java-format -

@@ -14,7 +14,8 @@ RUN apk add --no-cache "git~=${git}"
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD git init \
+HEALTHCHECK CMD git --version \
+  && git init \
   && git config user.email me@example.com \
   && touch readme \
   && git add . \
