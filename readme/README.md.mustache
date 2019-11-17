@@ -47,6 +47,17 @@
 {{> gap.md.mustache}}–
 {{/tags.info_evolutics_buffet_languages}}
 
+🧪 Quick start:
+
+```bash
+docker build \
+  --build-arg {{option}}={{#tags.info_evolutics_buffet_version-example}}{{.}}{{/tags.info_evolutics_buffet_version-example}} \
+  --tag my_plate \
+  https://github.com/evolutics/code-cleaner-buffet.git#0.1.0
+docker run -it --rm my_plate
+{{{health_check}}}
+```
+
 [… Dockerfile]({{dockerfile_path}})
 
 </details>
