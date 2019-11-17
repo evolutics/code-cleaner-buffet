@@ -53,7 +53,7 @@
 docker build \
   --build-arg {{option}}={{#tags.info_evolutics_buffet_version-example}}{{.}}{{/tags.info_evolutics_buffet_version-example}} \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.1.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
 docker run -it --rm my_plate
 {{{health_check}}}
 ```
