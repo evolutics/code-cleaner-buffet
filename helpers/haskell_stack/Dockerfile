@@ -3,8 +3,8 @@ ARG alpine='3.10.3'
 FROM alpine:"${alpine}"
 
 ARG ghc='8.6.5'
-ARG ghcup='6a126e6bfe44a3bbebb7703a45b44fe75909bc6f'
-ARG stack='e57c0154f3a272702db515cc3520d0394231697c'
+ARG ghcup='4f345d109a432c3d739f651b307912059abfb2f8'
+ARG stack='v2.1.3'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
