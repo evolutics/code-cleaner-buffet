@@ -1,7 +1,7 @@
 ARG _alpine='3.10.2'
 
 FROM alpine:"${_alpine}"
-ARG _apk_openjdk11_jre_headless='11.0.4'
+ARG _apk_openjdk11_jre_headless='11.0.4_p4'
 ARG _coursier='1.1.0-M14-7'
 ARG scalafmt
 
