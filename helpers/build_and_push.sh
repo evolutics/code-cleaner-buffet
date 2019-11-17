@@ -10,7 +10,9 @@ build_and_push() {
   local -r image='evolutics/code-cleaner-buffet'
 
   local -r image_if_disabled="${image}:${1//_/-}-"
-  docker tag "alpine:3.10.3" "${image_if_disabled}"
+  local -r base_image='alpine:3.10.3'
+  docker pull "${base_image}"
+  docker tag "${base_image}" "${image_if_disabled}"
   docker push "${image_if_disabled}"
 
   local -r hash="$(find . -type f -exec sha256sum {} + \
