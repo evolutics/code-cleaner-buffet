@@ -15,12 +15,12 @@ LABEL info.evolutics.buffet.version-example='6.18.0'
 RUN apk add --no-cache \
     "bash~=${_apk_bash}" \
     "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}" \
-  && pmd_folder="$(mktemp -d)" \
-  && wget --output-document "${pmd_folder}/pmd.zip" \
+  && tmp="$(mktemp -d)" \
+  && wget --output-document "${tmp}/pmd.zip" \
     "https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmd}/pmd-bin-${pmd}.zip" \
-  && unzip -d "${pmd_folder}" "${pmd_folder}/pmd.zip" \
-  && mv "${pmd_folder}/pmd-bin-${pmd}" /opt/pmd \
-  && rm -fr "${pmd_folder}" \
+  && unzip -d "${tmp}" "${tmp}/pmd.zip" \
+  && mv "${tmp}/pmd-bin-${pmd}" /opt/pmd \
+  && rm -fr "${tmp}" \
   && ln -s /opt/pmd/bin/run.sh /usr/local/bin/pmd
 
 WORKDIR /workdir
