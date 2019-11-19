@@ -11,6 +11,7 @@ LABEL info.evolutics.buffet.versions-url='https://golang.org/dl/'
 LABEL info.evolutics.buffet.version-example='1.13.4'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
+
 RUN wget --output-document - \
     "https://dl.google.com/go/go${gofmt}.linux-amd64.tar.gz" \
     | tar --directory /usr/local/bin --extract --file - --gzip \

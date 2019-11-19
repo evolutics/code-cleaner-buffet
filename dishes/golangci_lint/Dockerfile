@@ -12,6 +12,7 @@ LABEL info.evolutics.buffet.versions-url='https://github.com/golangci/golangci-l
 LABEL info.evolutics.buffet.version-example='1.21.0'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
+
 RUN apk add --no-cache "go~=${_apk_go}" \
   && wget --output-document - \
     https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh \
