@@ -11,6 +11,7 @@
 [`bootlint`](#bootlint)&emsp;
 [`brittany`](#brittany)&emsp;
 [`clang_format`](#clang_format)&emsp;
+[`clang_tidy`](#clang_tidy)&emsp;
 [`cpplint`](#cpplint)&emsp;
 [`csscomb`](#csscomb)&emsp;
 [`csslint`](#csslint)&emsp;
@@ -27,6 +28,9 @@
 [`htmllint`](#htmllint)&emsp;
 [`hunspell`](#hunspell)&emsp;
 [`jsonlint`](#jsonlint)&emsp;
+[`ktlint`](#ktlint)&emsp;
+[`luafmt`](#luafmt)&emsp;
+[`mix`](#mix)&emsp;
 [`phplint`](#phplint)&emsp;
 [`pmd`](#pmd)&emsp;
 [`prettier`](#prettier)&emsp;
@@ -65,6 +69,9 @@
   &emsp;[`gofmt`](#gofmt)
   &emsp;[`google_java_format`](#google_java_format)
   &emsp;[`hindent`](#hindent)
+  &emsp;[`ktlint`](#ktlint)
+  &emsp;[`luafmt`](#luafmt)
+  &emsp;[`mix`](#mix)
   &emsp;[`prettier`](#prettier)
   &emsp;[`prettier_eslint`](#prettier_eslint)
   &emsp;[`prettier_java`](#prettier_java)
@@ -82,6 +89,7 @@
 - Linter:
   &emsp;[`addons_linter`](#addons_linter)
   &emsp;[`bootlint`](#bootlint)
+  &emsp;[`clang_tidy`](#clang_tidy)
   &emsp;[`cpplint`](#cpplint)
   &emsp;[`csscomb`](#csscomb)
   &emsp;[`csslint`](#csslint)
@@ -94,6 +102,8 @@
   &emsp;[`hlint`](#hlint)
   &emsp;[`htmllint`](#htmllint)
   &emsp;[`jsonlint`](#jsonlint)
+  &emsp;[`ktlint`](#ktlint)
+  &emsp;[`mix`](#mix)
   &emsp;[`phplint`](#phplint)
   &emsp;[`pmd`](#pmd)
   &emsp;[`prettier_eslint`](#prettier_eslint)
@@ -123,6 +133,7 @@
 - C:
   &emsp;[`astyle`](#astyle)
   &emsp;[`clang_format`](#clang_format)
+  &emsp;[`clang_tidy`](#clang_tidy)
   &emsp;[`cpplint`](#cpplint)
   &emsp;[`pmd`](#pmd)
 - C#:
@@ -132,6 +143,7 @@
 - C++:
   &emsp;[`astyle`](#astyle)
   &emsp;[`clang_format`](#clang_format)
+  &emsp;[`clang_tidy`](#clang_tidy)
   &emsp;[`cpplint`](#cpplint)
   &emsp;[`pmd`](#pmd)
 - CSS:
@@ -144,6 +156,8 @@
   &emsp;[`vnu`](#vnu)
 - Dockerfile:
   &emsp;[`hadolint`](#hadolint)
+- Elixir:
+  &emsp;[`mix`](#mix)
 - Flow:
   &emsp;[`prettier`](#prettier)
 - Fortran:
@@ -190,6 +204,10 @@
   &emsp;[`eslint`](#eslint)
   &emsp;[`prettier`](#prettier)
   &emsp;[`xo`](#xo)
+- Kotlin:
+  &emsp;[`ktlint`](#ktlint)
+- Lua:
+  &emsp;[`luafmt`](#luafmt)
 - Markdown:
   &emsp;[`prettier`](#prettier)
 - MATLAB:
@@ -198,10 +216,9 @@
   &emsp;[`aspell`](#aspell)
   &emsp;[`hunspell`](#hunspell)
 - Objective-C:
+  &emsp;[`astyle`](#astyle)
   &emsp;[`clang_format`](#clang_format)
   &emsp;[`pmd`](#pmd)
-- Objective‑C:
-  &emsp;[`astyle`](#astyle)
 - PHP:
   &emsp;[`phplint`](#phplint)
   &emsp;[`pmd`](#pmd)
@@ -264,7 +281,7 @@
 &emsp;HTML
 &emsp;JavaScript
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -296,7 +313,7 @@ addons-linter --version \
 [📜 Languages:](#by-language)
 &emsp;Natural language
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -328,9 +345,9 @@ aspell --version \
 &emsp;C#
 &emsp;C++
 &emsp;Java
-&emsp;Objective‑C
+&emsp;Objective-C
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -362,7 +379,7 @@ astyle --version \
 [📜 Languages:](#by-language)
 &emsp;Python
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -392,7 +409,7 @@ black --version \
 [📜 Languages:](#by-language)
 &emsp;HTML
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -424,7 +441,7 @@ bootlint --version \
 [📜 Languages:](#by-language)
 &emsp;Haskell
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -460,7 +477,7 @@ brittany --version \
 &emsp;Objective-C
 &emsp;Protocol buffers
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -474,6 +491,38 @@ clang-format -version \
 ```
 
 [… Dockerfile](dishes/clang_format/Dockerfile)
+
+</details>
+
+### `clang_tidy`
+
+[**clang-tidy**](https://clang.llvm.org/extra/clang-tidy/)
+
+<details>
+
+[↻ Available versions](http://releases.llvm.org)
+
+[🏷 Categories:](#by-category)
+&emsp;Linter
+
+[📜 Languages:](#by-language)
+&emsp;C
+&emsp;C++
+
+🚀 Quick start:
+
+```bash
+docker build \
+  --build-arg clang_tidy=9.0.0 \
+  --tag my_plate \
+  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+docker run -it --rm my_plate
+clang-tidy --version \
+  && echo 'int main(int argc, char *argv[]) { return argc; }' > main.cpp \
+  && clang-tidy main.cpp -- -I.
+```
+
+[… Dockerfile](dishes/clang_tidy/Dockerfile)
 
 </details>
 
@@ -492,7 +541,7 @@ clang-format -version \
 &emsp;C
 &emsp;C++
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -525,7 +574,7 @@ cpplint --version \
 [📜 Languages:](#by-language)
 &emsp;CSS
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -555,7 +604,7 @@ csscomb --help \
 [📜 Languages:](#by-language)
 &emsp;CSS
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -586,7 +635,7 @@ csslint --version \
 [📜 Languages:](#by-language)
 &emsp;CSS
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -618,7 +667,7 @@ doiuse --version \
 &emsp;JavaScript
 &emsp;JSX
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -649,7 +698,7 @@ eslint --version \
 [📜 Languages:](#by-language)
 &emsp;–
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -683,7 +732,7 @@ git --version \
 [📜 Languages:](#by-language)
 &emsp;–
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -713,7 +762,7 @@ gitlint --version \
 [📜 Languages:](#by-language)
 &emsp;Go
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -745,7 +794,7 @@ gofmt --help ; [ "$?" -eq 2 ] \
 [📜 Languages:](#by-language)
 &emsp;Go
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -777,7 +826,7 @@ golangci-lint --version \
 [📜 Languages:](#by-language)
 &emsp;Java
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -807,7 +856,7 @@ google-java-format --version \
 [📜 Languages:](#by-language)
 &emsp;Dockerfile
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -837,7 +886,7 @@ hadolint --version \
 [📜 Languages:](#by-language)
 &emsp;Haskell
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -867,7 +916,7 @@ hindent --version \
 [📜 Languages:](#by-language)
 &emsp;Haskell
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -897,7 +946,7 @@ hlint --version \
 [📜 Languages:](#by-language)
 &emsp;HTML
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -931,7 +980,7 @@ htmllint --version \
 [📜 Languages:](#by-language)
 &emsp;Natural language
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -961,7 +1010,7 @@ hunspell --version \
 [📜 Languages:](#by-language)
 &emsp;JSON
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -974,6 +1023,98 @@ jsonlint --version ; [ "$?" -eq 1 ] \
 ```
 
 [… Dockerfile](dishes/jsonlint/Dockerfile)
+
+</details>
+
+### `ktlint`
+
+[**ktlint**](https://ktlint.github.io)
+
+<details>
+
+[↻ Available versions](https://github.com/pinterest/ktlint/releases)
+
+[🏷 Categories:](#by-category)
+&emsp;Formatter
+&emsp;Linter
+
+[📜 Languages:](#by-language)
+&emsp;Kotlin
+
+🚀 Quick start:
+
+```bash
+docker build \
+  --build-arg ktlint=0.35.0 \
+  --tag my_plate \
+  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+docker run -it --rm my_plate
+ktlint --version \
+  && echo 'fun main () { println("Hi") }' | ktlint --format --stdin
+```
+
+[… Dockerfile](dishes/ktlint/Dockerfile)
+
+</details>
+
+### `luafmt`
+
+[**lua-fmt**](https://github.com/trixnz/lua-fmt)
+
+<details>
+
+[↻ Available versions](https://yarnpkg.com/en/package/lua-fmt)
+
+[🏷 Categories:](#by-category)
+&emsp;Formatter
+
+[📜 Languages:](#by-language)
+&emsp;Lua
+
+🚀 Quick start:
+
+```bash
+docker build \
+  --build-arg luafmt=2.6.0 \
+  --tag my_plate \
+  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+docker run -it --rm my_plate
+luafmt --version \
+  && echo 'print ("Hi")' | luafmt --stdin
+```
+
+[… Dockerfile](dishes/luafmt/Dockerfile)
+
+</details>
+
+### `mix`
+
+[**Mix**](https://hexdocs.pm/mix/)
+
+<details>
+
+[↻ Available versions](https://pkgs.alpinelinux.org/packages?name=elixir&branch=v3.10)
+
+[🏷 Categories:](#by-category)
+&emsp;Formatter
+&emsp;Linter
+
+[📜 Languages:](#by-language)
+&emsp;Elixir
+
+🚀 Quick start:
+
+```bash
+docker build \
+  --build-arg mix=1.8.2 \
+  --tag my_plate \
+  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+docker run -it --rm my_plate
+mix --version \
+  && echo 'defmodule Main do def main do IO.puts "Hi" end end' | mix format -
+```
+
+[… Dockerfile](dishes/mix/Dockerfile)
 
 </details>
 
@@ -991,7 +1132,7 @@ jsonlint --version ; [ "$?" -eq 1 ] \
 [📜 Languages:](#by-language)
 &emsp;PHP
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1040,7 +1181,7 @@ phplint --version \
 &emsp;XML
 &emsp;XSL
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1081,7 +1222,7 @@ pmd pmd -help \
 &emsp;TypeScript
 &emsp;YAML
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1112,7 +1253,7 @@ prettier --version \
 [📜 Languages:](#by-language)
 &emsp;JavaScript
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1142,7 +1283,7 @@ prettier-eslint --version \
 [📜 Languages:](#by-language)
 &emsp;Java
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1172,7 +1313,7 @@ prettier --version \
 [📜 Languages:](#by-language)
 &emsp;PHP
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1202,7 +1343,7 @@ prettier --version \
 [📜 Languages:](#by-language)
 &emsp;Ruby
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1232,7 +1373,7 @@ prettier --version \
 [📜 Languages:](#by-language)
 &emsp;TOML
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1262,7 +1403,7 @@ prettier --version \
 [📜 Languages:](#by-language)
 &emsp;XML
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1293,7 +1434,7 @@ prettier --version \
 [📜 Languages:](#by-language)
 &emsp;Python
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1323,7 +1464,7 @@ pyflakes --version \
 [📜 Languages:](#by-language)
 &emsp;Python
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1354,7 +1495,7 @@ pylint --version \
 [📜 Languages:](#by-language)
 &emsp;–
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1388,7 +1529,7 @@ echo 'No version or help.' \
 [📜 Languages:](#by-language)
 &emsp;Ruby
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1419,7 +1560,7 @@ rubocop --version \
 [📜 Languages:](#by-language)
 &emsp;Scala
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1449,7 +1590,7 @@ scalafmt --version \
 [📜 Languages:](#by-language)
 &emsp;Shell
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1480,7 +1621,7 @@ shellcheck --version \
 [📜 Languages:](#by-language)
 &emsp;Java
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1511,7 +1652,7 @@ spotbugs -version \
 [📜 Languages:](#by-language)
 &emsp;JavaScript
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1541,7 +1682,7 @@ standard --version \
 [📜 Languages:](#by-language)
 &emsp;CSS
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1574,7 +1715,7 @@ stylelint --version \
 &emsp;HTML
 &emsp;XML
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1604,7 +1745,7 @@ tidy -version \
 [📜 Languages:](#by-language)
 &emsp;TypeScript
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1638,7 +1779,7 @@ tslint --version \
 &emsp;HTML
 &emsp;SVG
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1668,7 +1809,7 @@ vnu --version \
 [📜 Languages:](#by-language)
 &emsp;Python
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1701,7 +1842,7 @@ flake8 --version \
 [📜 Languages:](#by-language)
 &emsp;XML
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1733,7 +1874,7 @@ xmllint --version \
 &emsp;JavaScript
 &emsp;JSX
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1763,7 +1904,7 @@ xo --version \
 [📜 Languages:](#by-language)
 &emsp;YAML
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
@@ -1793,7 +1934,7 @@ yamllint --version \
 [📜 Languages:](#by-language)
 &emsp;Python
 
-🧪 Quick start:
+🚀 Quick start:
 
 ```bash
 docker build \
