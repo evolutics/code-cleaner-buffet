@@ -2,6 +2,83 @@
 
 [![Build](https://img.shields.io/travis/evolutics/code-cleaner-buffet.svg)](https://travis-ci.org/evolutics/code-cleaner-buffet)
 
+Build your own Alpine Docker image with just the code formatters and linters you choose.
+
+In a hurry? Jump to [Quick start](#quick-start)!
+
+## Motivation
+
+Code cleaners such as formatters and linters are powerful tools to support clean code. As most software projects use a mix of programming languages, it is desirable to apply a number of such code cleaners.
+
+This project helps you with installing the code cleaners you need, in the versions you choose. Just serve yourself from the buffet.
+
+## Features
+
+- Easy installation of multiple code cleaners.
+- The original code cleaner interfaces are preserved. This is not an adapter.
+- Choose the version you need per code cleaner. Upgrade to the latest versions without having to wait for a release of this project.
+- Separation of the code cleaner environment from your development environment.
+- Docker images of a fairly minimal size. Code cleaners you do not choose do not add to the size.
+- No need to install anything other than Docker and Git.
+
+## Quick start
+
+Prerequisites: Docker and Git.
+
+1. Choose the code cleaners you need from the [list below](#index), and decide on a version for each.
+
+1. Build your own Docker image by running
+
+   ```bash
+   docker build \
+     --build-arg bar=1.2.3 \
+     --build-arg foo=2.0 \
+     … \
+     --tag my_plate \
+     https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+   ```
+
+   For each chosen code cleaner, pass a `--build-arg` with a name-version pair. The build uses the Dockerfile of the repository at above URL, which refers to release `0.3.0` here.
+
+1. Now the code cleaners are available in the Docker image `my_plate`. Enjoy your meal.
+
+### Example
+
+As an example, in a project with Python, YAML, and Markdown code, you may choose the code formatters Black 19.3b0 and Prettier 1.19.1. Build your Docker image with
+
+```bash
+docker build \
+  --build-arg black=19.3b0 \
+  --build-arg prettier=1.19.1 \
+  --tag my_plate \
+  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+```
+
+Then use it to check your code with
+
+```bash
+docker run --rm --volume "$(pwd)":/workdir my_plate \
+  sh -c 'black --diff --check . && prettier --check "**/*.+(md|yaml|yml)"'
+```
+
+## Frequently asked questions
+
+<dl>
+<dt>How do I change the Alpine base image version?</dt>
+<dd>
+
+When building, additionally pass `--build-arg _alpine=…` with your desired version.
+
+</dd>
+
+<dt>How does this work?</dt>
+<dd>
+
+This uses the tool [Buffet](https://github.com/evolutics/buffet).
+
+</dd>
+</dl>
+
 ## Index
 
 {{#dishes}}
