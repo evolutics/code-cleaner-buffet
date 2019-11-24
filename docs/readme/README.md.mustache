@@ -44,11 +44,11 @@ Prerequisites: Docker and Git.
 
 ### Example
 
-As an example, in a project with Python, YAML, and Markdown code, you may choose the code formatters Black 19.3b0 and Prettier 1.19.1. Build your Docker image with
+As an example, in a project with Python, YAML, and Markdown code, you may choose the code formatters Black 19.10b0 and Prettier 1.19.1. Build your Docker image with
 
 ```bash
 docker build \
-  --build-arg black=19.3b0 \
+  --build-arg black=19.10b0 \
   --build-arg prettier=1.19.1 \
   --tag my_plate \
   https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
