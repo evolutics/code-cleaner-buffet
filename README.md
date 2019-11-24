@@ -1,6 +1,83 @@
 # Code Cleaner Buffet 🍜
 
-[![Build](https://img.shields.io/travis/evolutics/code-cleaner-buffet.svg)](https://travis-ci.org/evolutics/code-cleaner-buffet)
+[![Build](https://img.shields.io/travis/evolutics/code-cleaner-buffet)](https://travis-ci.org/evolutics/code-cleaner-buffet)
+
+Build your own Alpine Docker image with just the code formatters and linters you choose.
+
+In a hurry? Jump to [Quick start](#quick-start)!
+
+## Motivation
+
+Code cleaners such as formatters and linters are powerful tools to support clean code. As most software projects use a mix of programming languages, it is desirable to apply a number of such code cleaners.
+
+This project helps you with installing the code cleaners you need, in the versions you choose. Just serve yourself from the buffet.
+
+## Features
+
+- Easy installation of multiple code cleaners.
+- The original code cleaner interfaces are preserved. This is not an adapter.
+- Choose the version you need per code cleaner. Upgrade to the latest versions without having to wait for a release of this project.
+- Separation of the code cleaner environment from your development environment.
+- Docker images of a fairly minimal size. Code cleaners you do not choose do not add to the size.
+- No need to install anything other than Docker and Git.
+
+## Quick start
+
+Prerequisites: Docker and Git.
+
+1. Choose the code cleaners you need from the [list below](#index), and decide on a version for each.
+
+1. Build your own Docker image by running
+
+   ```bash
+   docker build \
+     --build-arg bar=1.2.3 \
+     --build-arg foo=2.0 \
+     … \
+     --tag my_plate \
+     https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
+   ```
+
+   For each chosen code cleaner, pass a `--build-arg` with a name-version pair. The build uses the Dockerfile of the repository at above URL, which refers to release `0.4.0` here.
+
+1. Now the code cleaners are available in the Docker image `my_plate`. Enjoy your meal.
+
+### Example
+
+As an example, in a project with Python, YAML, and Markdown code, you may choose the code formatters Black 19.10b0 and Prettier 1.19.1. Build your Docker image with
+
+```bash
+docker build \
+  --build-arg black=19.10b0 \
+  --build-arg prettier=1.19.1 \
+  --tag my_plate \
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
+```
+
+Then use it to check your code with
+
+```bash
+docker run --rm --volume "$(pwd)":/workdir my_plate \
+  sh -c 'black --diff --check . && prettier --check "**/*.+(md|yaml|yml)"'
+```
+
+## Frequently asked questions
+
+<dl>
+<dt>How do I change the Alpine base image version?</dt>
+<dd>
+
+When building, additionally pass `--build-arg _alpine=…` with your desired version.
+
+</dd>
+
+<dt>How does this work?</dt>
+<dd>
+
+This uses the tool [Buffet](https://github.com/evolutics/buffet).
+
+</dd>
+</dl>
 
 ## Index
 
@@ -287,7 +364,7 @@
 docker build \
   --build-arg addons_linter=1.15.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 addons-linter --version \
   && echo '{ "manifest_version": 2, "name": "Borderify", "version": "1.0" }' \
@@ -319,7 +396,7 @@ addons-linter --version \
 docker build \
   --build-arg aspell=0.60.6.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 aspell --version \
   && echo 'example' | aspell --lang en_US list
@@ -353,7 +430,7 @@ aspell --version \
 docker build \
   --build-arg astyle=3.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 astyle --version \
   && echo 'class Main { public static void Main(string[] args) { } }' \
@@ -383,9 +460,9 @@ astyle --version \
 
 ```bash
 docker build \
-  --build-arg black=19.3b0 \
+  --build-arg black=19.10b0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 black --version \
   && echo 'j = [1,  2,3]' | black -
@@ -415,7 +492,7 @@ black --version \
 docker build \
   --build-arg bootlint=1.0.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 bootlint --version \
   && echo \
@@ -447,7 +524,7 @@ bootlint --version \
 docker build \
   --build-arg brittany=0.12.1.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 brittany --version \
   && echo 'example = case x of Just p -> foo bar' | brittany
@@ -483,7 +560,7 @@ brittany --version \
 docker build \
   --build-arg clang_format=8.0.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 clang-format -version \
   && printf '#include <stdio.h> \nint main(void) { printf ("Hi\\n"); }\n' \
@@ -515,7 +592,7 @@ clang-format -version \
 docker build \
   --build-arg clang_tidy=9.0.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 clang-tidy --version \
   && echo 'int main(int argc, char *argv[]) { return argc; }' > main.cpp \
@@ -547,7 +624,7 @@ clang-tidy --version \
 docker build \
   --build-arg cpplint=1.4.4 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 cpplint --version \
   && printf '// Copyright 2019 Boo Far\n#include <iostream>\nint main() { }\n' \
@@ -580,7 +657,7 @@ cpplint --version \
 docker build \
   --build-arg csscomb=4.3.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 csscomb --help \
   && echo '.a { display: none; }' | csscomb -
@@ -610,7 +687,7 @@ csscomb --help \
 docker build \
   --build-arg csslint=1.0.5 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 csslint --version \
   && echo '.a { display: none; }' > main.css \
@@ -641,7 +718,7 @@ csslint --version \
 docker build \
   --build-arg doiuse=4.2.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 doiuse --version \
   && echo '.a { display: none; }' \
@@ -673,7 +750,7 @@ doiuse --version \
 docker build \
   --build-arg eslint=6.5.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 eslint --version \
   && echo '{ "rules": { "semi": ["error", "always"] } }' > .eslintrc \
@@ -704,7 +781,7 @@ eslint --version \
 docker build \
   --build-arg git=2.22.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 git --version \
   && git init \
@@ -738,7 +815,7 @@ git --version \
 docker build \
   --build-arg gitlint=0.12.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 gitlint --version \
   && printf 'Change foo\n\nBecause bar is missing.\n' | gitlint
@@ -768,7 +845,7 @@ gitlint --version \
 docker build \
   --build-arg gofmt=1.13.4 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 gofmt --help ; [ "$?" -eq 2 ] \
   && printf \
@@ -800,7 +877,7 @@ gofmt --help ; [ "$?" -eq 2 ] \
 docker build \
   --build-arg golangci_lint=1.21.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 golangci-lint --version \
   && printf 'package main\nimport "fmt"\nfunc main() { fmt.Println("Hi") }\n' \
@@ -832,7 +909,7 @@ golangci-lint --version \
 docker build \
   --build-arg google_java_format=1.7 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 google-java-format --version \
   && echo 'class Foo { void bar() {} }' | google-java-format -
@@ -860,9 +937,9 @@ google-java-format --version \
 
 ```bash
 docker build \
-  --build-arg hadolint=1.17.2 \
+  --build-arg hadolint=1.17.3 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 hadolint --version \
   && echo 'FROM foo:bar' | hadolint -
@@ -892,7 +969,7 @@ hadolint --version \
 docker build \
   --build-arg hindent=5.3.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 hindent --version \
   && echo 'example = case x of Just p -> foo bar' | hindent
@@ -922,7 +999,7 @@ hindent --version \
 docker build \
   --build-arg hlint=2.2.3 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 hlint --version \
   && echo 'foo = fmap . fmap' | hlint -
@@ -952,7 +1029,7 @@ hlint --version \
 docker build \
   --build-arg htmllint=0.0.7 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 htmllint --version \
   && htmllint init \
@@ -986,7 +1063,7 @@ htmllint --version \
 docker build \
   --build-arg hunspell=1.7.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 hunspell --version \
   && echo 'example' | hunspell -d en_US
@@ -1016,7 +1093,7 @@ hunspell --version \
 docker build \
   --build-arg jsonlint=1.6.3 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 jsonlint --version ; [ "$?" -eq 1 ] \
   && echo '{"foo": "bar"}' | jsonlint
@@ -1047,7 +1124,7 @@ jsonlint --version ; [ "$?" -eq 1 ] \
 docker build \
   --build-arg ktlint=0.35.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 ktlint --version \
   && echo 'fun main () { println("Hi") }' | ktlint --format --stdin
@@ -1077,7 +1154,7 @@ ktlint --version \
 docker build \
   --build-arg luafmt=2.6.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 luafmt --version \
   && echo 'print ("Hi")' | luafmt --stdin
@@ -1108,7 +1185,7 @@ luafmt --version \
 docker build \
   --build-arg mix=1.8.2 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 mix --version \
   && echo 'defmodule Main do def main do IO.puts "Hi" end end' | mix format -
@@ -1138,7 +1215,7 @@ mix --version \
 docker build \
   --build-arg phplint=1.1.9 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 phplint --version \
   && echo '<?php echo "Hi"; ?>' > main.php \
@@ -1187,7 +1264,7 @@ phplint --version \
 docker build \
   --build-arg pmd=6.18.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 pmd pmd -help \
   && mkdir foo \
@@ -1226,9 +1303,9 @@ pmd pmd -help \
 
 ```bash
 docker build \
-  --build-arg prettier=1.18.2 \
+  --build-arg prettier=1.19.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 prettier --version \
   && echo '.a { display: none; }' | prettier --stdin-filepath b.css
@@ -1259,7 +1336,7 @@ prettier --version \
 docker build \
   --build-arg prettier_eslint=5.0.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 prettier-eslint --version \
   && echo 'var  foo =  "bar"' | prettier-eslint --stdin --stdin-filepath baz.js
@@ -1289,7 +1366,7 @@ prettier-eslint --version \
 docker build \
   --build-arg prettier_java=0.4.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 prettier --version \
   && echo 'class Foo { void bar() {} }' | prettier --stdin-filepath Foo.java
@@ -1319,7 +1396,7 @@ prettier --version \
 docker build \
   --build-arg prettier_php=0.11.2 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 prettier --version \
   && echo '<?php echo "Hi" ; ?>' | prettier --stdin-filepath main.php
@@ -1349,7 +1426,7 @@ prettier --version \
 docker build \
   --build-arg prettier_ruby=0.16.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 prettier --version \
   && echo 'puts "Hi"' | prettier --stdin-filepath main.rb
@@ -1379,7 +1456,7 @@ prettier --version \
 docker build \
   --build-arg prettier_toml=0.3.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 prettier --version \
   && echo 'foo  =  "bar"' | prettier --stdin-filepath main.toml
@@ -1409,7 +1486,7 @@ prettier --version \
 docker build \
   --build-arg prettier_xml=0.3.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 prettier --version \
   && echo '<?xml version="1.0"?><message>Hi</message>' \
@@ -1440,7 +1517,7 @@ prettier --version \
 docker build \
   --build-arg pyflakes=2.1.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 pyflakes --version \
   && echo 'one = 1' | pyflakes
@@ -1470,7 +1547,7 @@ pyflakes --version \
 docker build \
   --build-arg pylint=2.4.3 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 pylint --version \
   && echo 'ONE = 1' > main.py \
@@ -1501,7 +1578,7 @@ pylint --version \
 docker build \
   --build-arg repolinter=0.7.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 echo 'No version or help.' \
   && echo \
@@ -1535,7 +1612,7 @@ echo 'No version or help.' \
 docker build \
   --build-arg rubocop=0.76.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 rubocop --version \
   && printf "# frozen_string_literal: true\n\nputs 'Hi'\n" > main.rb \
@@ -1566,7 +1643,7 @@ rubocop --version \
 docker build \
   --build-arg scalafmt=2.2.2 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 scalafmt --version \
   && echo 'object Main { println ("Hi") }' | scalafmt --stdin
@@ -1596,7 +1673,7 @@ scalafmt --version \
 docker build \
   --build-arg shellcheck=0.7.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 shellcheck --version \
   && printf '#!/bin/bash\necho "Hi"\n' > main.sh \
@@ -1627,7 +1704,7 @@ shellcheck --version \
 docker build \
   --build-arg spotbugs=4.0.0-beta4 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 spotbugs -version \
   && spotbugs -textui /opt/spotbugs/lib/spotbugs.jar
@@ -1658,7 +1735,7 @@ spotbugs -version \
 docker build \
   --build-arg standard=14.3.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 standard --version \
   && echo 'var foo =  "bar"; console.log(foo)' | standard --fix --stdin
@@ -1688,7 +1765,7 @@ standard --version \
 docker build \
   --build-arg stylelint=11.1.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 stylelint --version \
   && echo '{ "extends": "stylelint-config-standard" }' > .stylelintrc.json \
@@ -1721,7 +1798,7 @@ stylelint --version \
 docker build \
   --build-arg tidy=5.6.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 tidy -version \
   && echo '<!DOCTYPE html><title>Hi</title>' | tidy
@@ -1751,7 +1828,7 @@ tidy -version \
 docker build \
   --build-arg tslint=5.20.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 tslint --version \
   && tslint --init \
@@ -1785,7 +1862,7 @@ tslint --version \
 docker build \
   --build-arg vnu=18.11.5 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 vnu --version \
   && echo '<!DOCTYPE html><title>Hi</title>' | vnu -
@@ -1815,7 +1892,7 @@ vnu --version \
 docker build \
   --build-arg wemake_python_styleguide=0.12.5 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 flake8 --version \
   && echo '[isort]' > setup.cfg \
@@ -1848,7 +1925,7 @@ flake8 --version \
 docker build \
   --build-arg xmllint=2.9.9 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 xmllint --version \
   && echo '<?xml version="1.0"?><message>Hi</message>' | xmllint -
@@ -1880,7 +1957,7 @@ xmllint --version \
 docker build \
   --build-arg xo=0.24.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 xo --version \
   && echo 'const x=true' | xo --fix --stdin
@@ -1910,7 +1987,7 @@ xo --version \
 docker build \
   --build-arg yamllint=1.18.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 yamllint --version \
   && echo 'foo: bar' | yamllint -
@@ -1940,7 +2017,7 @@ yamllint --version \
 docker build \
   --build-arg yapf=0.28.0 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
 docker run -it --rm my_plate
 yapf --version \
   && echo 'y = "hello ""world"' | yapf

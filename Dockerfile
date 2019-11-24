@@ -112,7 +112,7 @@ RUN if [ -n "${addons_linter}" ]; then \
     apk add --no-cache "astyle~=${astyle}" \
   ; fi \
   && if [ -n "${black}" ]; then \
-    apk add --no-cache "python3~=${_apk_python3}"   && pip3 install "black==${black}" \
+    apk add --no-cache     "gcc~=${_apk_gcc}"     "musl-dev~=${_apk_musl_dev}"     "python3-dev~=${_apk_python3_dev}"   && pip3 install "black==${black}" \
   ; fi \
   && if [ -n "${bootlint}" ]; then \
     apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add "bootlint@${bootlint}" \
