@@ -102,33 +102,33 @@ This uses the tool [Buffet](https://github.com/evolutics/buffet).
 
 ### `{{option}}`
 
-[**{{title}}**]({{url}})
+[**{{metadata.title}}**]({{metadata.url}})
 
 <details>
 
-[↻ Available versions]({{#tags.info_evolutics_buffet_versions-url}}{{.}}{{/tags.info_evolutics_buffet_versions-url}})
+[↻ Available versions]({{#metadata.tags.info_evolutics_buffet_versions-url}}{{.}}{{/metadata.tags.info_evolutics_buffet_versions-url}})
 
 [🏷 Categories:](#by-category)
-{{#tags.info_evolutics_buffet_categories}}
+{{#metadata.tags.info_evolutics_buffet_categories}}
 {{> gap.md.mustache}}{{.}}
-{{/tags.info_evolutics_buffet_categories}}
-{{^tags.info_evolutics_buffet_categories}}
+{{/metadata.tags.info_evolutics_buffet_categories}}
+{{^metadata.tags.info_evolutics_buffet_categories}}
 {{> gap.md.mustache}}–
-{{/tags.info_evolutics_buffet_categories}}
+{{/metadata.tags.info_evolutics_buffet_categories}}
 
 [📜 Languages:](#by-language)
-{{#tags.info_evolutics_buffet_languages}}
+{{#metadata.tags.info_evolutics_buffet_languages}}
 {{> gap.md.mustache}}{{.}}
-{{/tags.info_evolutics_buffet_languages}}
-{{^tags.info_evolutics_buffet_languages}}
+{{/metadata.tags.info_evolutics_buffet_languages}}
+{{^metadata.tags.info_evolutics_buffet_languages}}
 {{> gap.md.mustache}}–
-{{/tags.info_evolutics_buffet_languages}}
+{{/metadata.tags.info_evolutics_buffet_languages}}
 
 🚀 Quick start:
 
 ```bash
 docker build \
-  --build-arg {{option}}={{#tags.info_evolutics_buffet_version-example}}{{.}}{{/tags.info_evolutics_buffet_version-example}} \
+  --build-arg {{option}}={{#metadata.tags.info_evolutics_buffet_version-example}}{{.}}{{/metadata.tags.info_evolutics_buffet_version-example}} \
   --tag my_plate \
   https://github.com/evolutics/code-cleaner-buffet.git#0.3.0
 docker run -it --rm my_plate
