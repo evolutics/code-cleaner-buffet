@@ -13,9 +13,9 @@ main() {
   local -r image_id="$(docker build --quiet \
     --build-arg git=2.22.0 \
     --build-arg gitlint=0.12.0 \
-    --build-arg hadolint=1.17.2 \
+    --build-arg hadolint=1.17.3 \
     --build-arg hunspell=1.7.0 \
-    --build-arg prettier=1.18.2 \
+    --build-arg prettier=1.19.1 \
     .)"
   docker run --rm --volume "$(pwd)":/workdir "${image_id}" ci/check.sh
 
