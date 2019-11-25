@@ -11,6 +11,7 @@ main() {
   pushd "${project_folder}"
 
   local -r image_id="$(docker build --quiet \
+    --build-arg black=19.10b0  \
     --build-arg git=2.22.0 \
     --build-arg gitlint=0.12.0 \
     --build-arg hadolint=1.17.3 \

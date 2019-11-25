@@ -4,6 +4,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+check_with_black() {
+  black --check --diff .
+}
+
 check_with_git() {
   git diff --check HEAD^
 }
@@ -34,6 +38,7 @@ check_with_prettier() {
 }
 
 main() {
+  check_with_black
   check_with_git
   check_with_gitlint
   check_with_hadolint
