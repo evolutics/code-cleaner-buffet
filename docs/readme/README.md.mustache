@@ -35,10 +35,10 @@ Prerequisites: Docker and Git.
      --build-arg foo=2.0 \
      … \
      --tag my_plate \
-     https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
+     https://github.com/evolutics/code-cleaner-buffet.git#0.5.0
    ```
 
-   For each chosen code cleaner, pass a `--build-arg` with a name-version pair. The build uses the Dockerfile of the repository at above URL, which refers to release `0.4.0` here.
+   For each chosen code cleaner, pass a `--build-arg` with a name-version pair. The build uses the Dockerfile of the repository at above URL, which refers to release `0.5.0` here.
 
 1. Now the code cleaners are available in the Docker image `my_plate`. Enjoy your meal.
 
@@ -51,7 +51,7 @@ docker build \
   --build-arg black=19.10b0 \
   --build-arg prettier=1.19.1 \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.5.0
 ```
 
 Then use it to check your code with
@@ -130,7 +130,7 @@ This uses the tool [Buffet](https://github.com/evolutics/buffet).
 docker build \
   --build-arg {{option}}={{#metadata.tags.info_evolutics_buffet_version-example}}{{.}}{{/metadata.tags.info_evolutics_buffet_version-example}} \
   --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.4.0
+  https://github.com/evolutics/code-cleaner-buffet.git#0.5.0
 docker run -it --rm my_plate
 {{{health_check}}}
 ```
