@@ -4,6 +4,16 @@ ARG hindent_haskell_stack="haskell-stack-${hindent:+e317e1188a5adf4a}"
 ARG shellcheck
 ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+e317e1188a5adf4a}"
 
+FROM alpine:"${_alpine}" AS black
+ARG _apk_gcc='8.3.0'
+ARG _apk_musl_dev='1.1.22'
+ARG _apk_python3_dev='3.7.5'
+ARG black
+#  hadolint ignore=DL3013
+RUN if [ -n "${black}" ]; then \
+    apk add --no-cache     "gcc~=${_apk_gcc}"     "musl-dev~=${_apk_musl_dev}"     "python3-dev~=${_apk_python3_dev}"   && pip3 install --target /opt/black "black==${black}" \
+  ; fi
+
 FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
 ARG hindent
 RUN if [ -n "${hindent}" ]; then \
@@ -112,7 +122,7 @@ RUN if [ -n "${addons_linter}" ]; then \
     apk add --no-cache "astyle~=${astyle}" \
   ; fi \
   && if [ -n "${black}" ]; then \
-    apk add --no-cache     "gcc~=${_apk_gcc}"     "musl-dev~=${_apk_musl_dev}"     "python3-dev~=${_apk_python3_dev}"   && pip3 install "black==${black}" \
+    apk add --no-cache "python3~=${_apk_python3}" \
   ; fi \
   && if [ -n "${bootlint}" ]; then \
     apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add "bootlint@${bootlint}" \
@@ -258,11 +268,15 @@ RUN if [ -n "${addons_linter}" ]; then \
   && if [ -n "${yapf}" ]; then \
     apk add --no-cache "python3~=${_apk_python3}"   && pip3 install "yapf==${yapf}" \
   ; fi
+COPY --from=black /opt/black* /var/empty /opt/black/
 COPY --from=hindent /root/.local/bin/hindent* /var/empty /usr/local/bin/
 COPY --from=shellcheck /root/.local/bin/shellcheck* /var/empty /usr/local/bin/
 WORKDIR /workdir
+ENV PATH="${PATH}:/opt/black/bin"
 #  hadolint ignore=DL3003
 RUN if [ -n "${clang_tidy}" ]; then \
     apk add --no-cache     "build-base~=${_apk_build_base}"     "cmake~=${_apk_cmake}"     "ninja~=${_apk_ninja}"     "python3~=${_apk_python3}"   && tmp="$(mktemp -d)"   && mkdir "${tmp}/llvm"   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/llvm-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm" --extract --file - --strip-components 1       --xz   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/cfe-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm/tools" --extract --file - --xz   && mkdir "${tmp}/llvm/tools/cfe-${clang_tidy}.src/tools/extra"   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm/tools/cfe-${clang_tidy}.src/tools/extra"       --extract --file - --strip-components 1 --xz   && mkdir "${tmp}/build"   && cd "${tmp}/build"   && cmake -G Ninja ../llvm   && ninja clang-tidy   && mv "${tmp}/build/bin/clang-tidy" /usr/local/bin   && rm -fr "${tmp}" \
   ; fi
+WORKDIR /workdir
+ENV PYTHONPATH="${PYTHONPATH}:/opt/black"
 WORKDIR /workdir
