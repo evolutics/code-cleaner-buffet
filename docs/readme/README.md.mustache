@@ -58,7 +58,7 @@ Then use it to check your code with
 
 ```bash
 docker run --rm --volume "$(pwd)":/workdir my_plate \
-  sh -c 'black --diff --check . && prettier --check "**/*.+(md|yaml|yml)"'
+  sh -c 'black --check --diff --check . && prettier --check "**/*.+(md|yaml|yml)"'
 ```
 
 ## Frequently asked questions
