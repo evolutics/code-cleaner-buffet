@@ -36,7 +36,7 @@ Prerequisites: Docker and Git.
      --build-arg bar=1.2.3 \
      --build-arg foo=2.0 \
      … \
-     --tag my_plate \
+     --tag plate \
      https://github.com/evolutics/code-cleaner-buffet.git#0.5.0
    ```
 
@@ -48,22 +48,22 @@ Prerequisites: Docker and Git.
    docker build \
      --build-arg black=19.10b0 \
      --build-arg prettier=1.19.1 \
-     --tag my_plate \
+     --tag plate \
      https://github.com/evolutics/code-cleaner-buffet.git#0.5.0
    ```
 
-1. Now the code cleaners are available in the Docker image `my_plate`. Enjoy your meal.
+1. Now the code cleaners are available in the Docker image `plate`. Enjoy your meal.
 
    **Example:** Check your code with
 
    ```bash
-   docker run --rm --volume "$(pwd)":/workdir my_plate \
+   docker run --rm --volume "$(pwd)":/workdir plate \
      sh -c 'black --check --diff . && prettier --check "**/*.+(md|yaml|yml)"'
    ```
 
 ## Usage in continuous integration
 
-First, build a custom Docker image of code cleaners (see [quick start](#quick-start)). We assume your image is available as `me/my_plate:1.2.3` from a Docker registry. In case of Docker Hub, you can do this with `docker push me/my_plate:1.2.3`, where `me` is your username.
+First, build a custom Docker image of code cleaners (see [quick start](#quick-start)). We assume your image is available as `me/plate:1.2.3` from a Docker registry. In case of Docker Hub, you can do this with `docker push me/plate:1.2.3`, where `me` is your username.
 
 In the following, we demonstrate how to integrate code cleaners into different continuous integration systems, using `black --check --diff .` as an example.
 
@@ -76,7 +76,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: me/my_plate:1.2.3
+      - image: me/plate:1.2.3
     steps:
       - checkout
       - run: black --check --diff .
@@ -91,11 +91,11 @@ services:
   - docker
 
 install:
-  - docker pull me/my_plate:1.2.3
+  - docker pull me/plate:1.2.3
 
 script:
   - >
-    docker run --rm --volume "${TRAVIS_BUILD_DIR}":/workdir me/my_plate:1.2.3
+    docker run --rm --volume "${TRAVIS_BUILD_DIR}":/workdir me/plate:1.2.3
       sh -c 'black --check --diff .'
 ```
 
@@ -181,9 +181,9 @@ This uses the tool [Buffet](https://github.com/evolutics/buffet).
 ```bash
 docker build \
   --build-arg {{option}}={{#metadata.tags.info_evolutics_buffet_version-example}}{{.}}{{/metadata.tags.info_evolutics_buffet_version-example}} \
-  --tag my_plate \
+  --tag plate \
   https://github.com/evolutics/code-cleaner-buffet.git#0.5.0
-docker run -it --rm my_plate
+docker run -it --rm plate
 {{{health_check}}}
 ```
 
