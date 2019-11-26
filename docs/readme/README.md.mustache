@@ -64,6 +64,13 @@ Prerequisites: Docker and Git.
 ## Frequently asked questions
 
 <dl>
+<dt>What is the default working directory?</dt>
+<dd>
+
+It is `/workdir`. You may mount to it with `docker run --volume "$(pwd)":/workdir …`.
+
+</dd>
+
 <dt>How do I change the Alpine base image version?</dt>
 <dd>
 
