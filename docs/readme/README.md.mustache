@@ -67,6 +67,21 @@ First, build a custom Docker image of code cleaners (see [quick start](#quick-st
 
 In the following, we demonstrate how to integrate code cleaners into different continuous integration systems, using `black --check --diff .` as an example.
 
+### CircleCI
+
+Adjust your `.circleci/config.yml` file to include
+
+```yaml
+version: 2
+jobs:
+  build:
+    docker:
+      - image: me/my_plate:1.2.3
+    steps:
+      - checkout
+      - run: black --check --diff .
+```
+
 ### Travis CI
 
 Adjust your `.travis.yml` file to include
