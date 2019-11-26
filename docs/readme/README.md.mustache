@@ -27,6 +27,8 @@ Prerequisites: Docker and Git.
 
 1. Choose the code cleaners you need from the [list below](#index), and decide on a version for each.
 
+   **Example:** In a project with Python, YAML, and Markdown code, you may choose the code formatters [Black](#black) 19.10b0 and [Prettier](#prettier) 1.19.1.
+
 1. Build your own Docker image by running
 
    ```bash
@@ -40,26 +42,24 @@ Prerequisites: Docker and Git.
 
    For each chosen code cleaner, pass a `--build-arg` with a name-version pair. The build uses the Dockerfile of the repository at above URL, which refers to release `0.5.0` here.
 
+   **Example:**
+
+   ```bash
+   docker build \
+     --build-arg black=19.10b0 \
+     --build-arg prettier=1.19.1 \
+     --tag my_plate \
+     https://github.com/evolutics/code-cleaner-buffet.git#0.5.0
+   ```
+
 1. Now the code cleaners are available in the Docker image `my_plate`. Enjoy your meal.
 
-### Example
+   **Example:** Check your code with
 
-As an example, in a project with Python, YAML, and Markdown code, you may choose the code formatters Black 19.10b0 and Prettier 1.19.1. Build your Docker image with
-
-```bash
-docker build \
-  --build-arg black=19.10b0 \
-  --build-arg prettier=1.19.1 \
-  --tag my_plate \
-  https://github.com/evolutics/code-cleaner-buffet.git#0.5.0
-```
-
-Then use it to check your code with
-
-```bash
-docker run --rm --volume "$(pwd)":/workdir my_plate \
-  sh -c 'black --check --diff . && prettier --check "**/*.+(md|yaml|yml)"'
-```
+   ```bash
+   docker run --rm --volume "$(pwd)":/workdir my_plate \
+     sh -c 'black --check --diff . && prettier --check "**/*.+(md|yaml|yml)"'
+   ```
 
 ## Frequently asked questions
 
