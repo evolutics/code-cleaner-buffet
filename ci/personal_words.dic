@@ -1,6 +1,7 @@
 ARG
 cURL
 Dockerfile
+ENV
 JSON
 readme
 Wget

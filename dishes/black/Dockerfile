@@ -24,8 +24,8 @@ LABEL info.evolutics.buffet.version-example='19.10b0'
 
 RUN apk add --no-cache "python3~=${_apk_python3}"
 COPY --from=black /opt/black /opt/black
-ENV PATH="${PATH}:/opt/black/bin"
-ENV PYTHONPATH="${PYTHONPATH}:/opt/black"
+ENV PATH="${PATH}:/opt/black/bin" \
+  PYTHONPATH="${PYTHONPATH}:/opt/black"
 
 WORKDIR /workdir
 
