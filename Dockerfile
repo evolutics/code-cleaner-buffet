@@ -271,12 +271,11 @@ RUN if [ -n "${addons_linter}" ]; then \
 COPY --from=black /opt/black* /var/empty /opt/black/
 COPY --from=hindent /root/.local/bin/hindent* /var/empty /usr/local/bin/
 COPY --from=shellcheck /root/.local/bin/shellcheck* /var/empty /usr/local/bin/
+ENV PATH="${PATH}:/opt/black/bin" \
+    PYTHONPATH="${PYTHONPATH}:/opt/black"
 WORKDIR /workdir
-ENV PATH="${PATH}:/opt/black/bin"
 #  hadolint ignore=DL3003
 RUN if [ -n "${clang_tidy}" ]; then \
     apk add --no-cache     "build-base~=${_apk_build_base}"     "cmake~=${_apk_cmake}"     "ninja~=${_apk_ninja}"     "python3~=${_apk_python3}"   && tmp="$(mktemp -d)"   && mkdir "${tmp}/llvm"   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/llvm-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm" --extract --file - --strip-components 1       --xz   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/cfe-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm/tools" --extract --file - --xz   && mkdir "${tmp}/llvm/tools/cfe-${clang_tidy}.src/tools/extra"   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm/tools/cfe-${clang_tidy}.src/tools/extra"       --extract --file - --strip-components 1 --xz   && mkdir "${tmp}/build"   && cd "${tmp}/build"   && cmake -G Ninja ../llvm   && ninja clang-tidy   && mv "${tmp}/build/bin/clang-tidy" /usr/local/bin   && rm -fr "${tmp}" \
   ; fi
-WORKDIR /workdir
-ENV PYTHONPATH="${PYTHONPATH}:/opt/black"
 WORKDIR /workdir
