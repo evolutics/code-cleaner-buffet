@@ -61,6 +61,12 @@ Prerequisites: Docker and Git.
      sh -c 'black --check --diff . && prettier --check "**/*.+(md|yaml|yml)"'
    ```
 
+## Usage in continuous integration
+
+First, build a custom Docker image of code cleaners (see [quick start](#quick-start)). We assume your image is available as `me/my_plate:1.2.3` from a Docker registry. In case of Docker Hub, you can do this with `docker push me/my_plate:1.2.3`, where `me` is your username.
+
+In the following, we demonstrate how to integrate code cleaners into different continuous integration systems, using `black --check --diff .` as an example.
+
 ## Frequently asked questions
 
 <dl>
