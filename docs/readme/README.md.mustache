@@ -71,6 +71,13 @@ It is `/workdir`. You may mount to it with `docker run --volume "$(pwd)":/workdi
 
 </dd>
 
+<dt>How can I prevent certain code cleaners from changing the owner of edited files?</dt>
+<dd>
+
+Use `docker run --user "$(id --user):$(id --group)" …`.
+
+</dd>
+
 <dt>How do I change the Alpine base image version?</dt>
 <dd>
 
