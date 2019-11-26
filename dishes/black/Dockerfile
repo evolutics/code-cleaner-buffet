@@ -14,7 +14,6 @@ RUN apk add --no-cache \
 
 FROM alpine:"${_alpine}"
 ARG _apk_python3='3.7.5'
-ARG black
 
 LABEL org.opencontainers.image.title='Black'
 LABEL org.opencontainers.image.url='https://github.com/psf/black'
