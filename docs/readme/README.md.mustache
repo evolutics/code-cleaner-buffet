@@ -67,6 +67,23 @@ First, build a custom Docker image of code cleaners (see [quick start](#quick-st
 
 In the following, we demonstrate how to integrate code cleaners into different continuous integration systems, using `black --check --diff .` as an example.
 
+### Travis CI
+
+Adjust your `.travis.yml` file to include
+
+```yaml
+services:
+  - docker
+
+install:
+  - docker pull me/my_plate:1.2.3
+
+script:
+  - >
+    docker run --rm --volume "${TRAVIS_BUILD_DIR}":/workdir me/my_plate:1.2.3
+      sh -c 'black --check --diff .'
+```
+
 ## Frequently asked questions
 
 <dl>
