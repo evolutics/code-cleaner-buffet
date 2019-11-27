@@ -82,6 +82,32 @@ jobs:
       - run: black --check --diff .
 ```
 
+### Jenkins
+
+Adjust your `Jenkinsfile` to include
+
+```jenkinsfile
+pipeline {
+    agent none
+    stages {
+        stage('Checkout') {
+            agent any
+            steps {
+                git url: …
+            }
+        }
+        stage('Build') {
+            agent {
+                docker { image 'me/plate:1.2.3' }
+            }
+            steps {
+                sh 'black --check --diff .'
+            }
+        }
+    }
+}
+```
+
 ### Travis CI
 
 Adjust your `.travis.yml` file to include
