@@ -14,6 +14,21 @@ RUN if [ -n "${black}" ]; then \
     apk add --no-cache     "gcc~=${_apk_gcc}"     "musl-dev~=${_apk_musl_dev}"     "python3-dev~=${_apk_python3_dev}"   && pip3 install --target /opt/black "black==${black}" \
   ; fi
 
+FROM alpine:"${_alpine}" AS clang_tidy
+ARG _apk_build_base='0.5'
+ARG _apk_cmake='3.14.5'
+ARG _apk_ninja='1.9.0'
+ARG _apk_python3='3.7.5'
+ARG clang_tidy
+SHELL ["/bin/ash", "-o", "pipefail", "-c"]
+RUN if [ -n "${clang_tidy}" ]; then \
+    apk add --no-cache     "build-base~=${_apk_build_base}"     "cmake~=${_apk_cmake}"     "ninja~=${_apk_ninja}"     "python3~=${_apk_python3}"   && mkdir /opt/llvm   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/llvm-${clang_tidy}.src.tar.xz"     | tar --directory /opt/llvm --extract --file - --strip-components 1 --xz   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/cfe-${clang_tidy}.src.tar.xz"     | tar --directory /opt/llvm/tools --extract --file - --xz   && mkdir "/opt/llvm/tools/cfe-${clang_tidy}.src/tools/extra"   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz"     | tar --directory "/opt/llvm/tools/cfe-${clang_tidy}.src/tools/extra"       --extract --file - --strip-components 1 --xz \
+  ; fi
+WORKDIR /opt/build
+RUN if [ -n "${clang_tidy}" ]; then \
+    cmake -G Ninja ../llvm   && ninja clang-tidy \
+  ; fi
+
 FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
 ARG hindent
 RUN if [ -n "${hindent}" ]; then \
@@ -31,7 +46,6 @@ ARG _apk_aspell_en='2018.04.16'
 ARG _apk_bash='5.0.0'
 ARG _apk_build_base='0.5'
 ARG _apk_cabal='2.4.1.0'
-ARG _apk_cmake='3.14.5'
 ARG _apk_composer='1.8.6'
 ARG _apk_gcc='8.3.0'
 ARG _apk_ghc='8.4.3'
@@ -41,9 +55,9 @@ ARG _apk_gmp_dev='6.1.2'
 ARG _apk_go='1.12.12'
 ARG _apk_hunspell_en='2018.04.16'
 ARG _apk_libffi='3.2.1'
+ARG _apk_libstdcpp='8.3.0'
 ARG _apk_musl_dev='1.1.22'
 ARG _apk_ncurses_dev='6.1_p20190518'
-ARG _apk_ninja='1.9.0'
 ARG _apk_npm='10.16.3'
 ARG _apk_openjdk11_jre_headless='11.0.4_p4'
 ARG _apk_python3='3.7.5'
@@ -132,6 +146,9 @@ RUN if [ -n "${addons_linter}" ]; then \
   ; fi \
   && if [ -n "${clang_format}" ]; then \
     apk add --no-cache "clang~=${clang_format}" \
+  ; fi \
+  && if [ -n "${clang_tidy}" ]; then \
+    apk add --no-cache "libstdc++~=${_apk_libstdcpp}" \
   ; fi \
   && if [ -n "${cpplint}" ]; then \
     apk add --no-cache "python3~=${_apk_python3}"   && pip3 install "cpplint==${cpplint}" \
@@ -269,13 +286,9 @@ RUN if [ -n "${addons_linter}" ]; then \
     apk add --no-cache "python3~=${_apk_python3}"   && pip3 install "yapf==${yapf}" \
   ; fi
 COPY --from=black /opt/black* /var/empty /opt/black/
+COPY --from=clang_tidy /opt/build/bin/clang-tidy* /var/empty /usr/local/bin/
 COPY --from=hindent /root/.local/bin/hindent* /var/empty /usr/local/bin/
 COPY --from=shellcheck /root/.local/bin/shellcheck* /var/empty /usr/local/bin/
 ENV PATH="${PATH}:/opt/black/bin" \
     PYTHONPATH="${PYTHONPATH}:/opt/black"
-WORKDIR /workdir
-#  hadolint ignore=DL3003
-RUN if [ -n "${clang_tidy}" ]; then \
-    apk add --no-cache     "build-base~=${_apk_build_base}"     "cmake~=${_apk_cmake}"     "ninja~=${_apk_ninja}"     "python3~=${_apk_python3}"   && tmp="$(mktemp -d)"   && mkdir "${tmp}/llvm"   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/llvm-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm" --extract --file - --strip-components 1       --xz   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/cfe-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm/tools" --extract --file - --xz   && mkdir "${tmp}/llvm/tools/cfe-${clang_tidy}.src/tools/extra"   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz"     | tar --directory "${tmp}/llvm/tools/cfe-${clang_tidy}.src/tools/extra"       --extract --file - --strip-components 1 --xz   && mkdir "${tmp}/build"   && cd "${tmp}/build"   && cmake -G Ninja ../llvm   && ninja clang-tidy   && mv "${tmp}/build/bin/clang-tidy" /usr/local/bin   && rm -fr "${tmp}" \
-  ; fi
 WORKDIR /workdir
