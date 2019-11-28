@@ -1,3 +1,4 @@
+import pathlib
 import subprocess
 
 
@@ -8,12 +9,12 @@ def main(arguments):
 
 
 def _generate_dockerfile():
-    with open("Dockerfile", "w") as dockerfile:
+    with pathlib.Path("Dockerfile").open("w") as dockerfile:
         subprocess.run(["buffet", "build", "dishes"], check=True, stdout=dockerfile)
 
 
 def _generate_readme():
-    with open("README.md", "w") as readme:
+    with pathlib.Path("README.md").open("w") as readme:
         subprocess.run(
             [
                 "buffet",
