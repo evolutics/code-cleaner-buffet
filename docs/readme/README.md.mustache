@@ -90,12 +90,6 @@ Adjust your `Jenkinsfile` to include
 pipeline {
     agent none
     stages {
-        stage('Checkout') {
-            agent any
-            steps {
-                git url: …
-            }
-        }
         stage('Build') {
             agent {
                 docker { image 'me/plate:1.2.3' }
