@@ -5,7 +5,7 @@ import argparse
 from maintenance import generate_buffet
 
 
-def main() -> None:
+def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
 
