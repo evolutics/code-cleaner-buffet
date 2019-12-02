@@ -10,7 +10,7 @@ def main(arguments):
 
 def _generate_dockerfile():
     with pathlib.Path("Dockerfile").open("w") as dockerfile:
-        subprocess.run(["buffet", "build", "dishes"], check=True, stdout=dockerfile)
+        subprocess.run(["buffet", "assemble", "dishes"], check=True, stdout=dockerfile)
 
 
 def _generate_readme():
