@@ -6,25 +6,24 @@ import subprocess
 
 
 def main(arguments):
-    _build_and_push("haskell_stack")
+    for helper in sorted(pathlib.Path("helpers").iterdir()):
+        if helper.is_dir():
+            _build_and_push(helper)
 
 
 def _build_and_push(helper):
     image = "evolutics/code-cleaner-buffet"
 
-    tag_base = helper.replace("_", "-")
+    tag_base = helper.name.replace("_", "-")
     image_if_disabled = f"{image}:{tag_base}-"
     base_image = "alpine:3.10.3"
     subprocess.run(["docker", "pull", base_image], check=True)
     subprocess.run(["docker", "tag", base_image, image_if_disabled], check=True)
     subprocess.run(["docker", "push", image_if_disabled], check=True)
 
-    helper_folder = pathlib.Path("helpers") / helper
-    digest = _hash_folder(helper_folder)[:16]
+    digest = _hash_folder(helper)[:16]
     image_if_enabled = f"{image_if_disabled}{digest}"
-    subprocess.run(
-        ["docker", "build", "--tag", image_if_enabled, helper_folder], check=True
-    )
+    subprocess.run(["docker", "build", "--tag", image_if_enabled, helper], check=True)
     subprocess.run(["docker", "push", image_if_enabled], check=True)
 
 
