@@ -8,23 +8,32 @@ import subprocess
 def main(arguments):
     for helper in sorted(pathlib.Path("helpers").iterdir()):
         if helper.is_dir():
-            _build_and_push(helper)
+            _update_helper(helper)
 
 
-def _build_and_push(helper):
-    image = "evolutics/code-cleaner-buffet"
+def _update_helper(helper):
+    image_if_disabled = _image_if_disabled(helper)
+    _update_image_if_disabled(image_if_disabled)
+    _update_image_if_enabled(image_if_disabled, helper)
 
+
+def _image_if_disabled(helper):
     tag_base = helper.name.replace("_", "-")
-    image_if_disabled = f"{image}:{tag_base}-"
+    return f"evolutics/code-cleaner-buffet:{tag_base}-"
+
+
+def _update_image_if_disabled(image):
     base_image = "alpine:3.10.3"
     subprocess.run(["docker", "pull", base_image], check=True)
-    subprocess.run(["docker", "tag", base_image, image_if_disabled], check=True)
-    subprocess.run(["docker", "push", image_if_disabled], check=True)
+    subprocess.run(["docker", "tag", base_image, image], check=True)
+    subprocess.run(["docker", "push", image], check=True)
 
+
+def _update_image_if_enabled(image_if_disabled, helper):
     digest = _hash_folder(helper)[:16]
-    image_if_enabled = f"{image_if_disabled}{digest}"
-    subprocess.run(["docker", "build", "--tag", image_if_enabled, helper], check=True)
-    subprocess.run(["docker", "push", image_if_enabled], check=True)
+    image = f"{image_if_disabled}{digest}"
+    subprocess.run(["docker", "build", "--tag", image, helper], check=True)
+    subprocess.run(["docker", "push", image], check=True)
 
 
 def _hash_folder(folder):
