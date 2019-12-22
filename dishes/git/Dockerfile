@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.url='https://git-scm.com'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages=''
 LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=git&branch=v3.10'
-LABEL info.evolutics.buffet.version-example='2.22.0'
+LABEL info.evolutics.buffet.version-example='2.22.2'
 
 RUN apk add --no-cache "git~=${git}"
 
