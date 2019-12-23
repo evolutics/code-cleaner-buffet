@@ -1,8 +1,8 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_bash='5.0.0'
-ARG _apk_openjdk11_jre_headless='11.0.4_p4'
+ARG _apk_bash='5.0.11'
+ARG _apk_openjdk11_jre_headless='11.0.5_p10'
 ARG pmd
 
 LABEL org.opencontainers.image.title='PMD'

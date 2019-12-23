@@ -1,4 +1,4 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
 ARG gofmt

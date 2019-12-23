@@ -1,12 +1,12 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_cabal='2.4.1.0'
-ARG _apk_ghc='8.4.3'
+ARG _apk_ghc='8.6.5'
 ARG _apk_gmp='6.1.2'
 ARG _apk_libffi='3.2.1'
-ARG _apk_musl_dev='1.1.22'
-ARG _apk_ncurses_dev='6.1_p20190518'
+ARG _apk_musl_dev='1.1.24'
+ARG _apk_ncurses_dev='6.1_p20191130'
 ARG _apk_wget='1.20.3'
 ARG hlint
 

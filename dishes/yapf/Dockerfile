@@ -1,7 +1,7 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_python3='3.7.5'
+ARG _apk_python3='3.8.0'
 ARG yapf
 
 LABEL org.opencontainers.image.title='YAPF'

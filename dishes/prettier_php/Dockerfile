@@ -1,8 +1,8 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_git='2.22.2'
-ARG _apk_yarn='1.16.0'
+ARG _apk_git='2.24.1'
+ARG _apk_yarn='1.19.2'
 ARG _yarn_prettier='1.19.1'
 ARG prettier_php
 

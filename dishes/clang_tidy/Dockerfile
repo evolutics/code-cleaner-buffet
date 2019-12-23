@@ -1,10 +1,10 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}" AS clang_tidy
 ARG _apk_build_base='0.5'
-ARG _apk_cmake='3.14.5'
+ARG _apk_cmake='3.15.5'
 ARG _apk_ninja='1.9.0'
-ARG _apk_python3='3.7.5'
+ARG _apk_python3='3.8.0'
 ARG clang_tidy
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN apk add --no-cache \
@@ -29,7 +29,7 @@ RUN cmake -G Ninja ../llvm \
   && ninja clang-tidy
 
 FROM alpine:"${_alpine}"
-ARG _apk_libstdcpp='8.3.0'
+ARG _apk_libstdcpp='9.2.0'
 
 LABEL org.opencontainers.image.title='clang-tidy'
 LABEL org.opencontainers.image.url='https://clang.llvm.org/extra/clang-tidy/'

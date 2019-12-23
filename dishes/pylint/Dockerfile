@@ -1,9 +1,9 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_gcc='8.3.0'
-ARG _apk_musl_dev='1.1.22'
-ARG _apk_python3_dev='3.7.5'
+ARG _apk_gcc='9.2.0'
+ARG _apk_musl_dev='1.1.24'
+ARG _apk_python3_dev='3.8.0'
 ARG pylint
 
 LABEL org.opencontainers.image.title='Pylint'

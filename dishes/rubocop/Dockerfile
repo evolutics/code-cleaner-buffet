@@ -1,9 +1,9 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_build_base='0.5'
-ARG _apk_ruby_dev='2.5.7'
-ARG _apk_ruby_full='2.5.7'
+ARG _apk_ruby_dev='2.6.5'
+ARG _apk_ruby_full='2.6.5'
 ARG rubocop
 
 LABEL org.opencontainers.image.title='RuboCop'

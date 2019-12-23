@@ -1,9 +1,9 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}" AS black
-ARG _apk_gcc='8.3.0'
-ARG _apk_musl_dev='1.1.22'
-ARG _apk_python3_dev='3.7.5'
+ARG _apk_gcc='9.2.0'
+ARG _apk_musl_dev='1.1.24'
+ARG _apk_python3_dev='3.8.0'
 ARG black
 # hadolint ignore=DL3013
 RUN apk add --no-cache \
@@ -13,7 +13,7 @@ RUN apk add --no-cache \
   && pip3 install --target /opt/black "black==${black}"
 
 FROM alpine:"${_alpine}"
-ARG _apk_python3='3.7.5'
+ARG _apk_python3='3.8.0'
 
 LABEL org.opencontainers.image.title='Black'
 LABEL org.opencontainers.image.url='https://github.com/psf/black'

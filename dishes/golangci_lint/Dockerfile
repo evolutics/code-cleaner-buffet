@@ -1,7 +1,7 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_go='1.12.12'
+ARG _apk_go='1.13.4'
 ARG golangci_lint
 
 LABEL org.opencontainers.image.title='GolangCI-Lint'

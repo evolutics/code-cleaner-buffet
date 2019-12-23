@@ -1,7 +1,7 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_composer='1.8.6'
+ARG _apk_composer='1.9.1'
 ARG phplint
 
 LABEL org.opencontainers.image.title='phplint'
