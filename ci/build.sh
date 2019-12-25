@@ -11,7 +11,14 @@ main() {
   pushd "${project_folder}"
 
   local -r image_id="$(docker build --quiet \
+    --build-arg _alpine=3.10.3 \
+    --build-arg _apk_gcc=8.3.0 \
     --build-arg _apk_git=2.22.2 \
+    --build-arg _apk_hunspell_en=2018.04.16 \
+    --build-arg _apk_musl_dev=1.1.22 \
+    --build-arg _apk_python3_dev=3.7.5 \
+    --build-arg _apk_python3=3.7.5 \
+    --build-arg _apk_yarn=1.16.0 \
     --build-arg black=19.10b0 \
     --build-arg git=2.22.2 \
     --build-arg gitlint=0.12.0 \
