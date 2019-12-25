@@ -1,13 +1,13 @@
-ARG _alpine='3.10.3'
+ARG _alpine='3.11.0'
 ARG hindent
-ARG hindent_haskell_stack="haskell-stack-${hindent:+e317e1188a5adf4a}"
+ARG hindent_haskell_stack="haskell-stack-${hindent:+f2fc4c40cdc9d7f8}"
 ARG shellcheck
-ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+e317e1188a5adf4a}"
+ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+f2fc4c40cdc9d7f8}"
 
 FROM alpine:"${_alpine}" AS black
-ARG _apk_gcc='8.3.0'
-ARG _apk_musl_dev='1.1.22'
-ARG _apk_python3_dev='3.7.5'
+ARG _apk_gcc='9.2.0'
+ARG _apk_musl_dev='1.1.24'
+ARG _apk_python3_dev='3.8.0'
 ARG black
 #  hadolint ignore=DL3013
 RUN if [ -n "${black}" ]; then \
@@ -16,9 +16,9 @@ RUN if [ -n "${black}" ]; then \
 
 FROM alpine:"${_alpine}" AS clang_tidy
 ARG _apk_build_base='0.5'
-ARG _apk_cmake='3.14.5'
+ARG _apk_cmake='3.15.5'
 ARG _apk_ninja='1.9.0'
-ARG _apk_python3='3.7.5'
+ARG _apk_python3='3.8.0'
 ARG clang_tidy
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN if [ -n "${clang_tidy}" ]; then \
@@ -42,30 +42,32 @@ RUN if [ -n "${shellcheck}" ]; then \
   ; fi
 
 FROM alpine:"${_alpine}"
-ARG _apk_aspell_en='2018.04.16'
-ARG _apk_bash='5.0.0'
+ARG _apk_aspell_en='2019.10.06'
+ARG _apk_bash='5.0.11'
 ARG _apk_build_base='0.5'
 ARG _apk_cabal='2.4.1.0'
-ARG _apk_composer='1.8.6'
-ARG _apk_gcc='8.3.0'
-ARG _apk_ghc='8.4.3'
-ARG _apk_git='2.22.0'
+ARG _apk_composer='1.9.1'
+ARG _apk_gcc='9.2.0'
+ARG _apk_ghc='8.6.5'
+ARG _apk_git='2.24.1'
 ARG _apk_gmp='6.1.2'
 ARG _apk_gmp_dev='6.1.2'
-ARG _apk_go='1.12.12'
-ARG _apk_hunspell_en='2018.04.16'
+ARG _apk_go='1.13.4'
+ARG _apk_hunspell_en='2019.10.06'
 ARG _apk_libffi='3.2.1'
-ARG _apk_libstdcpp='8.3.0'
-ARG _apk_musl_dev='1.1.22'
-ARG _apk_ncurses_dev='6.1_p20190518'
-ARG _apk_npm='10.16.3'
-ARG _apk_openjdk11_jre_headless='11.0.4_p4'
-ARG _apk_python3='3.7.5'
-ARG _apk_python3_dev='3.7.5'
-ARG _apk_ruby_dev='2.5.7'
-ARG _apk_ruby_full='2.5.7'
+ARG _apk_libffi_dev='3.2.1'
+ARG _apk_libstdcpp='9.2.0'
+ARG _apk_musl_dev='1.1.24'
+ARG _apk_ncurses_dev='6.1_p20191130'
+ARG _apk_npm='12.14.0'
+ARG _apk_openjdk11_jre_headless='11.0.5_p10'
+ARG _apk_openssl_dev='1.1.1d'
+ARG _apk_python3='3.8.0'
+ARG _apk_python3_dev='3.8.0'
+ARG _apk_ruby_dev='2.6.5'
+ARG _apk_ruby_full='2.6.5'
 ARG _apk_wget='1.20.3'
-ARG _apk_yarn='1.16.0'
+ARG _apk_yarn='1.19.2'
 ARG _coursier='1.1.0-M14-7'
 ARG _yarn_prettier='1.19.1'
 ARG _yarn_stylelint_config_recommended_scss='4.0.0'
@@ -73,6 +75,7 @@ ARG _yarn_stylelint_config_recommended='3.0.0'
 ARG _yarn_stylelint_config_standard='19.0.0'
 ARG _yarn_typescript='3.7.2'
 ARG addons_linter
+ARG ansible_lint
 ARG aspell
 ARG astyle
 ARG black
@@ -128,6 +131,9 @@ ARG yapf
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN if [ -n "${addons_linter}" ]; then \
     apk add --no-cache "yarn~=${_apk_yarn}"   && yarn global add "addons-linter@${addons_linter}" \
+  ; fi \
+  && if [ -n "${ansible_lint}" ]; then \
+    apk add --no-cache     "gcc~=${_apk_gcc}"     "libffi-dev~=${_apk_libffi_dev}"     "musl-dev~=${_apk_musl_dev}"     "openssl-dev~=${_apk_openssl_dev}"     "python3-dev~=${_apk_python3_dev}"   && pip3 install "ansible-lint==${ansible_lint}" \
   ; fi \
   && if [ -n "${aspell}" ]; then \
     apk add --no-cache     "aspell~=${aspell}"     "aspell-en~=${_apk_aspell_en}" \
