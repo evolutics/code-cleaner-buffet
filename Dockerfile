@@ -1,8 +1,8 @@
 ARG _alpine='3.11.0'
 ARG hindent
-ARG hindent_haskell_stack="haskell-stack-${hindent:+f2fc4c40cdc9d7f8}"
+ARG hindent_haskell_stack="haskell-stack-${hindent:+b01d57793ffe8174}"
 ARG shellcheck
-ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+f2fc4c40cdc9d7f8}"
+ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+b01d57793ffe8174}"
 
 FROM alpine:"${_alpine}" AS black
 ARG _apk_gcc='9.2.0'
@@ -70,10 +70,10 @@ ARG _apk_wget='1.20.3'
 ARG _apk_yarn='1.19.2'
 ARG _coursier='1.1.0-M14-7'
 ARG _yarn_prettier='1.19.1'
-ARG _yarn_stylelint_config_recommended_scss='4.0.0'
+ARG _yarn_stylelint_config_recommended_scss='4.1.0'
 ARG _yarn_stylelint_config_recommended='3.0.0'
 ARG _yarn_stylelint_config_standard='19.0.0'
-ARG _yarn_typescript='3.7.2'
+ARG _yarn_typescript='3.7.4'
 ARG addons_linter
 ARG ansible_lint
 ARG aspell
