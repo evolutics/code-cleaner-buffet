@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.url='https://docs.rubocop.org'
 LABEL info.evolutics.buffet.categories='Formatter,Linter'
 LABEL info.evolutics.buffet.languages='Ruby'
 LABEL info.evolutics.buffet.versions-url='https://rubygems.org/gems/rubocop'
-LABEL info.evolutics.buffet.version-example='0.76.0'
+LABEL info.evolutics.buffet.version-example='0.78.0'
 
 RUN apk add --no-cache \
     "build-base~=${_apk_build_base}" \
