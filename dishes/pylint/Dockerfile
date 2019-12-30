@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.url='https://www.pylint.org'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/pylint/'
-LABEL info.evolutics.buffet.version-example='2.4.3'
+LABEL info.evolutics.buffet.version-example='2.4.4'
 
 RUN apk add --no-cache \
     "gcc~=${_apk_gcc}" \
