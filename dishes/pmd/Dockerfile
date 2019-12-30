@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.url='https://pmd.github.io'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Apache Velocity,C,C#,C++,Fortran,Go,Groovy,Java,JavaScript,MATLAB,Objective-C,PHP,PL/SQL,Python,Ruby,Scala,Swift,XML,XSL'
 LABEL info.evolutics.buffet.versions-url='https://github.com/pmd/pmd/releases'
-LABEL info.evolutics.buffet.version-example='6.18.0'
+LABEL info.evolutics.buffet.version-example='6.20.0'
 
 RUN apk add --no-cache \
     "bash~=${_apk_bash}" \
