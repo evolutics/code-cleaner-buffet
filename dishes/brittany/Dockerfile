@@ -15,7 +15,7 @@ LABEL org.opencontainers.image.url='https://github.com/lspitzner/brittany'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Haskell'
 LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/brittany'
-LABEL info.evolutics.buffet.version-example='0.12.1.0'
+LABEL info.evolutics.buffet.version-example='0.12.1.1'
 
 RUN apk add --no-cache \
     "cabal~=${_apk_cabal}" \
