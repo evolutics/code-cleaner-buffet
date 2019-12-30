@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/mozilla/addons-linter'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='CSS,HTML,JavaScript'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/addons-linter'
-LABEL info.evolutics.buffet.version-example='1.15.1'
+LABEL info.evolutics.buffet.version-example='1.19.0'
 
 RUN apk add --no-cache "yarn~=${_apk_yarn}" \
   && yarn global add "addons-linter@${addons_linter}"
