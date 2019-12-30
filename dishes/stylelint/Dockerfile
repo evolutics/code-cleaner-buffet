@@ -2,7 +2,7 @@ ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_npm='12.14.0'
-ARG _yarn_stylelint_config_recommended_scss='4.0.0'
+ARG _yarn_stylelint_config_recommended_scss='4.1.0'
 ARG _yarn_stylelint_config_recommended='3.0.0'
 ARG _yarn_stylelint_config_standard='19.0.0'
 ARG stylelint

@@ -2,7 +2,7 @@ ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_yarn='1.19.2'
-ARG _yarn_typescript='3.7.2'
+ARG _yarn_typescript='3.7.4'
 ARG tslint
 
 LABEL org.opencontainers.image.title='TSLint'
