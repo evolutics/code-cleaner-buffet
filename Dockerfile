@@ -7,7 +7,7 @@ ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+b01d57793ffe8174}"
 FROM alpine:"${_alpine}" AS black
 ARG _apk_gcc='9.2.0'
 ARG _apk_musl_dev='1.1.24'
-ARG _apk_python3_dev='3.8.0'
+ARG _apk_python3_dev='3.8.1'
 ARG black
 #  hadolint ignore=DL3013
 RUN if [ -n "${black}" ]; then \
@@ -18,7 +18,7 @@ FROM alpine:"${_alpine}" AS clang_tidy
 ARG _apk_build_base='0.5'
 ARG _apk_cmake='3.15.5'
 ARG _apk_ninja='1.9.0'
-ARG _apk_python3='3.8.0'
+ARG _apk_python3='3.8.1'
 ARG clang_tidy
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN if [ -n "${clang_tidy}" ]; then \
@@ -62,8 +62,8 @@ ARG _apk_ncurses_dev='6.1_p20191130'
 ARG _apk_npm='12.14.0'
 ARG _apk_openjdk11_jre_headless='11.0.5_p10'
 ARG _apk_openssl_dev='1.1.1d'
-ARG _apk_python3='3.8.0'
-ARG _apk_python3_dev='3.8.0'
+ARG _apk_python3='3.8.1'
+ARG _apk_python3_dev='3.8.1'
 ARG _apk_ruby_dev='2.6.5'
 ARG _apk_ruby_full='2.6.5'
 ARG _apk_wget='1.20.3'
