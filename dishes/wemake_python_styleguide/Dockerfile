@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_python3='3.8.0'
+ARG _apk_python3='3.8.1'
 ARG wemake_python_styleguide
 
 LABEL org.opencontainers.image.title='wemake-python-styleguide'

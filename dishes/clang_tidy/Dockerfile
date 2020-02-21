@@ -4,7 +4,7 @@ FROM alpine:"${_alpine}" AS clang_tidy
 ARG _apk_build_base='0.5'
 ARG _apk_cmake='3.15.5'
 ARG _apk_ninja='1.9.0'
-ARG _apk_python3='3.8.0'
+ARG _apk_python3='3.8.1'
 ARG clang_tidy
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN apk add --no-cache \

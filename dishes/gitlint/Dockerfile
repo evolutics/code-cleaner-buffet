@@ -2,7 +2,7 @@ ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_git='2.24.1'
-ARG _apk_python3='3.8.0'
+ARG _apk_python3='3.8.1'
 ARG gitlint
 
 LABEL org.opencontainers.image.title='Gitlint'

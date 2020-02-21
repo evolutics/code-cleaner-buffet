@@ -5,7 +5,7 @@ ARG _apk_gcc='9.2.0'
 ARG _apk_libffi_dev='3.2.1'
 ARG _apk_musl_dev='1.1.24'
 ARG _apk_openssl_dev='1.1.1d'
-ARG _apk_python3_dev='3.8.0'
+ARG _apk_python3_dev='3.8.1'
 ARG ansible_lint
 
 LABEL org.opencontainers.image.title='Ansible Lint'
