@@ -17,7 +17,7 @@ RUN apk add --no-cache \
     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
   && mkdir /opt/spotbugs \
   && wget --output-document - \
-    "http://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz" \
+    "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz" \
     | tar --directory /opt/spotbugs --extract --file - --gzip \
       --strip-components 1 \
   && ln -s /opt/spotbugs/bin/spotbugs /usr/local/bin/spotbugs

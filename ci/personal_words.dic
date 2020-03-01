@@ -4,6 +4,7 @@ CircleCI
 cURL
 Dockerfile
 ENV
+HTTPS
 JSON
 readme
 Wget
