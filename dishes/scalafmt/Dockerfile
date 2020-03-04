@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_openjdk11_jre_headless='11.0.5_p10'
+ARG _apk_openjdk11_jre_headless=''
 ARG _coursier='1.1.0-M14-7'
 ARG scalafmt
 
@@ -13,7 +13,7 @@ LABEL info.evolutics.buffet.versions-url='https://oss.sonatype.org/content/repos
 LABEL info.evolutics.buffet.version-example='2.3.2'
 
 RUN apk add --no-cache \
-    "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}" \
+    "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
   && coursier_executable="$(mktemp)" \
   && wget --output-document "${coursier_executable}" \
     "https://github.com/coursier/coursier/releases/download/v${_coursier}/coursier" \

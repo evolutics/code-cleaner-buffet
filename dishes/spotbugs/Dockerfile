@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_openjdk11_jre_headless='11.0.5_p10'
+ARG _apk_openjdk11_jre_headless=''
 ARG spotbugs
 
 LABEL org.opencontainers.image.title='SpotBugs'
@@ -14,7 +14,7 @@ LABEL info.evolutics.buffet.version-example='4.0.0-beta4'
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 RUN apk add --no-cache \
-    "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}" \
+    "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
   && mkdir /opt/spotbugs \
   && wget --output-document - \
     "http://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz" \

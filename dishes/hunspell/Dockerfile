@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_hunspell_en='2019.10.06'
+ARG _apk_hunspell_en=''
 ARG hunspell
 
 LABEL org.opencontainers.image.title='Hunspell'
@@ -13,7 +13,7 @@ LABEL info.evolutics.buffet.version-example='1.7.0'
 
 RUN apk add --no-cache \
     "hunspell~=${hunspell}" \
-    "hunspell-en~=${_apk_hunspell_en}"
+    "hunspell-en${_apk_hunspell_en}"
 
 WORKDIR /workdir
 

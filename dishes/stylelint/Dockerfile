@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_npm='12.14.0'
+ARG _apk_npm=''
 ARG _yarn_stylelint_config_recommended_scss='4.1.0'
 ARG _yarn_stylelint_config_recommended='3.0.0'
 ARG _yarn_stylelint_config_standard='19.0.0'
@@ -14,7 +14,7 @@ LABEL info.evolutics.buffet.languages='CSS'
 LABEL info.evolutics.buffet.versions-url='https://www.npmjs.com/package/stylelint'
 LABEL info.evolutics.buffet.version-example='12.0.1'
 
-RUN apk add --no-cache "npm~=${_apk_npm}" \
+RUN apk add --no-cache "npm${_apk_npm}" \
   && npm install --global \
     "stylelint-config-recommended-scss@${_yarn_stylelint_config_recommended_scss}" \
     "stylelint-config-recommended@${_yarn_stylelint_config_recommended}" \

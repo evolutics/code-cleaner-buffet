@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_yarn='1.19.2'
+ARG _apk_yarn=''
 ARG addons_linter
 
 LABEL org.opencontainers.image.title='Add-ons Linter'
@@ -11,7 +11,7 @@ LABEL info.evolutics.buffet.languages='CSS,HTML,JavaScript'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/addons-linter'
 LABEL info.evolutics.buffet.version-example='1.19.0'
 
-RUN apk add --no-cache "yarn~=${_apk_yarn}" \
+RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add "addons-linter@${addons_linter}"
 
 WORKDIR /workdir

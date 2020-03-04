@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_go='1.13.4'
+ARG _apk_go=''
 ARG golangci_lint
 
 LABEL org.opencontainers.image.title='GolangCI-Lint'
@@ -13,7 +13,7 @@ LABEL info.evolutics.buffet.version-example='1.22.0'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
-RUN apk add --no-cache "go~=${_apk_go}" \
+RUN apk add --no-cache "go${_apk_go}" \
   && wget --output-document - \
     https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh \
     | sh -s "v${golangci_lint}"

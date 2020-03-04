@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_aspell_en='2019.10.06'
+ARG _apk_aspell_en=''
 ARG aspell
 
 LABEL org.opencontainers.image.title='GNU Aspell'
@@ -13,7 +13,7 @@ LABEL info.evolutics.buffet.version-example='0.60.8'
 
 RUN apk add --no-cache \
     "aspell~=${aspell}" \
-    "aspell-en~=${_apk_aspell_en}"
+    "aspell-en${_apk_aspell_en}"
 
 WORKDIR /workdir
 

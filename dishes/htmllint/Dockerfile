@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_yarn='1.19.2'
+ARG _apk_yarn=''
 ARG htmllint
 
 LABEL org.opencontainers.image.title='htmllint-cli'
@@ -11,7 +11,7 @@ LABEL info.evolutics.buffet.languages='HTML'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/htmllint-cli'
 LABEL info.evolutics.buffet.version-example='0.0.7'
 
-RUN apk add --no-cache "yarn~=${_apk_yarn}" \
+RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add "htmllint-cli@${htmllint}"
 
 WORKDIR /workdir

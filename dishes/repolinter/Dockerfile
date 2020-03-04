@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_yarn='1.19.2'
+ARG _apk_yarn=''
 ARG repolinter
 
 LABEL org.opencontainers.image.title='Repo Linter'
@@ -11,7 +11,7 @@ LABEL info.evolutics.buffet.languages=''
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/repolinter'
 LABEL info.evolutics.buffet.version-example='0.8.0'
 
-RUN apk add --no-cache "yarn~=${_apk_yarn}" \
+RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add "repolinter@${repolinter}"
 
 WORKDIR /workdir

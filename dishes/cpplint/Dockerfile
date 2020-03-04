@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_python3='3.8.1'
+ARG _apk_python3=''
 ARG cpplint
 
 LABEL org.opencontainers.image.title='cpplint'
@@ -11,7 +11,7 @@ LABEL info.evolutics.buffet.languages='C,C++'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/cpplint/'
 LABEL info.evolutics.buffet.version-example='1.4.4'
 
-RUN apk add --no-cache "python3~=${_apk_python3}" \
+RUN apk add --no-cache "python3${_apk_python3}" \
   && pip3 install "cpplint==${cpplint}"
 
 WORKDIR /workdir

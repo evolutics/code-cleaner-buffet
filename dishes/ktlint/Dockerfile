@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_openjdk11_jre_headless='11.0.5_p10'
+ARG _apk_openjdk11_jre_headless=''
 ARG ktlint
 
 LABEL org.opencontainers.image.title='ktlint'
@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.versions-url='https://github.com/pinterest/ktlint/re
 LABEL info.evolutics.buffet.version-example='0.36.0'
 
 RUN apk add --no-cache \
-    "openjdk11-jre-headless~=${_apk_openjdk11_jre_headless}" \
+    "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
   && wget --directory-prefix /usr/local/bin \
     "https://github.com/pinterest/ktlint/releases/download/${ktlint}/ktlint" \
   && chmod +x /usr/local/bin/ktlint

@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_yarn='1.19.2'
+ARG _apk_yarn=''
 ARG _yarn_typescript='3.7.4'
 ARG tslint
 
@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.languages='TypeScript'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/tslint'
 LABEL info.evolutics.buffet.version-example='5.20.1'
 
-RUN apk add --no-cache "yarn~=${_apk_yarn}" \
+RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add \
     "tslint@${tslint}" \
     "typescript@${_yarn_typescript}"

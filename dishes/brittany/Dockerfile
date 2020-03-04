@@ -1,13 +1,13 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_cabal='2.4.1.0'
-ARG _apk_ghc='8.6.5'
-ARG _apk_gmp='6.1.2'
-ARG _apk_libffi='3.2.1'
-ARG _apk_musl_dev='1.1.24'
-ARG _apk_ncurses_dev='6.1_p20191130'
-ARG _apk_wget='1.20.3'
+ARG _apk_cabal=''
+ARG _apk_ghc=''
+ARG _apk_gmp=''
+ARG _apk_libffi=''
+ARG _apk_musl_dev=''
+ARG _apk_ncurses_dev=''
+ARG _apk_wget=''
 ARG brittany
 
 LABEL org.opencontainers.image.title='brittany'
@@ -18,13 +18,13 @@ LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/br
 LABEL info.evolutics.buffet.version-example='0.12.1.1'
 
 RUN apk add --no-cache \
-    "cabal~=${_apk_cabal}" \
-    "ghc~=${_apk_ghc}" \
-    "gmp~=${_apk_gmp}" \
-    "libffi~=${_apk_libffi}" \
-    "musl-dev~=${_apk_musl_dev}" \
-    "ncurses-dev~=${_apk_ncurses_dev}" \
-    "wget~=${_apk_wget}" \
+    "cabal${_apk_cabal}" \
+    "ghc${_apk_ghc}" \
+    "gmp${_apk_gmp}" \
+    "libffi${_apk_libffi}" \
+    "musl-dev${_apk_musl_dev}" \
+    "ncurses-dev${_apk_ncurses_dev}" \
+    "wget${_apk_wget}" \
   \
   && cabal v2-update \
   && cabal v2-install --jobs "brittany-${brittany}" \

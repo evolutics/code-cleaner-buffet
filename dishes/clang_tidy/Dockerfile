@@ -1,17 +1,17 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}" AS clang_tidy
-ARG _apk_build_base='0.5'
-ARG _apk_cmake='3.15.5'
-ARG _apk_ninja='1.9.0'
-ARG _apk_python3='3.8.1'
+ARG _apk_build_base=''
+ARG _apk_cmake=''
+ARG _apk_ninja=''
+ARG _apk_python3=''
 ARG clang_tidy
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN apk add --no-cache \
-    "build-base~=${_apk_build_base}" \
-    "cmake~=${_apk_cmake}" \
-    "ninja~=${_apk_ninja}" \
-    "python3~=${_apk_python3}" \
+    "build-base${_apk_build_base}" \
+    "cmake${_apk_cmake}" \
+    "ninja${_apk_ninja}" \
+    "python3${_apk_python3}" \
   && mkdir /opt/llvm \
   && wget --output-document - \
     "http://releases.llvm.org/${clang_tidy}/llvm-${clang_tidy}.src.tar.xz" \
@@ -29,7 +29,7 @@ RUN cmake -G Ninja ../llvm \
   && ninja clang-tidy
 
 FROM alpine:"${_alpine}"
-ARG _apk_libstdcpp='9.2.0'
+ARG _apk_libstdcpp=''
 
 LABEL org.opencontainers.image.title='clang-tidy'
 LABEL org.opencontainers.image.url='https://clang.llvm.org/extra/clang-tidy/'
@@ -38,7 +38,7 @@ LABEL info.evolutics.buffet.languages='C,C++'
 LABEL info.evolutics.buffet.versions-url='http://releases.llvm.org'
 LABEL info.evolutics.buffet.version-example='9.0.0'
 
-RUN apk add --no-cache "libstdc++~=${_apk_libstdcpp}"
+RUN apk add --no-cache "libstdc++${_apk_libstdcpp}"
 COPY --from=clang_tidy /opt/build/bin/clang-tidy /usr/local/bin/
 
 WORKDIR /workdir

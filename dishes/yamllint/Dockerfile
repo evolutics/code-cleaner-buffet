@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_python3='3.8.1'
+ARG _apk_python3=''
 ARG yamllint
 
 LABEL org.opencontainers.image.title='yamllint'
@@ -11,7 +11,7 @@ LABEL info.evolutics.buffet.languages='YAML'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/yamllint/'
 LABEL info.evolutics.buffet.version-example='1.20.0'
 
-RUN apk add --no-cache "python3~=${_apk_python3}" \
+RUN apk add --no-cache "python3${_apk_python3}" \
   && pip3 install "yamllint==${yamllint}"
 
 WORKDIR /workdir

@@ -1,7 +1,7 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_yarn='1.19.2'
+ARG _apk_yarn=''
 ARG _yarn_prettier='1.19.1'
 ARG prettier_xml
 
@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.languages='XML'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/@prettier/plugin-xml'
 LABEL info.evolutics.buffet.version-example='0.3.0'
 
-RUN apk add --no-cache "yarn~=${_apk_yarn}" \
+RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add \
     "@prettier/plugin-xml@${prettier_xml}" \
     "prettier@${_yarn_prettier}"

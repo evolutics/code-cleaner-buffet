@@ -1,8 +1,8 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_git='2.24.1'
-ARG _apk_yarn='1.19.2'
+ARG _apk_git=''
+ARG _apk_yarn=''
 ARG _yarn_prettier='1.19.1'
 ARG prettier_php
 
@@ -14,8 +14,8 @@ LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/@pretti
 LABEL info.evolutics.buffet.version-example='0.12.0'
 
 RUN apk add --no-cache \
-    "git~=${_apk_git}" \
-    "yarn~=${_apk_yarn}" \
+    "git${_apk_git}" \
+    "yarn${_apk_yarn}" \
   && yarn global add \
     "@prettier/plugin-php@${prettier_php}" \
     "prettier@${_yarn_prettier}"

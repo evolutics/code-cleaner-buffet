@@ -1,8 +1,8 @@
 ARG _alpine='3.11.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_ruby_full='2.6.5'
-ARG _apk_yarn='1.19.2'
+ARG _apk_ruby_full=''
+ARG _apk_yarn=''
 ARG _yarn_prettier='1.19.1'
 ARG prettier_ruby
 
@@ -14,8 +14,8 @@ LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/@pretti
 LABEL info.evolutics.buffet.version-example='0.17.0'
 
 RUN apk add --no-cache \
-    "ruby-full~=${_apk_ruby_full}" \
-    "yarn~=${_apk_yarn}" \
+    "ruby-full${_apk_ruby_full}" \
+    "yarn${_apk_yarn}" \
   && yarn global add \
     "@prettier/plugin-ruby@${prettier_ruby}" \
     "prettier@${_yarn_prettier}"
