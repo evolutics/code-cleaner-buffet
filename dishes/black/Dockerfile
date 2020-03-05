@@ -5,7 +5,6 @@ ARG _apk_gcc=''
 ARG _apk_musl_dev=''
 ARG _apk_python3_dev=''
 ARG black
-# hadolint ignore=DL3013
 RUN apk add --no-cache \
     "gcc${_apk_gcc}" \
     "musl-dev${_apk_musl_dev}" \
