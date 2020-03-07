@@ -1,9 +1,9 @@
-ARG alpine='3.11.0'
+ARG alpine='3.11.3'
 
 FROM alpine:"${alpine}"
 
-ARG ghc='8.6.5'
-ARG ghcup='75977faafd35f4f840a7d32090f0e4db001198f6'
+ARG ghc='8.8.2'
+ARG ghcup='0.0.8'
 ARG stack='v2.1.3'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
@@ -18,9 +18,9 @@ RUN apk add --no-cache \
     ghc~=8.6.5 \
     gmp-dev~=6.1.2 \
     make~=4.2.1 \
-    ncurses-dev~=6.1_p20191130 \
+    ncurses-dev~=6.1_p20200118 \
     perl~=5.30.1 \
-    python3~=3.8.0 \
+    python3~=3.8.2 \
     xz~=5.2.4 \
   \
   && wget "https://gitlab.haskell.org/haskell/ghcup/raw/${ghcup}/ghcup" \
