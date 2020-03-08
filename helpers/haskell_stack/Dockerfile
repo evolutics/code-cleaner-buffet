@@ -28,6 +28,7 @@ RUN apk add --no-cache \
   && echo 'BuildFlavour = quick' > build.mk \
   && LD=ld.gold ./ghcup --verbose compile --build-config build.mk --force \
     --jobs "$(nproc)" "${ghc}" ghc \
+  && ./ghcup set "${ghc}" \
   && rm build.mk ghcup \
   \
   && wget --output-document - \

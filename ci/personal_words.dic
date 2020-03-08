@@ -4,6 +4,7 @@ CircleCI
 cURL
 Dockerfile
 ENV
+GHC
 HTTPS
 JSON
 readme
