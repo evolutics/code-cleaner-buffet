@@ -30,6 +30,7 @@ RUN apk add --no-cache \
     --jobs "$(nproc)" "${ghc}" ghc \
   && ./ghcup set "${ghc}" \
   && rm build.mk ghcup \
+  && apk del ghc \
   \
   && wget --output-document - \
     "https://raw.githubusercontent.com/commercialhaskell/stack/${stack}/etc/scripts/get-stack.sh" \
