@@ -1,4 +1,4 @@
-ARG _alpine='3.11.0'
+ARG _alpine='3.11.3'
 
 FROM alpine:"${_alpine}"
 ARG _apk_build_base=''
