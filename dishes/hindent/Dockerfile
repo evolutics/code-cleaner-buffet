@@ -1,6 +1,6 @@
 ARG _alpine='3.11.0'
 ARG hindent
-ARG hindent_haskell_stack="haskell-stack-${hindent:+b01d57793ffe8174}"
+ARG hindent_haskell_stack="haskell-stack-${hindent:+53ec17f46dea7181}"
 
 FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
 ARG _hindent_stack_resolver='lts-14.27'
