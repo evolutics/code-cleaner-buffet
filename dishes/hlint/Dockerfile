@@ -15,7 +15,7 @@ LABEL org.opencontainers.image.url='https://github.com/ndmitchell/hlint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Haskell'
 LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/hlint'
-LABEL info.evolutics.buffet.version-example='2.2.5'
+LABEL info.evolutics.buffet.version-example='2.2.11'
 
 RUN apk add --no-cache \
     "cabal${_apk_cabal}" \

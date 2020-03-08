@@ -14,15 +14,15 @@ RUN apk add --no-cache \
     "python3${_apk_python3}" \
   && mkdir /opt/llvm \
   && wget --output-document - \
-    "http://releases.llvm.org/${clang_tidy}/llvm-${clang_tidy}.src.tar.xz" \
+    "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/llvm-${clang_tidy}.src.tar.xz" \
     | tar --directory /opt/llvm --extract --file - --strip-components 1 --xz \
   && wget --output-document - \
-    "http://releases.llvm.org/${clang_tidy}/cfe-${clang_tidy}.src.tar.xz" \
+    "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-${clang_tidy}.src.tar.xz" \
     | tar --directory /opt/llvm/tools --extract --file - --xz \
-  && mkdir "/opt/llvm/tools/cfe-${clang_tidy}.src/tools/extra" \
+  && mkdir "/opt/llvm/tools/clang-${clang_tidy}.src/tools/extra" \
   && wget --output-document - \
-    "http://releases.llvm.org/${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz" \
-    | tar --directory "/opt/llvm/tools/cfe-${clang_tidy}.src/tools/extra" \
+    "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz" \
+    | tar --directory "/opt/llvm/tools/clang-${clang_tidy}.src/tools/extra" \
       --extract --file - --strip-components 1 --xz
 WORKDIR /opt/build
 RUN cmake -G Ninja ../llvm \
@@ -36,7 +36,7 @@ LABEL org.opencontainers.image.url='https://clang.llvm.org/extra/clang-tidy/'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='C,C++'
 LABEL info.evolutics.buffet.versions-url='http://releases.llvm.org'
-LABEL info.evolutics.buffet.version-example='9.0.0'
+LABEL info.evolutics.buffet.version-example='9.0.1'
 
 RUN apk add --no-cache "libstdc++${_apk_libstdcpp}"
 COPY --from=clang_tidy /opt/build/bin/clang-tidy /usr/local/bin/
