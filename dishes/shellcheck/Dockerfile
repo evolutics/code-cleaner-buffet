@@ -3,8 +3,10 @@ ARG shellcheck
 ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+b01d57793ffe8174}"
 
 FROM evolutics/code-cleaner-buffet:"${shellcheck_haskell_stack}" AS shellcheck
+ARG _shellcheck_stack_resolver='lts-14.27'
 ARG shellcheck
-RUN stack install --ghc-options='-fPIC -optl-static' "ShellCheck-${shellcheck}"
+RUN stack --resolver "${_shellcheck_stack_resolver}" install \
+    --ghc-options='-fPIC -optl-static' "ShellCheck-${shellcheck}"
 
 FROM alpine:"${_alpine}"
 ARG _apk_gmp_dev=''

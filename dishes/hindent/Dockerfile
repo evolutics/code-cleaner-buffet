@@ -3,8 +3,10 @@ ARG hindent
 ARG hindent_haskell_stack="haskell-stack-${hindent:+b01d57793ffe8174}"
 
 FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
+ARG _hindent_stack_resolver='lts-14.27'
 ARG hindent
-RUN stack install --ghc-options='-fPIC -optl-static' "hindent-${hindent}"
+RUN stack --resolver "${_hindent_stack_resolver}" install \
+    --ghc-options='-fPIC -optl-static' "hindent-${hindent}"
 
 FROM alpine:"${_alpine}"
 ARG _apk_gmp_dev=''
