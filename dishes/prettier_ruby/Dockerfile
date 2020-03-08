@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.title='Prettier Ruby Plugin'
 LABEL org.opencontainers.image.url='https://github.com/prettier/plugin-ruby'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Ruby'
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/@prettier/plugin-ruby'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/@prettier/plugin-ruby'
 LABEL info.evolutics.buffet.version-example='0.17.0'
 
 RUN apk add --no-cache \

@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.title='Nu Html Checker (v.Nu)'
 LABEL org.opencontainers.image.url='https://validator.github.io/validator/'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='CSS,HTML,SVG'
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/vnu-jar'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/vnu-jar'
 LABEL info.evolutics.buffet.version-example='20.2.28'
 
 RUN apk add --no-cache \

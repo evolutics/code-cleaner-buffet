@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.title='Prettier PHP Plugin'
 LABEL org.opencontainers.image.url='https://github.com/prettier/plugin-php'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='PHP'
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/@prettier/plugin-php'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/@prettier/plugin-php'
 LABEL info.evolutics.buffet.version-example='0.13.0'
 
 RUN apk add --no-cache \

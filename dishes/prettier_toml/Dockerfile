@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.title='Prettier Toml Plugin'
 LABEL org.opencontainers.image.url='https://github.com/bd82/toml-tools/tree/master/packages/prettier-plugin-toml'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='TOML'
-LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/en/package/prettier-plugin-toml'
+LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/prettier-plugin-toml'
 LABEL info.evolutics.buffet.version-example='0.3.1'
 
 RUN apk add --no-cache "yarn${_apk_yarn}" \
