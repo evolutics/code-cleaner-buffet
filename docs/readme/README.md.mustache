@@ -27,7 +27,7 @@ Prerequisites: Docker and Git.
 
 1. **Choose** the code cleaners you need from the [list below](#index), and decide on a version for each.
 
-   **Example:** In a project with Python, YAML, and Markdown code, you may choose the code formatters [Black](#black) 19.10b0 and [Prettier](#prettier) 1.19.1.
+   **Example:** In a project with Python, YAML, and Markdown code, you may choose the code formatters [Black](#black) 19.10b0 and [Prettier](#prettier) 2.0.2.
 
 1. **Build** your own Docker image by running
 
@@ -47,7 +47,7 @@ Prerequisites: Docker and Git.
    ```bash
    docker build \
      --build-arg black=19.10b0 \
-     --build-arg prettier=1.19.1 \
+     --build-arg prettier=2.0.2 \
      --tag plate \
      https://github.com/evolutics/code-cleaner-buffet.git#0.9.0
    ```
