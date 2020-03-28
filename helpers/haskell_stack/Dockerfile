@@ -2,7 +2,7 @@ ARG alpine='3.11.3'
 
 FROM alpine:"${alpine}"
 
-ARG ghcs='8.6.5 8.8.2'
+ARG ghcs='8.6.5 8.8.3'
 ARG ghcup='0.0.8'
 ARG stack='v2.1.3'
 
