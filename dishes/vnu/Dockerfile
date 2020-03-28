@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.url='https://validator.github.io/validator/'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='CSS,HTML,SVG'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/vnu-jar'
-LABEL info.evolutics.buffet.version-example='20.2.28'
+LABEL info.evolutics.buffet.version-example='20.3.16'
 
 RUN apk add --no-cache \
     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \

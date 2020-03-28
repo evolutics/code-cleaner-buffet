@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/golangci/golangci-lint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Go'
 LABEL info.evolutics.buffet.versions-url='https://github.com/golangci/golangci-lint/releases'
-LABEL info.evolutics.buffet.version-example='1.23.8'
+LABEL info.evolutics.buffet.version-example='1.24.0'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
