@@ -1,6 +1,6 @@
-ARG _alpine='3.11.3'
+ARG _alpine='3.11.5'
 ARG shellcheck
-ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+53ec17f46dea7181}"
+ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+b3b51795c96b4ebd}"
 
 FROM evolutics/code-cleaner-buffet:"${shellcheck_haskell_stack}" AS shellcheck
 ARG _shellcheck_stack_resolver='lts-14.27'

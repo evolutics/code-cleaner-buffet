@@ -1,4 +1,4 @@
-ARG _alpine='3.11.3'
+ARG _alpine='3.11.5'
 
 FROM alpine:"${_alpine}" AS black
 ARG _apk_gcc=''
