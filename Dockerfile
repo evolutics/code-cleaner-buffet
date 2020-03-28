@@ -1,15 +1,14 @@
-ARG _alpine='3.11.0'
+ARG _alpine='3.11.5'
 ARG hindent
-ARG hindent_haskell_stack="haskell-stack-${hindent:+b01d57793ffe8174}"
+ARG hindent_haskell_stack="haskell-stack-${hindent:+b3b51795c96b4ebd}"
 ARG shellcheck
-ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+b01d57793ffe8174}"
+ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+b3b51795c96b4ebd}"
 
 FROM alpine:"${_alpine}" AS black
 ARG _apk_gcc=''
 ARG _apk_musl_dev=''
 ARG _apk_python3_dev=''
 ARG black
-#  hadolint ignore=DL3013
 RUN if [ -n "${black}" ]; then \
     apk add --no-cache     "gcc${_apk_gcc}"     "musl-dev${_apk_musl_dev}"     "python3-dev${_apk_python3_dev}"   && pip3 install --target /opt/black "black==${black}" \
   ; fi
@@ -22,7 +21,7 @@ ARG _apk_python3=''
 ARG clang_tidy
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN if [ -n "${clang_tidy}" ]; then \
-    apk add --no-cache     "build-base${_apk_build_base}"     "cmake${_apk_cmake}"     "ninja${_apk_ninja}"     "python3${_apk_python3}"   && mkdir /opt/llvm   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/llvm-${clang_tidy}.src.tar.xz"     | tar --directory /opt/llvm --extract --file - --strip-components 1 --xz   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/cfe-${clang_tidy}.src.tar.xz"     | tar --directory /opt/llvm/tools --extract --file - --xz   && mkdir "/opt/llvm/tools/cfe-${clang_tidy}.src/tools/extra"   && wget --output-document -     "http://releases.llvm.org/${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz"     | tar --directory "/opt/llvm/tools/cfe-${clang_tidy}.src/tools/extra"       --extract --file - --strip-components 1 --xz \
+    apk add --no-cache     "build-base${_apk_build_base}"     "cmake${_apk_cmake}"     "ninja${_apk_ninja}"     "python3${_apk_python3}"   && mkdir /opt/llvm   && wget --output-document -     "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/llvm-${clang_tidy}.src.tar.xz"     | tar --directory /opt/llvm --extract --file - --strip-components 1 --xz   && wget --output-document -     "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-${clang_tidy}.src.tar.xz"     | tar --directory /opt/llvm/tools --extract --file - --xz   && mkdir "/opt/llvm/tools/clang-${clang_tidy}.src/tools/extra"   && wget --output-document -     "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz"     | tar --directory "/opt/llvm/tools/clang-${clang_tidy}.src/tools/extra"       --extract --file - --strip-components 1 --xz \
   ; fi
 WORKDIR /opt/build
 RUN if [ -n "${clang_tidy}" ]; then \
@@ -30,15 +29,17 @@ RUN if [ -n "${clang_tidy}" ]; then \
   ; fi
 
 FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
+ARG _hindent_stack_resolver='lts-14.27'
 ARG hindent
 RUN if [ -n "${hindent}" ]; then \
-    stack --jobs "$(nproc)" install --ghc-options='-fPIC -optl-static'     "hindent-${hindent}" \
+    stack --resolver "${_hindent_stack_resolver}" install     --ghc-options='-fPIC -optl-static' "hindent-${hindent}" \
   ; fi
 
 FROM evolutics/code-cleaner-buffet:"${shellcheck_haskell_stack}" AS shellcheck
+ARG _shellcheck_stack_resolver='lts-14.27'
 ARG shellcheck
 RUN if [ -n "${shellcheck}" ]; then \
-    stack --jobs "$(nproc)" install --ghc-options='-fPIC -optl-static'     "ShellCheck-${shellcheck}" \
+    stack --resolver "${_shellcheck_stack_resolver}" install     --ghc-options='-fPIC -optl-static' "ShellCheck-${shellcheck}" \
   ; fi
 
 FROM alpine:"${_alpine}"
@@ -259,7 +260,7 @@ RUN if [ -n "${addons_linter}" ]; then \
     apk add --no-cache "gmp-dev${_apk_gmp_dev}" \
   ; fi \
   && if [ -n "${spotbugs}" ]; then \
-    apk add --no-cache     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}"   && mkdir /opt/spotbugs   && wget --output-document -     "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz"     | tar --directory /opt/spotbugs --extract --file - --gzip       --strip-components 1   && ln -s /opt/spotbugs/bin/spotbugs /usr/local/bin/spotbugs \
+    apk add --no-cache     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}"   && mkdir /opt/spotbugs   && wget --output-document -     "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz"     | tar --directory /opt/spotbugs --extract --file - --gzip       --strip-components 1   && chmod +x /opt/spotbugs/bin/spotbugs   && ln -s /opt/spotbugs/bin/spotbugs /usr/local/bin/spotbugs \
   ; fi \
   && if [ -n "${standard}" ]; then \
     apk add --no-cache "yarn${_apk_yarn}"   && yarn global add "standard@${standard}" \
@@ -274,7 +275,7 @@ RUN if [ -n "${addons_linter}" ]; then \
     apk add --no-cache "yarn${_apk_yarn}"   && yarn global add     "tslint@${tslint}"     "typescript@${_yarn_typescript}" \
   ; fi \
   && if [ -n "${vnu}" ]; then \
-    apk add --no-cache     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}"   && vnu_archive="$(mktemp)"   && wget --output-document "${vnu_archive}"     "https://github.com/validator/validator/releases/download/${vnu}/vnu.jar_${vnu}.zip"   && mkdir /opt/vnu   && unzip -d /opt/vnu -j "${vnu_archive}" dist/vnu.jar   && rm "${vnu_archive}"   && printf '#!/bin/sh\n\njava -jar /opt/vnu/vnu.jar "$@"\n'     > /usr/local/bin/vnu   && chmod +x /usr/local/bin/vnu \
+    apk add --no-cache     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}"     "yarn${_apk_yarn}"   && yarn global add "vnu-jar@${vnu}"   && printf '#!/bin/sh\n\njava -jar %s "$@"\n'     '/usr/local/share/.config/yarn/global/node_modules/vnu-jar/build/dist/vnu.jar'     > /usr/local/bin/vnu   && chmod +x /usr/local/bin/vnu \
   ; fi \
   && if [ -n "${wemake_python_styleguide}" ]; then \
     apk add --no-cache "python3${_apk_python3}"   && pip3 install "wemake-python-styleguide==${wemake_python_styleguide}" \
