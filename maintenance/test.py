@@ -24,7 +24,7 @@ def _parse_ir():
 
 
 def _filter_map(key_to_value, key_regex):
-    return {key: value for key, value in key_to_value.items() if key_regex.match(key)}
+    return {key: value for key, value in key_to_value.items() if key_regex.search(key)}
 
 
 def _get_dish_to_versions(ir):
