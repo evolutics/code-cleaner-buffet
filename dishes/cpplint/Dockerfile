@@ -17,6 +17,6 @@ RUN apk add --no-cache "python3${_apk_python3}" \
 WORKDIR /workdir
 
 HEALTHCHECK CMD cpplint --version \
-  && printf '// Copyright 2019 Boo Far\n#include <iostream>\nint main() { }\n' \
+  && printf '// Copyright Boo Far\n#include <iostream>\nint main() { }\n' \
     > main.cpp \
   && cpplint main.cpp
