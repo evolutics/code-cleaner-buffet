@@ -23,7 +23,7 @@ def _image_if_disabled(helper):
 
 
 def _update_image_if_disabled(image):
-    base_image = "alpine:3.11.5"
+    base_image = "alpine:3.12.0"
     subprocess.run(["docker", "pull", base_image], check=True)
     subprocess.run(["docker", "tag", base_image, image], check=True)
     subprocess.run(["docker", "push", image], check=True)
