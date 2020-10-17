@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_openjdk11_jre_headless=''
@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/google/google-java-format
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Java'
 LABEL info.evolutics.buffet.versions-url='https://github.com/google/google-java-format/releases'
-LABEL info.evolutics.buffet.version-example='1.7'
+LABEL info.evolutics.buffet.version-example='1.9'
 
 RUN apk add --no-cache \
     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \

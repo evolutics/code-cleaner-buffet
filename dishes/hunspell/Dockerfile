@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_hunspell_en=''
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.title='Hunspell'
 LABEL org.opencontainers.image.url='https://hunspell.github.io'
 LABEL info.evolutics.buffet.categories='Spell checker'
 LABEL info.evolutics.buffet.languages='Natural language'
-LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=hunspell&branch=v3.11'
+LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=hunspell&branch=v3.12'
 LABEL info.evolutics.buffet.version-example='1.7.0'
 
 RUN apk add --no-cache \

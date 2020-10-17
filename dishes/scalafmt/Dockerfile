@@ -1,8 +1,8 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_openjdk11_jre_headless=''
-ARG _coursier='1.1.0-M14-7'
+ARG _coursier='2.0.3'
 ARG scalafmt
 
 LABEL org.opencontainers.image.title='Scalafmt'
@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.url='http://scalameta.org/scalafmt'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Scala'
 LABEL info.evolutics.buffet.versions-url='https://oss.sonatype.org/content/repositories/snapshots/org/scalameta/scalafmt-cli_2.12/'
-LABEL info.evolutics.buffet.version-example='2.4.2'
+LABEL info.evolutics.buffet.version-example='2.7.4'
 
 RUN apk add --no-cache \
     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \

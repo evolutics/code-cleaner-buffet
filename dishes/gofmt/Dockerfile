@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG gofmt
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.url='https://golang.org/cmd/gofmt/'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Go'
 LABEL info.evolutics.buffet.versions-url='https://golang.org/dl/'
-LABEL info.evolutics.buffet.version-example='1.14.1'
+LABEL info.evolutics.buffet.version-example='1.15.3'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
@@ -19,7 +19,7 @@ RUN wget --output-document - \
 
 WORKDIR /workdir
 
-HEALTHCHECK CMD gofmt --help ; [ "$?" -eq 2 ] \
+HEALTHCHECK CMD gofmt --help \
   && printf \
     'package main\nimport "fmt" \nfunc main() { fmt.Println ("Hi") }\n' \
     | gofmt

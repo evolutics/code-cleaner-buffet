@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_composer=''
@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/overtrue/phplint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='PHP'
 LABEL info.evolutics.buffet.versions-url='https://packagist.org/packages/overtrue/phplint'
-LABEL info.evolutics.buffet.version-example='1.2.1'
+LABEL info.evolutics.buffet.version-example='2.1.0'
 
 RUN apk add --no-cache "composer${_apk_composer}" \
   && composer global require "overtrue/phplint:${phplint}" \

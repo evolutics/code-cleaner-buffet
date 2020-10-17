@@ -1,8 +1,8 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_yarn=''
-ARG _yarn_typescript='3.7.4'
+ARG _yarn_typescript='4.0.3'
 ARG tslint
 
 LABEL org.opencontainers.image.title='TSLint'
@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.url='https://palantir.github.io/tslint/'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='TypeScript'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/tslint'
-LABEL info.evolutics.buffet.version-example='6.1.0'
+LABEL info.evolutics.buffet.version-example='6.1.3'
 
 RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add \

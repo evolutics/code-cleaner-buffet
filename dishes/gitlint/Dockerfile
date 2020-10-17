@@ -1,8 +1,8 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_git=''
-ARG _apk_python3=''
+ARG _apk_py3_pip=''
 ARG gitlint
 
 LABEL org.opencontainers.image.title='Gitlint'
@@ -14,8 +14,8 @@ LABEL info.evolutics.buffet.version-example='0.13.1'
 
 RUN apk add --no-cache \
     "git${_apk_git}" \
-    "python3${_apk_python3}" \
-  && pip3 install "gitlint==${gitlint}"
+    "py3-pip${_apk_py3_pip}" \
+  && pip install "gitlint==${gitlint}"
 
 WORKDIR /workdir
 

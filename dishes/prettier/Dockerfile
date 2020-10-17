@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_yarn=''
@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://prettier.io'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='CSS,Flow,GraphQL,HTML,JavaScript,JSON,JSX,Markdown,TypeScript,YAML'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/prettier'
-LABEL info.evolutics.buffet.version-example='2.0.2'
+LABEL info.evolutics.buffet.version-example='2.1.2'
 
 RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add "prettier@${prettier}"

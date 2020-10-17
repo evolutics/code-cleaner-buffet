@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_yarn=''
@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/twbs/bootlint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='HTML'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/bootlint'
-LABEL info.evolutics.buffet.version-example='1.0.0'
+LABEL info.evolutics.buffet.version-example='1.1.0'
 
 RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add "bootlint@${bootlint}"

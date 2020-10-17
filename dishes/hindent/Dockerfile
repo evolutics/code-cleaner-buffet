@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 ARG hindent
 ARG hindent_haskell_stack="haskell-stack-${hindent:+b3b51795c96b4ebd}"
 

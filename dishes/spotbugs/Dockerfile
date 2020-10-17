@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_openjdk11_jre_headless=''
@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://spotbugs.github.io'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Java'
 LABEL info.evolutics.buffet.versions-url='https://github.com/spotbugs/spotbugs/releases'
-LABEL info.evolutics.buffet.version-example='4.0.1'
+LABEL info.evolutics.buffet.version-example='4.1.4'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 

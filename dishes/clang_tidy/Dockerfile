@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}" AS clang_tidy
 ARG _apk_build_base=''
@@ -36,7 +36,7 @@ LABEL org.opencontainers.image.url='https://clang.llvm.org/extra/clang-tidy/'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='C,C++'
 LABEL info.evolutics.buffet.versions-url='http://releases.llvm.org'
-LABEL info.evolutics.buffet.version-example='10.0.0'
+LABEL info.evolutics.buffet.version-example='11.0.0'
 
 RUN apk add --no-cache "libstdc++${_apk_libstdcpp}"
 COPY --from=clang_tidy /opt/build/bin/clang-tidy /usr/local/bin/

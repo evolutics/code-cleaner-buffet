@@ -1,9 +1,9 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_git=''
 ARG _apk_yarn=''
-ARG _yarn_prettier='1.19.1'
+ARG _yarn_prettier='2.1.2'
 ARG prettier_php
 
 LABEL org.opencontainers.image.title='Prettier PHP Plugin'
@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.url='https://github.com/prettier/plugin-php'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='PHP'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/@prettier/plugin-php'
-LABEL info.evolutics.buffet.version-example='0.13.0'
+LABEL info.evolutics.buffet.version-example='0.15.1'
 
 RUN apk add --no-cache \
     "git${_apk_git}" \

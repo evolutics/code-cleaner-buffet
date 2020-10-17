@@ -1,9 +1,9 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 ARG shellcheck
-ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+b3b51795c96b4ebd}"
+ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+eaefafb3a78b09ca}"
 
 FROM evolutics/code-cleaner-buffet:"${shellcheck_haskell_stack}" AS shellcheck
-ARG _shellcheck_stack_resolver='lts-14.27'
+ARG _shellcheck_stack_resolver='lts-16.18'
 ARG shellcheck
 RUN stack --resolver "${_shellcheck_stack_resolver}" install \
     --ghc-options='-fPIC -optl-static' "ShellCheck-${shellcheck}"
@@ -16,7 +16,7 @@ LABEL org.opencontainers.image.url='https://www.shellcheck.net'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Shell'
 LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/ShellCheck'
-LABEL info.evolutics.buffet.version-example='0.7.0'
+LABEL info.evolutics.buffet.version-example='0.7.1'
 
 RUN apk add --no-cache "gmp-dev${_apk_gmp_dev}"
 COPY --from=shellcheck /root/.local/bin/shellcheck /usr/local/bin/

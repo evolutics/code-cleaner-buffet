@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_go=''
@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://github.com/golangci/golangci-lint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Go'
 LABEL info.evolutics.buffet.versions-url='https://github.com/golangci/golangci-lint/releases'
-LABEL info.evolutics.buffet.version-example='1.24.0'
+LABEL info.evolutics.buffet.version-example='1.31.0'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 

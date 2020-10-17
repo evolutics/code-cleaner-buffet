@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_yarn=''
@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://eslint.org'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='JavaScript,JSX'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/eslint'
-LABEL info.evolutics.buffet.version-example='6.8.0'
+LABEL info.evolutics.buffet.version-example='7.11.0'
 
 RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add "eslint@${eslint}"

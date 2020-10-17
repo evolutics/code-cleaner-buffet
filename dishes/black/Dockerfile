@@ -1,15 +1,17 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}" AS black
 ARG _apk_gcc=''
 ARG _apk_musl_dev=''
+ARG _apk_py3_pip=''
 ARG _apk_python3_dev=''
 ARG black
 RUN apk add --no-cache \
     "gcc${_apk_gcc}" \
     "musl-dev${_apk_musl_dev}" \
+    "py3-pip${_apk_py3_pip}" \
     "python3-dev${_apk_python3_dev}" \
-  && pip3 install --target /opt/black "black==${black}"
+  && pip install --target /opt/black "black==${black}"
 
 FROM alpine:"${_alpine}"
 ARG _apk_python3=''
@@ -19,7 +21,7 @@ LABEL org.opencontainers.image.url='https://github.com/psf/black'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/black/'
-LABEL info.evolutics.buffet.version-example='19.10b0'
+LABEL info.evolutics.buffet.version-example='20.8b1'
 
 RUN apk add --no-cache "python3${_apk_python3}"
 COPY --from=black /opt/black /opt/black

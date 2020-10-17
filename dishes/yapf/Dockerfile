@@ -1,7 +1,7 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
-ARG _apk_python3=''
+ARG _apk_py3_pip=''
 ARG yapf
 
 LABEL org.opencontainers.image.title='YAPF'
@@ -9,10 +9,10 @@ LABEL org.opencontainers.image.url='https://github.com/google/yapf'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/yapf/'
-LABEL info.evolutics.buffet.version-example='0.29.0'
+LABEL info.evolutics.buffet.version-example='0.30.0'
 
-RUN apk add --no-cache "python3${_apk_python3}" \
-  && pip3 install "yapf==${yapf}"
+RUN apk add --no-cache "py3-pip${_apk_py3_pip}" \
+  && pip install "yapf==${yapf}"
 
 WORKDIR /workdir
 

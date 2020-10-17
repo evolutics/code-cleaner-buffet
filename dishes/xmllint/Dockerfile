@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG xmllint
@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.title='xmllint'
 LABEL org.opencontainers.image.url='http://xmlsoft.org/xmllint.html'
 LABEL info.evolutics.buffet.categories='Formatter,Linter'
 LABEL info.evolutics.buffet.languages='XML'
-LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=libxml2-utils&branch=v3.11'
+LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=libxml2-utils&branch=v3.12'
 LABEL info.evolutics.buffet.version-example='2.9.10'
 
 RUN apk add --no-cache "libxml2-utils~=${xmllint}"

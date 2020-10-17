@@ -1,4 +1,4 @@
-ARG _alpine='3.11.5'
+ARG _alpine='3.12.0'
 
 FROM alpine:"${_alpine}"
 ARG _apk_cabal=''
@@ -15,7 +15,7 @@ LABEL org.opencontainers.image.url='https://github.com/ndmitchell/hlint'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Haskell'
 LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/hlint'
-LABEL info.evolutics.buffet.version-example='2.2.11'
+LABEL info.evolutics.buffet.version-example='3.2.1'
 
 RUN apk add --no-cache \
     "cabal${_apk_cabal}" \
