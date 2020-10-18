@@ -17,4 +17,4 @@ RUN apk add --no-cache "yarn${_apk_yarn}" \
 WORKDIR /workdir
 
 HEALTHCHECK CMD prettier-eslint --version \
-  && echo 'var  foo =  "bar"' | prettier-eslint --stdin --stdin-filepath baz.js
+  && echo 'var foo = "bar" ' | prettier-eslint --stdin --stdin-filepath baz.js

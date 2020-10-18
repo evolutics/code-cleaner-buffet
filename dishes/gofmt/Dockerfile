@@ -21,5 +21,5 @@ WORKDIR /workdir
 
 HEALTHCHECK CMD gofmt --help ; [ "$?" -eq 2 ] \
   && printf \
-    'package main\nimport  "fmt"\nfunc main() { fmt.Println ("Hi") }\n' \
+    'package main\nimport "fmt" \nfunc main() { fmt.Println ("Hi") }\n' \
     | gofmt

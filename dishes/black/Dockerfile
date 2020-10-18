@@ -29,4 +29,4 @@ ENV PATH="${PATH}:/opt/black/bin" \
 WORKDIR /workdir
 
 HEALTHCHECK CMD black --version \
-  && echo 'j = [1,  2,3]' | black -
+  && echo 'j = [1, 2,3 ]' | black -
