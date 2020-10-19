@@ -12,7 +12,7 @@ main() {
 
   local -r image_id="$(docker build --quiet \
     --build-arg black=20.8b1 \
-    --build-arg git \
+    --build-arg git=2.26.2 \
     --build-arg gitlint=0.13.1 \
     --build-arg hadolint=1.18.0 \
     --build-arg hunspell=1.7.0 \
