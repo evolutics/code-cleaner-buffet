@@ -67,7 +67,7 @@ def _run_independent_tasks(tasks):
     for task in tasks:
         try:
             task()
-        except Exception:
+        except Exception:  # pylint: disable=broad-except
             formatted_exception = traceback.format_exc()
             print(formatted_exception, file=sys.stderr)
             exceptions.append(formatted_exception)

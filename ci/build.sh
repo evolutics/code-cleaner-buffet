@@ -10,7 +10,9 @@ main() {
 
   pushd "${project_folder}"
 
-  docker run --rm --volume "$(pwd)":/workdir evolutics/travel-kit:0.1.0 check
+  docker run --entrypoint sh --rm --volume "$(pwd)":/workdir \
+    evolutics/travel-kit:0.2.0 -c \
+    'git ls-files -z | xargs -0 travel-kit check --'
 
   popd
 }
