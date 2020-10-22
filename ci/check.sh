@@ -18,7 +18,7 @@ check_with_gitlint() {
 
 check_with_hadolint() {
   git ls-files -z -- '*/Dockerfile' Dockerfile '*.Dockerfile' \
-    | xargs -0 hadolint --config ci/.hadolint.yaml
+    | xargs -0 hadolint
 }
 
 check_with_hunspell() {
