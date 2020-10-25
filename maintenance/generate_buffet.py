@@ -2,7 +2,7 @@ import pathlib
 import subprocess
 
 
-def main(arguments):
+def main(_):
     _generate_dockerfile()
     _generate_readme()
     _commit()

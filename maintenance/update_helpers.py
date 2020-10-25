@@ -5,7 +5,7 @@ import pathlib
 import subprocess
 
 
-def main(arguments):
+def main(_):
     for helper in sorted(pathlib.Path("helpers").iterdir()):
         if helper.is_dir():
             _update_helper(helper)

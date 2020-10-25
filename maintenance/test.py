@@ -9,8 +9,10 @@ import yaml
 
 
 def main(arguments):
-    ir = _parse_ir()
-    dish_to_versions = _filter_map(_get_dish_to_versions(ir), arguments.dishes)
+    intermediate = _parse_ir()
+    dish_to_versions = _filter_map(
+        _get_dish_to_versions(intermediate), arguments.dishes
+    )
     tests = _get_tests(dish_to_versions)
     _run_independent_tasks(tests)
 
@@ -27,10 +29,10 @@ def _filter_map(key_to_value, key_regex):
     return {key: value for key, value in key_to_value.items() if key_regex.search(key)}
 
 
-def _get_dish_to_versions(ir):
+def _get_dish_to_versions(intermediate):
     return {
         option: dish["metadata"]["tags"]["info.evolutics.buffet.version-example"]
-        for option, dish in ir["option_to_dish"].items()
+        for option, dish in intermediate["option_to_dish"].items()
     }
 
 
