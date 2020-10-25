@@ -39,7 +39,7 @@ def _get_dish_to_versions(intermediate):
 def _get_tests(dish_to_versions):
     for dish, versions in dish_to_versions.items():
         for version in versions:
-            yield lambda: _test_dish_version(dish, version)
+            yield lambda dish=dish, version=version: _test_dish_version(dish, version)
 
 
 def _test_dish_version(dish, version):
