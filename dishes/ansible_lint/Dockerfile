@@ -28,5 +28,5 @@ RUN apk add --no-cache \
 WORKDIR /workdir
 
 HEALTHCHECK CMD ansible-lint --version \
-  && printf '- { name: Example, hosts: all }\n' > playbook.yml \
+  && echo '- { name: Example, hosts: all }' > playbook.yml \
   && ansible-lint playbook.yml
