@@ -261,8 +261,9 @@ COPY --from=black /opt/black* /var/empty /opt/black/
 COPY --from=clang_tidy /opt/build/bin/clang-tidy* /var/empty /usr/local/bin/
 COPY --from=hindent /root/.local/bin/hindent* /var/empty /usr/local/bin/
 COPY --from=pylint /opt/pylint* /var/empty /opt/pylint/
+WORKDIR /workdir
 ENV PATH="${PATH}:/opt/black/bin" \
-    PYTHONPATH="${PYTHONPATH}:/opt/black" \
-    PATH="${PATH}:/opt/pylint/bin" \
+    PYTHONPATH="${PYTHONPATH}:/opt/black"
+ENV PATH="${PATH}:/opt/pylint/bin" \
     PYTHONPATH="${PYTHONPATH}:/opt/pylint"
 WORKDIR /workdir
