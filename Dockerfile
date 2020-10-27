@@ -1,8 +1,6 @@
 ARG _alpine='3.12.0'
 ARG hindent
 ARG hindent_haskell_stack="haskell-stack-${hindent:+b3b51795c96b4ebd}"
-ARG shellcheck
-ARG shellcheck_haskell_stack="haskell-stack-${shellcheck:+eaefafb3a78b09ca}"
 
 FROM alpine:"${_alpine}" AS black
 ARG _apk_gcc=''
@@ -35,10 +33,14 @@ ARG _hindent_stack_resolver='lts-14.27'
 ARG hindent
 RUN if [ -n "${hindent}" ]; then stack --resolver "${_hindent_stack_resolver}" install --ghc-options='-fPIC -optl-static' "hindent-${hindent}"; fi
 
-FROM evolutics/code-cleaner-buffet:"${shellcheck_haskell_stack}" AS shellcheck
-ARG _shellcheck_stack_resolver='lts-16.18'
-ARG shellcheck
-RUN if [ -n "${shellcheck}" ]; then stack --resolver "${_shellcheck_stack_resolver}" install --ghc-options='-fPIC -optl-static' "ShellCheck-${shellcheck}"; fi
+FROM alpine:"${_alpine}" AS pylint
+ARG _apk_gcc=''
+ARG _apk_musl_dev=''
+ARG _apk_py3_pip=''
+ARG _apk_python3_dev=''
+ARG pylint
+RUN if [ -n "${pylint}" ]; then apk add --no-cache "gcc${_apk_gcc}" "musl-dev${_apk_musl_dev}" "py3-pip${_apk_py3_pip}" "python3-dev${_apk_python3_dev}" \
+ && pip install --target /opt/pylint "pylint==${pylint}"; fi
 
 FROM alpine:"${_alpine}"
 ARG _apk_aspell_en=''
@@ -83,6 +85,7 @@ ARG bootlint
 ARG brittany
 ARG clang_format
 ARG clang_tidy
+ARG commitlint
 ARG cpplint
 ARG csscomb
 ARG csslint
@@ -96,6 +99,7 @@ ARG google_java_format
 ARG hadolint
 ARG hindent
 ARG hlint
+ARG htmlhint
 ARG htmllint
 ARG hunspell
 ARG jsonlint
@@ -144,6 +148,8 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && ln -s "${HOME}/.cabal/bin/brittany" /usr/local/bin/brittany; fi \
  && if [ -n "${clang_format}" ]; then apk add --no-cache "clang~=${clang_format}"; fi \
  && if [ -n "${clang_tidy}" ]; then apk add --no-cache "libstdc++${_apk_libstdcpp}"; fi \
+ && if [ -n "${commitlint}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
+ && yarn global add "@commitlint/cli@${commitlint}"; fi \
  && if [ -n "${cpplint}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
  && pip install "cpplint==${cpplint}"; fi \
  && if [ -n "${csscomb}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
@@ -173,6 +179,8 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && cabal v2-install --jobs alex happy \
  && cabal v2-install --jobs "hlint-${hlint}" \
  && ln -s "${HOME}/.cabal/bin/hlint" /usr/local/bin/hlint; fi \
+ && if [ -n "${htmlhint}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
+ && yarn global add "htmlhint@${htmlhint}"; fi \
  && if [ -n "${htmllint}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "htmllint-cli@${htmllint}"; fi \
  && if [ -n "${hunspell}" ]; then apk add --no-cache "hunspell~=${hunspell}" "hunspell-en${_apk_hunspell_en}"; fi \
@@ -210,8 +218,7 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "@prettier/plugin-xml@${prettier_xml}" "prettier@${_yarn_prettier}"; fi \
  && if [ -n "${pyflakes}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
  && pip install "pyflakes==${pyflakes}"; fi \
- && if [ -n "${pylint}" ]; then apk add --no-cache "gcc${_apk_gcc}" "musl-dev${_apk_musl_dev}" "py3-pip${_apk_py3_pip}" "python3-dev${_apk_python3_dev}" \
- && pip install "pylint==${pylint}"; fi \
+ && if [ -n "${pylint}" ]; then apk add --no-cache "python3${_apk_python3}"; fi \
  && if [ -n "${repolinter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "repolinter@${repolinter}"; fi \
  && if [ -n "${rubocop}" ]; then apk add --no-cache "build-base${_apk_build_base}" "ruby-dev${_apk_ruby_dev}" "ruby-full${_apk_ruby_full}" \
@@ -222,7 +229,9 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && chmod +x "${coursier_executable}" \
  && "${coursier_executable}" bootstrap "org.scalameta:scalafmt-cli_2.12:${scalafmt}" --main org.scalafmt.cli.Cli --output /usr/local/bin/scalafmt --repository sonatype:snapshots --standalone \
  && rm "${coursier_executable}"; fi \
- && if [ -n "${shellcheck}" ]; then apk add --no-cache "gmp-dev${_apk_gmp_dev}"; fi \
+ && if [ -n "${shellcheck}" ]; then mkdir /opt/shellcheck \
+ && wget --output-document - "https://github.com/koalaman/shellcheck/releases/download/v${shellcheck}/shellcheck-v${shellcheck}.linux.x86_64.tar.xz" | tar --directory /opt/shellcheck --extract --file - --strip-components 1 --xz \
+ && ln -s /opt/shellcheck/shellcheck /usr/local/bin/shellcheck; fi \
  && if [ -n "${spotbugs}" ]; then apk add --no-cache "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
  && mkdir /opt/spotbugs \
  && wget --output-document - "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz" | tar --directory /opt/spotbugs --extract --file - --gzip --strip-components 1 \
@@ -251,7 +260,9 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
 COPY --from=black /opt/black* /var/empty /opt/black/
 COPY --from=clang_tidy /opt/build/bin/clang-tidy* /var/empty /usr/local/bin/
 COPY --from=hindent /root/.local/bin/hindent* /var/empty /usr/local/bin/
-COPY --from=shellcheck /root/.local/bin/shellcheck* /var/empty /usr/local/bin/
+COPY --from=pylint /opt/pylint* /var/empty /opt/pylint/
 ENV PATH="${PATH}:/opt/black/bin" \
-    PYTHONPATH="${PYTHONPATH}:/opt/black"
+    PYTHONPATH="${PYTHONPATH}:/opt/black" \
+    PATH="${PATH}:/opt/pylint/bin" \
+    PYTHONPATH="${PYTHONPATH}:/opt/pylint"
 WORKDIR /workdir
