@@ -82,6 +82,20 @@ jobs:
       - run: black --check --diff .
 ```
 
+### GitHub Actions
+
+Adjust your workflow file in `.github/workflows/` to include
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: me/plate:1.2.3
+    steps:
+      - uses: actions/checkout@v2
+      - run: black --check --diff .
+```
+
 ### Jenkins
 
 Adjust your `Jenkinsfile` to include
