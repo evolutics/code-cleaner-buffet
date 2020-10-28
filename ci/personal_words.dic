@@ -1,5 +1,6 @@
 apk
 ARG
+BuildKit
 CircleCI
 cURL
 Dockerfile

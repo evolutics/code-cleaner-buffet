@@ -6,7 +6,8 @@ FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
 ARG _hindent_stack_resolver='lts-14.27'
 ARG hindent
 RUN stack --resolver "${_hindent_stack_resolver}" install \
-    --ghc-options='-fPIC -optl-static' "hindent-${hindent}"
+    --ghc-options='-fPIC -optl-static' "hindent-${hindent}" \
+  && mv /root/.local/bin/hindent /usr/local/bin/
 
 FROM alpine:"${_alpine}"
 ARG _apk_gmp_dev=''
@@ -19,7 +20,7 @@ LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/hi
 LABEL info.evolutics.buffet.version-example='5.3.1'
 
 RUN apk add --no-cache "gmp-dev${_apk_gmp_dev}"
-COPY --from=hindent /root/.local/bin/hindent /usr/local/bin/
+COPY --from=hindent /usr/local/bin/hindent /usr/local/bin/
 
 WORKDIR /workdir
 

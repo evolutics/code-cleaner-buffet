@@ -26,7 +26,8 @@ RUN apk add --no-cache \
       --extract --file - --strip-components 1 --xz
 WORKDIR /opt/build
 RUN cmake -G Ninja ../llvm \
-  && ninja clang-tidy
+  && ninja clang-tidy \
+  && mv /opt/build/bin/clang-tidy /usr/local/bin/
 
 FROM alpine:"${_alpine}"
 ARG _apk_libstdcpp=''
@@ -39,7 +40,7 @@ LABEL info.evolutics.buffet.versions-url='http://releases.llvm.org'
 LABEL info.evolutics.buffet.version-example='11.0.0'
 
 RUN apk add --no-cache "libstdc++${_apk_libstdcpp}"
-COPY --from=clang_tidy /opt/build/bin/clang-tidy /usr/local/bin/
+COPY --from=clang_tidy /usr/local/bin/clang-tidy /usr/local/bin/
 
 WORKDIR /workdir
 
