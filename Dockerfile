@@ -26,12 +26,14 @@ RUN if [ -n "${clang_tidy}" ]; then apk add --no-cache "build-base${_apk_build_b
  && wget --output-document - "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz" | tar --directory "/opt/llvm/tools/clang-${clang_tidy}.src/tools/extra" --extract --file - --strip-components 1 --xz; fi
 WORKDIR /opt/build
 RUN if [ -n "${clang_tidy}" ]; then cmake -G Ninja ../llvm \
- && ninja clang-tidy; fi
+ && ninja clang-tidy \
+ && mv /opt/build/bin/clang-tidy /usr/local/bin/; fi
 
 FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
 ARG _hindent_stack_resolver='lts-14.27'
 ARG hindent
-RUN if [ -n "${hindent}" ]; then stack --resolver "${_hindent_stack_resolver}" install --ghc-options='-fPIC -optl-static' "hindent-${hindent}"; fi
+RUN if [ -n "${hindent}" ]; then stack --resolver "${_hindent_stack_resolver}" install --ghc-options='-fPIC -optl-static' "hindent-${hindent}" \
+ && mv /root/.local/bin/hindent /usr/local/bin/; fi
 
 FROM alpine:"${_alpine}" AS pylint
 ARG _apk_gcc=''
@@ -258,8 +260,8 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && if [ -n "${yapf}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
  && pip install "yapf==${yapf}"; fi
 COPY --from=black /opt/black* /var/empty /opt/black/
-COPY --from=clang_tidy /opt/build/bin/clang-tidy* /var/empty /usr/local/bin/
-COPY --from=hindent /root/.local/bin/hindent* /var/empty /usr/local/bin/
+COPY --from=clang_tidy /usr/local/bin/clang-tidy* /var/empty /usr/local/bin/
+COPY --from=hindent /usr/local/bin/hindent* /var/empty /usr/local/bin/
 COPY --from=pylint /opt/pylint* /var/empty /opt/pylint/
 WORKDIR /workdir
 ENV PATH="${PATH}:/opt/black/bin" \
