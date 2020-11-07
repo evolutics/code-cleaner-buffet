@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import csv
 import hashlib
 import io
@@ -5,7 +7,7 @@ import pathlib
 import subprocess
 
 
-def main(_):
+def main():
     for helper in sorted(pathlib.Path("helpers").iterdir()):
         if helper.is_dir():
             _update_helper(helper)
@@ -53,3 +55,7 @@ def _hash(data):
     digest = hashlib.sha256()
     digest.update(data)
     return digest.hexdigest()
+
+
+if __name__ == "__main__":
+    main()

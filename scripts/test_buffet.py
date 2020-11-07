@@ -1,6 +1,10 @@
+#!/usr/bin/env python3
+
+import argparse
 import contextlib
 import json
 import pathlib
+import re
 import subprocess
 import sys
 import tempfile
@@ -8,7 +12,11 @@ import traceback
 import yaml
 
 
-def main(arguments):
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dishes", default="", type=re.compile)
+    arguments = parser.parse_args()
+
     intermediate = _parse_ir()
     dish_to_versions = _filter_map(
         _get_dish_to_versions(intermediate), arguments.dishes
@@ -73,3 +81,7 @@ def _run_independent_tasks(tasks):
             exceptions.append(formatted_exception)
     if exceptions:
         raise Exception("\n".join(exceptions))
+
+
+if __name__ == "__main__":
+    main()

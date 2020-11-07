@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
+
 import pathlib
 import subprocess
 
 
-def main(_):
+def main():
     _generate_dockerfile()
     _generate_readme()
     _commit()
@@ -33,3 +35,7 @@ def _commit():
         ["git", "commit", "--all", "--message", "Generate buffet with documentation"],
         check=True,
     )
+
+
+if __name__ == "__main__":
+    main()
