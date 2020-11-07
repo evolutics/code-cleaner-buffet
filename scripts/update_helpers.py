@@ -3,11 +3,14 @@
 import csv
 import hashlib
 import io
+import os
 import pathlib
 import subprocess
 
 
 def main():
+    os.chdir(pathlib.Path(os.path.realpath(__file__)).parent.parent)
+
     for helper in sorted(pathlib.Path("helpers").iterdir()):
         if helper.is_dir():
             _update_helper(helper)

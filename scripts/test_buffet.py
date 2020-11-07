@@ -3,6 +3,7 @@
 import argparse
 import contextlib
 import json
+import os
 import pathlib
 import re
 import subprocess
@@ -16,6 +17,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dishes", default="", type=re.compile)
     arguments = parser.parse_args()
+
+    os.chdir(pathlib.Path(os.path.realpath(__file__)).parent.parent)
 
     intermediate = _parse_ir()
     dish_to_versions = _filter_map(

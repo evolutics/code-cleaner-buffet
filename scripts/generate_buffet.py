@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
+import os
 import pathlib
 import subprocess
 
 
 def main():
+    os.chdir(pathlib.Path(os.path.realpath(__file__)).parent.parent)
+
     _generate_dockerfile()
     _generate_readme()
     _commit()
