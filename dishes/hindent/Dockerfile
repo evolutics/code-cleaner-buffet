@@ -13,7 +13,7 @@ FROM alpine:"${_alpine}"
 ARG _apk_gmp_dev=''
 
 LABEL org.opencontainers.image.title='hindent'
-LABEL org.opencontainers.image.url='https://github.com/chrisdone/hindent'
+LABEL org.opencontainers.image.url='https://github.com/mihaimaruseac/hindent'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Haskell'
 LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/hindent'
