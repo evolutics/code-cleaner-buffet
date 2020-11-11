@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 import os
 import pathlib
 import subprocess
@@ -35,13 +36,24 @@ def _generate_readme():
 
 
 def _generate_template_partials():
+    intermediate = json.loads(
+        subprocess.run(
+            ["buffet", "parse", "dishes"], check=True, stdout=subprocess.PIPE
+        ).stdout
+    )
+    dish_example_versions = {
+        option: dish["metadata"]["tags"]["info.evolutics.buffet.version-example"][-1]
+        for option, dish in intermediate["option_to_dish"].items()
+    }
     generated_partials = {
+        "black.md.mustache": dish_example_versions["black"],
+        "prettier.md.mustache": dish_example_versions["prettier"],
         "tag.md.mustache": subprocess.run(
             ["git", "describe", "--abbrev=0"],
             capture_output=True,
             check=True,
             text=True,
-        ).stdout.rstrip()
+        ).stdout.rstrip(),
     }
     for filename, content in generated_partials.items():
         path = pathlib.Path("docs") / "readme" / filename
