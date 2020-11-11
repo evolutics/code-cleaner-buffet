@@ -123,6 +123,7 @@ ARG repolinter
 ARG rubocop
 ARG scalafmt
 ARG shellcheck
+ARG shfmt
 ARG spotbugs
 ARG standard
 ARG stylelint
@@ -234,6 +235,8 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && if [ -n "${shellcheck}" ]; then mkdir /opt/shellcheck \
  && wget --output-document - "https://github.com/koalaman/shellcheck/releases/download/v${shellcheck}/shellcheck-v${shellcheck}.linux.x86_64.tar.xz" | tar --directory /opt/shellcheck --extract --file - --strip-components 1 --xz \
  && ln -s /opt/shellcheck/shellcheck /usr/local/bin/shellcheck; fi \
+ && if [ -n "${shfmt}" ]; then wget --output-document /usr/local/bin/shfmt "https://github.com/mvdan/sh/releases/download/v${shfmt}/shfmt_v${shfmt}_linux_386" \
+ && chmod +x /usr/local/bin/shfmt; fi \
  && if [ -n "${spotbugs}" ]; then apk add --no-cache "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
  && mkdir /opt/spotbugs \
  && wget --output-document - "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz" | tar --directory /opt/spotbugs --extract --file - --gzip --strip-components 1 \
