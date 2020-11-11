@@ -19,6 +19,7 @@ def _generate_dockerfile():
 
 
 def _generate_readme():
+    _generate_template_partials()
     with pathlib.Path("README.md").open("w") as readme:
         subprocess.run(
             [
@@ -31,6 +32,21 @@ def _generate_readme():
             check=True,
             stdout=readme,
         )
+
+
+def _generate_template_partials():
+    generated_partials = {
+        "tag.md.mustache": subprocess.run(
+            ["git", "describe", "--abbrev=0"],
+            capture_output=True,
+            check=True,
+            text=True,
+        ).stdout.rstrip()
+    }
+    for filename, content in generated_partials.items():
+        path = pathlib.Path("docs") / "readme" / filename
+        with path.open("w") as partial:
+            partial.write(content)
 
 
 def _commit():
