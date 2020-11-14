@@ -57,8 +57,7 @@ def _generate_template_partials():
     }
     for filename, content in generated_partials.items():
         path = pathlib.Path("docs") / "readme" / filename
-        with path.open("w") as partial:
-            partial.write(content)
+        path.write_text(content)
 
 
 def _commit():
