@@ -1,6 +1,6 @@
 # Code Cleaner Buffet 🍜
 
-![build](https://github.com/evolutics/code-cleaner-buffet/workflows/build/badge.svg)
+![test](https://github.com/evolutics/code-cleaner-buffet/workflows/test/badge.svg)
 
 Build your own Alpine Docker image with just the code formatters and linters you choose.
 
@@ -74,7 +74,7 @@ Adjust your `.circleci/config.yml` file to include
 ```yaml
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: me/plate:1.2.3
     steps:
@@ -88,7 +88,7 @@ Adjust your workflow file in `.github/workflows/` to include
 
 ```yaml
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     container: me/plate:1.2.3
     steps:
@@ -104,7 +104,7 @@ Adjust your `Jenkinsfile` to include
 pipeline {
     agent none
     stages {
-        stage('Build') {
+        stage('Test') {
             agent {
                 docker { image 'me/plate:1.2.3' }
             }
