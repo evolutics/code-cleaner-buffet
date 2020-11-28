@@ -1,10 +1,10 @@
 ARG _alpine='3.12.0'
 ARG hindent
-ARG hindent_conditional_image="${hindent:+evolutics/hindent:${hindent}}"
-ARG hindent_image="${hindent_conditional_image:-alpine:${_alpine}}"
+ARG hindent_conditional_image_repository="${hindent:+evolutics/hindent}"
+ARG hindent_image_repository="${hindent_conditional_image_repository:-alpine}"
+ARG hindent_image_tag="${hindent:-${_alpine}}"
 
-# hadolint ignore=DL3006
-FROM "${hindent_image}" AS hindent
+FROM "${hindent_image_repository}:${hindent_image_tag}" AS hindent
 RUN mkdir -p /var/empty
 
 FROM alpine:"${_alpine}"
