@@ -1,13 +1,11 @@
 ARG _alpine='3.12.0'
 ARG hindent
-ARG hindent_haskell_stack="haskell-stack-${hindent:+b3b51795c96b4ebd}"
+ARG hindent_conditional_image="${hindent:+evolutics/hindent:${hindent}}"
+ARG hindent_image="${hindent_conditional_image:-alpine:${_alpine}}"
 
-FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
-ARG _hindent_stack_resolver='lts-14.27'
-ARG hindent
-RUN stack --resolver "${_hindent_stack_resolver}" install \
-    --ghc-options='-fPIC -optl-static' "hindent-${hindent}" \
-  && mv /root/.local/bin/hindent /usr/local/bin/
+# hadolint ignore=DL3006
+FROM "${hindent_image}" AS hindent
+RUN mkdir -p /var/empty
 
 FROM alpine:"${_alpine}"
 ARG _apk_gmp_dev=''
@@ -19,8 +17,15 @@ LABEL info.evolutics.buffet.languages='Haskell'
 LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/hindent'
 LABEL info.evolutics.buffet.version-example='5.3.1'
 
-RUN apk add --no-cache "gmp-dev${_apk_gmp_dev}"
+RUN apk add --no-cache "gmp-dev${_apk_gmp_dev}" \
+  && wget --output-document /etc/apk/keys/sgerrand.rsa.pub \
+    https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
+  && wget \
+    https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk \
+  && apk add --no-cache glibc-2.32-r0.apk \
+  && rm glibc-2.32-r0.apk
 COPY --from=hindent /usr/local/bin/hindent /usr/local/bin/
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/lib:/usr/lib"
 
 WORKDIR /workdir
 
