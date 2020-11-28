@@ -13,11 +13,11 @@ import traceback
 
 
 def main():
+    os.chdir(pathlib.Path(os.path.realpath(__file__)).parent.parent)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--dishes", default="", type=re.compile)
     arguments = parser.parse_args()
-
-    os.chdir(pathlib.Path(os.path.realpath(__file__)).parent.parent)
 
     intermediate = _parse_ir()
     dish_to_versions = _filter_map(
