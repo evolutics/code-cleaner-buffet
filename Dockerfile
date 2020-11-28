@@ -1,6 +1,8 @@
 ARG _alpine='3.12.0'
 ARG hindent
-ARG hindent_haskell_stack="haskell-stack-${hindent:+b3b51795c96b4ebd}"
+ARG hindent_conditional_image_repository="${hindent:+evolutics/hindent}"
+ARG hindent_image_repository="${hindent_conditional_image_repository:-alpine}"
+ARG hindent_image_tag="${hindent:-${_alpine}}"
 
 FROM alpine:"${_alpine}" AS black
 ARG _apk_gcc=''
@@ -29,11 +31,9 @@ RUN if [ -n "${clang_tidy}" ]; then cmake -G Ninja ../llvm \
  && ninja clang-tidy \
  && mv /opt/build/bin/clang-tidy /usr/local/bin/; fi
 
-FROM evolutics/code-cleaner-buffet:"${hindent_haskell_stack}" AS hindent
-ARG _hindent_stack_resolver='lts-14.27'
+FROM "${hindent_image_repository}:${hindent_image_tag}" AS hindent
 ARG hindent
-RUN if [ -n "${hindent}" ]; then stack --resolver "${_hindent_stack_resolver}" install --ghc-options='-fPIC -optl-static' "hindent-${hindent}" \
- && mv /root/.local/bin/hindent /usr/local/bin/; fi
+RUN if [ -n "${hindent}" ]; then mkdir -p /var/empty; fi
 
 FROM alpine:"${_alpine}" AS pylint
 ARG _apk_gcc=''
@@ -176,7 +176,11 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && chmod +x /usr/local/bin/google-java-format; fi \
  && if [ -n "${hadolint}" ]; then wget --output-document /usr/local/bin/hadolint "https://github.com/hadolint/hadolint/releases/download/v${hadolint}/hadolint-Linux-x86_64" \
  && chmod +x /usr/local/bin/hadolint; fi \
- && if [ -n "${hindent}" ]; then apk add --no-cache "gmp-dev${_apk_gmp_dev}"; fi \
+ && if [ -n "${hindent}" ]; then apk add --no-cache "gmp-dev${_apk_gmp_dev}" \
+ && wget --output-document /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
+ && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk \
+ && apk add --no-cache glibc-2.32-r0.apk \
+ && rm glibc-2.32-r0.apk; fi \
  && if [ -n "${hlint}" ]; then apk add --no-cache "cabal${_apk_cabal}" "ghc${_apk_ghc}" "gmp${_apk_gmp}" "libffi${_apk_libffi}" "musl-dev${_apk_musl_dev}" "ncurses-dev${_apk_ncurses_dev}" "wget${_apk_wget}" \
  && cabal v2-update \
  && cabal v2-install --jobs alex happy \
@@ -269,6 +273,7 @@ COPY --from=pylint /opt/pylint* /var/empty /opt/pylint/
 WORKDIR /workdir
 ENV PATH="${PATH}:/opt/black/bin" \
     PYTHONPATH="${PYTHONPATH}:/opt/black"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/lib:/usr/lib"
 ENV PATH="${PATH}:/opt/pylint/bin" \
     PYTHONPATH="${PYTHONPATH}:/opt/pylint"
 WORKDIR /workdir
