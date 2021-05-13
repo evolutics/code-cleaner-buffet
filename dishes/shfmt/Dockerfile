@@ -1,4 +1,4 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}"
 ARG shfmt
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.url='https://github.com/mvdan/sh'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Shell'
 LABEL info.evolutics.buffet.versions-url='https://github.com/mvdan/sh/releases'
-LABEL info.evolutics.buffet.version-example='3.2.0'
+LABEL info.evolutics.buffet.version-example='3.2.4'
 
 RUN wget --output-document /usr/local/bin/shfmt \
     "https://github.com/mvdan/sh/releases/download/v${shfmt}/shfmt_v${shfmt}_linux_386" \

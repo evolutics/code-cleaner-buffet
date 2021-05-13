@@ -1,8 +1,8 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}"
 ARG _apk_yarn=''
-ARG _yarn_prettier='2.1.2'
+ARG _yarn_prettier='2.3.0'
 ARG prettier_toml
 
 LABEL org.opencontainers.image.title='Prettier Toml Plugin'

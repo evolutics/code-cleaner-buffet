@@ -1,4 +1,4 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}" AS black
 ARG _apk_gcc=''
@@ -21,7 +21,7 @@ LABEL org.opencontainers.image.url='https://github.com/psf/black'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/black/'
-LABEL info.evolutics.buffet.version-example='20.8b1'
+LABEL info.evolutics.buffet.version-example='21.5b1'
 
 RUN apk add --no-cache "python3${_apk_python3}"
 COPY --from=black /opt/black /opt/black

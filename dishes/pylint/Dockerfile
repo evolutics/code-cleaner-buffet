@@ -1,4 +1,4 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}" AS pylint
 ARG _apk_gcc=''
@@ -14,16 +14,16 @@ RUN apk add --no-cache \
   && pip install --target /opt/pylint "pylint==${pylint}"
 
 FROM alpine:"${_alpine}"
-ARG _apk_python3=''
+ARG _apk_py3_pip=''
 
 LABEL org.opencontainers.image.title='Pylint'
 LABEL org.opencontainers.image.url='https://www.pylint.org'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/pylint/'
-LABEL info.evolutics.buffet.version-example='2.6.0'
+LABEL info.evolutics.buffet.version-example='2.8.2'
 
-RUN apk add --no-cache "python3${_apk_python3}"
+RUN apk add --no-cache "py3-pip${_apk_py3_pip}"
 COPY --from=pylint /opt/pylint /opt/pylint
 ENV PATH="${PATH}:/opt/pylint/bin" \
   PYTHONPATH="${PYTHONPATH}:/opt/pylint"

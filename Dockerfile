@@ -1,4 +1,4 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 ARG hindent
 ARG hindent_conditional_image_repository="${hindent:+evolutics/hindent}"
 ARG hindent_image_repository="${hindent_conditional_image_repository:-alpine}"

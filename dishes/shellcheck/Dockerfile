@@ -1,4 +1,4 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}"
 ARG shellcheck
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.url='https://www.shellcheck.net'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='Shell'
 LABEL info.evolutics.buffet.versions-url='https://hackage.haskell.org/package/ShellCheck'
-LABEL info.evolutics.buffet.version-example='0.7.1'
+LABEL info.evolutics.buffet.version-example='0.7.2'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 

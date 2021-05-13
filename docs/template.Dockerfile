@@ -5,7 +5,7 @@
 # The default order is lexicographical.
 
 # Order these and other `ARG` instruction groups.
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}"
 # Option naming in general: lowercase snake case.

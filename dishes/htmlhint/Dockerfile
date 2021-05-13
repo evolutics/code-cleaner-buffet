@@ -1,4 +1,4 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}"
 ARG _apk_yarn=''
@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.url='https://htmlhint.com'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='HTML'
 LABEL info.evolutics.buffet.versions-url='https://yarnpkg.com/package/htmlhint'
-LABEL info.evolutics.buffet.version-example='0.14.1'
+LABEL info.evolutics.buffet.version-example='0.14.2'
 
 RUN apk add --no-cache "yarn${_apk_yarn}" \
   && yarn global add "htmlhint@${htmlhint}"

@@ -1,4 +1,4 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}"
 ARG _apk_npm=''
@@ -12,7 +12,7 @@ LABEL org.opencontainers.image.url='https://stylelint.io'
 LABEL info.evolutics.buffet.categories='Linter'
 LABEL info.evolutics.buffet.languages='CSS'
 LABEL info.evolutics.buffet.versions-url='https://www.npmjs.com/package/stylelint'
-LABEL info.evolutics.buffet.version-example='13.7.2'
+LABEL info.evolutics.buffet.version-example='13.13.1'
 
 RUN apk add --no-cache "npm${_apk_npm}" \
   && npm install --global \

@@ -1,4 +1,4 @@
-ARG _alpine='3.12.0'
+ARG _alpine='3.13.5'
 
 FROM alpine:"${_alpine}"
 ARG _apk_aspell_en=''
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.title='GNU Aspell'
 LABEL org.opencontainers.image.url='http://aspell.net'
 LABEL info.evolutics.buffet.categories='Spell checker'
 LABEL info.evolutics.buffet.languages='Natural language'
-LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=aspell&branch=v3.12'
+LABEL info.evolutics.buffet.versions-url='https://pkgs.alpinelinux.org/packages?name=aspell&branch=v3.13'
 LABEL info.evolutics.buffet.version-example='0.60.8'
 
 RUN apk add --no-cache \
