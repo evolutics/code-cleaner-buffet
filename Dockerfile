@@ -73,7 +73,7 @@ ARG _apk_ruby_full=''
 ARG _apk_wget=''
 ARG _apk_yarn=''
 ARG _coursier='2.0.3'
-ARG _yarn_prettier='2.1.2'
+ARG _yarn_prettier='2.3.0'
 ARG _yarn_stylelint_config_recommended_scss='4.2.0'
 ARG _yarn_stylelint_config_recommended='3.0.0'
 ARG _yarn_stylelint_config_standard='20.0.0'
@@ -225,7 +225,7 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "@prettier/plugin-xml@${prettier_xml}" "prettier@${_yarn_prettier}"; fi \
  && if [ -n "${pyflakes}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
  && pip install "pyflakes==${pyflakes}"; fi \
- && if [ -n "${pylint}" ]; then apk add --no-cache "python3${_apk_python3}"; fi \
+ && if [ -n "${pylint}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}"; fi \
  && if [ -n "${repolinter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "repolinter@${repolinter}"; fi \
  && if [ -n "${rubocop}" ]; then apk add --no-cache "build-base${_apk_build_base}" "ruby-dev${_apk_ruby_dev}" "ruby-full${_apk_ruby_full}" \
