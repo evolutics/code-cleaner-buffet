@@ -15,7 +15,7 @@ LABEL info.evolutics.buffet.version-example='2.7.4'
 RUN apk add --no-cache \
     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
   && coursier_executable="$(mktemp)" \
-  && wget --output-document "${coursier_executable}" \
+  && wget --no-verbose --output-document "${coursier_executable}" \
     "https://github.com/coursier/coursier/releases/download/v${_coursier}/coursier" \
   && chmod +x "${coursier_executable}" \
   && "${coursier_executable}" bootstrap "org.scalameta:scalafmt-cli_2.12:${scalafmt}" \

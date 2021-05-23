@@ -14,7 +14,8 @@ LABEL info.evolutics.buffet.version-example='1.9'
 RUN apk add --no-cache \
     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
   && mkdir /opt/google-java-format \
-  && wget --output-document /opt/google-java-format/google-java-format.jar \
+  && wget --no-verbose \
+    --output-document /opt/google-java-format/google-java-format.jar \
     "https://github.com/google/google-java-format/releases/download/google-java-format-${google_java_format}/google-java-format-${google_java_format}-all-deps.jar" \
   && printf '#!/bin/sh\n\njava -jar /opt/google-java-format/google-java-format.jar "$@"\n' \
     > /usr/local/bin/google-java-format \

@@ -10,7 +10,7 @@ LABEL info.evolutics.buffet.languages='Shell'
 LABEL info.evolutics.buffet.versions-url='https://github.com/mvdan/sh/releases'
 LABEL info.evolutics.buffet.version-example='3.2.4'
 
-RUN wget --output-document /usr/local/bin/shfmt \
+RUN wget --no-verbose --output-document /usr/local/bin/shfmt \
     "https://github.com/mvdan/sh/releases/download/v${shfmt}/shfmt_v${shfmt}_linux_386" \
   && chmod +x /usr/local/bin/shfmt
 

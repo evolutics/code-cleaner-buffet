@@ -10,7 +10,7 @@ LABEL info.evolutics.buffet.languages='Dockerfile'
 LABEL info.evolutics.buffet.versions-url='https://github.com/hadolint/hadolint/releases'
 LABEL info.evolutics.buffet.version-example='2.4.0'
 
-RUN wget --output-document /usr/local/bin/hadolint \
+RUN wget --no-verbose --output-document /usr/local/bin/hadolint \
     "https://github.com/hadolint/hadolint/releases/download/v${hadolint}/hadolint-Linux-x86_64" \
   && chmod +x /usr/local/bin/hadolint
 

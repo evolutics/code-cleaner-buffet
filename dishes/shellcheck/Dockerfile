@@ -13,7 +13,7 @@ LABEL info.evolutics.buffet.version-example='0.7.2'
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 RUN mkdir /opt/shellcheck \
-  && wget --output-document - \
+  && wget --no-verbose --output-document - \
     "https://github.com/koalaman/shellcheck/releases/download/v${shellcheck}/shellcheck-v${shellcheck}.linux.x86_64.tar.xz" \
     | tar --directory /opt/shellcheck --extract --file - --strip-components 1 \
       --xz \

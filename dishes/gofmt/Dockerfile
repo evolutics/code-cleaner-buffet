@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.version-example='1.15.3'
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
-RUN wget --output-document - \
+RUN wget --no-verbose --output-document - \
     "https://dl.google.com/go/go${gofmt}.linux-amd64.tar.gz" \
     | tar --directory /usr/local/bin --extract --file - --gzip \
     --strip-components 2 go/bin/gofmt

@@ -13,7 +13,7 @@ LABEL info.evolutics.buffet.version-example='0.39.0'
 
 RUN apk add --no-cache \
     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
-  && wget --directory-prefix /usr/local/bin \
+  && wget --directory-prefix /usr/local/bin --no-verbose \
     "https://github.com/pinterest/ktlint/releases/download/${ktlint}/ktlint" \
   && chmod +x /usr/local/bin/ktlint
 

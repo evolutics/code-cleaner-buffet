@@ -16,7 +16,7 @@ RUN apk add --no-cache \
     "bash${_apk_bash}" \
     "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
   && tmp="$(mktemp -d)" \
-  && wget --output-document "${tmp}/pmd.zip" \
+  && wget --no-verbose --output-document "${tmp}/pmd.zip" \
     "https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmd}/pmd-bin-${pmd}.zip" \
   && unzip -d "${tmp}" "${tmp}/pmd.zip" \
   && mv "${tmp}/pmd-bin-${pmd}" /opt/pmd \
