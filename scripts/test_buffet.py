@@ -63,9 +63,8 @@ def _test_dish_version(dish, version):
 
 @contextlib.contextmanager
 def _temporary_file(prefix=None):
-    file = tempfile.NamedTemporaryFile(delete=False, prefix=prefix)
-    path = pathlib.Path(file.name)
-    file.close()
+    with tempfile.NamedTemporaryFile(delete=False, prefix=prefix) as file:
+        path = pathlib.Path(file.name)
     try:
         yield path
     finally:
