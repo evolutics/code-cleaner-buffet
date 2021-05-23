@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/pyflakes/'
 LABEL info.evolutics.buffet.version-example='2.2.0'
 
 RUN apk add --no-cache "py3-pip${_apk_py3_pip}" \
-  && pip install "pyflakes==${pyflakes}"
+  && pip install --no-cache-dir "pyflakes==${pyflakes}"
 
 WORKDIR /workdir
 

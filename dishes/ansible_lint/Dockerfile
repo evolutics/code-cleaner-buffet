@@ -23,7 +23,7 @@ RUN apk add --no-cache \
     "openssl-dev${_apk_openssl_dev}" \
     "py3-pip${_apk_py3_pip}" \
     "python3-dev${_apk_python3_dev}" \
-  && pip install "ansible-lint==${ansible_lint}"
+  && pip install --no-cache-dir "ansible-lint==${ansible_lint}"
 
 WORKDIR /workdir
 

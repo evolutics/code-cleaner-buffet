@@ -11,7 +11,7 @@ RUN apk add --no-cache \
     "musl-dev${_apk_musl_dev}" \
     "py3-pip${_apk_py3_pip}" \
     "python3-dev${_apk_python3_dev}" \
-  && pip install --target /opt/pylint "pylint==${pylint}"
+  && pip install --no-cache-dir --target /opt/pylint "pylint==${pylint}"
 
 FROM alpine:"${_alpine}"
 ARG _apk_py3_pip=''

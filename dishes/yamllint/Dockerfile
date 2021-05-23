@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/yamllint/'
 LABEL info.evolutics.buffet.version-example='1.25.0'
 
 RUN apk add --no-cache "py3-pip${_apk_py3_pip}" \
-  && pip install "yamllint==${yamllint}"
+  && pip install --no-cache-dir "yamllint==${yamllint}"
 
 WORKDIR /workdir
 

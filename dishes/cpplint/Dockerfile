@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/cpplint/'
 LABEL info.evolutics.buffet.version-example='1.5.4'
 
 RUN apk add --no-cache "py3-pip${_apk_py3_pip}" \
-  && pip install "cpplint==${cpplint}"
+  && pip install --no-cache-dir "cpplint==${cpplint}"
 
 WORKDIR /workdir
 

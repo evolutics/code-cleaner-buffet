@@ -12,7 +12,8 @@ LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/wemake-python
 LABEL info.evolutics.buffet.version-example='0.14.1'
 
 RUN apk add --no-cache "py3-pip${_apk_py3_pip}" \
-  && pip install "wemake-python-styleguide==${wemake_python_styleguide}"
+  && pip install --no-cache-dir \
+    "wemake-python-styleguide==${wemake_python_styleguide}"
 
 WORKDIR /workdir
 

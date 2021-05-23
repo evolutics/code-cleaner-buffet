@@ -12,7 +12,7 @@ LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/yapf/'
 LABEL info.evolutics.buffet.version-example='0.30.0'
 
 RUN apk add --no-cache "py3-pip${_apk_py3_pip}" \
-  && pip install "yapf==${yapf}"
+  && pip install --no-cache-dir "yapf==${yapf}"
 
 WORKDIR /workdir
 

@@ -15,7 +15,7 @@ LABEL info.evolutics.buffet.version-example='0.15.1'
 RUN apk add --no-cache \
     "git${_apk_git}" \
     "py3-pip${_apk_py3_pip}" \
-  && pip install "gitlint==${gitlint}"
+  && pip install --no-cache-dir "gitlint==${gitlint}"
 
 WORKDIR /workdir
 
