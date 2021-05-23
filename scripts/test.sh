@@ -10,7 +10,7 @@ main() {
   cd "${project_folder}"
 
   docker run --entrypoint sh --rm --volume "$(pwd)":/workdir \
-    evolutics/travel-kit:0.6.0 -c \
+    evolutics/travel-kit:0.7.0 -c \
     'git ls-files -z | xargs -0 travel-kit check --'
 }
 
