@@ -11,7 +11,7 @@ ARG _apk_py3_pip=''
 ARG _apk_python3_dev=''
 ARG black
 RUN if [ -n "${black}" ]; then apk add --no-cache "gcc${_apk_gcc}" "musl-dev${_apk_musl_dev}" "py3-pip${_apk_py3_pip}" "python3-dev${_apk_python3_dev}" \
- && pip install --target /opt/black "black==${black}"; fi
+ && pip install --no-cache-dir --target /opt/black "black==${black}"; fi
 
 FROM alpine:"${_alpine}" AS clang_tidy
 ARG _apk_build_base=''
@@ -22,10 +22,10 @@ ARG clang_tidy
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN if [ -n "${clang_tidy}" ]; then apk add --no-cache "build-base${_apk_build_base}" "cmake${_apk_cmake}" "ninja${_apk_ninja}" "python3${_apk_python3}" \
  && mkdir /opt/llvm \
- && wget --output-document - "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/llvm-${clang_tidy}.src.tar.xz" | tar --directory /opt/llvm --extract --file - --strip-components 1 --xz \
- && wget --output-document - "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-${clang_tidy}.src.tar.xz" | tar --directory /opt/llvm/tools --extract --file - --xz \
+ && wget --no-verbose --output-document - "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/llvm-${clang_tidy}.src.tar.xz" | tar --directory /opt/llvm --extract --file - --strip-components 1 --xz \
+ && wget --no-verbose --output-document - "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-${clang_tidy}.src.tar.xz" | tar --directory /opt/llvm/tools --extract --file - --xz \
  && mkdir "/opt/llvm/tools/clang-${clang_tidy}.src/tools/extra" \
- && wget --output-document - "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz" | tar --directory "/opt/llvm/tools/clang-${clang_tidy}.src/tools/extra" --extract --file - --strip-components 1 --xz; fi
+ && wget --no-verbose --output-document - "https://github.com/llvm/llvm-project/releases/download/llvmorg-${clang_tidy}/clang-tools-extra-${clang_tidy}.src.tar.xz" | tar --directory "/opt/llvm/tools/clang-${clang_tidy}.src/tools/extra" --extract --file - --strip-components 1 --xz; fi
 WORKDIR /opt/build
 RUN if [ -n "${clang_tidy}" ]; then cmake -G Ninja ../llvm \
  && ninja clang-tidy \
@@ -42,7 +42,7 @@ ARG _apk_py3_pip=''
 ARG _apk_python3_dev=''
 ARG pylint
 RUN if [ -n "${pylint}" ]; then apk add --no-cache "gcc${_apk_gcc}" "musl-dev${_apk_musl_dev}" "py3-pip${_apk_py3_pip}" "python3-dev${_apk_python3_dev}" \
- && pip install --target /opt/pylint "pylint==${pylint}"; fi
+ && pip install --no-cache-dir --target /opt/pylint "pylint==${pylint}"; fi
 
 FROM alpine:"${_alpine}"
 ARG _apk_aspell_en=''
@@ -139,7 +139,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "addons-linter@${addons_linter}"; fi \
  && if [ -n "${ansible_lint}" ]; then apk add --no-cache "gcc${_apk_gcc}" "libffi-dev${_apk_libffi_dev}" "musl-dev${_apk_musl_dev}" "openssl-dev${_apk_openssl_dev}" "py3-pip${_apk_py3_pip}" "python3-dev${_apk_python3_dev}" \
- && pip install "ansible-lint==${ansible_lint}"; fi \
+ && pip install --no-cache-dir "ansible-lint==${ansible_lint}"; fi \
  && if [ -n "${aspell}" ]; then apk add --no-cache "aspell~=${aspell}" "aspell-en${_apk_aspell_en}"; fi \
  && if [ -n "${astyle}" ]; then apk add --no-cache "astyle~=${astyle}"; fi \
  && if [ -n "${black}" ]; then apk add --no-cache "python3${_apk_python3}"; fi \
@@ -154,7 +154,7 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && if [ -n "${commitlint}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "@commitlint/cli@${commitlint}"; fi \
  && if [ -n "${cpplint}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
- && pip install "cpplint==${cpplint}"; fi \
+ && pip install --no-cache-dir "cpplint==${cpplint}"; fi \
  && if [ -n "${csscomb}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "csscomb@${csscomb}"; fi \
  && if [ -n "${csslint}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
@@ -165,20 +165,20 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "eslint@${eslint}"; fi \
  && if [ -n "${git}" ]; then apk add --no-cache "git~=${git}"; fi \
  && if [ -n "${gitlint}" ]; then apk add --no-cache "git${_apk_git}" "py3-pip${_apk_py3_pip}" \
- && pip install "gitlint==${gitlint}"; fi \
- && if [ -n "${gofmt}" ]; then wget --output-document - "https://dl.google.com/go/go${gofmt}.linux-amd64.tar.gz" | tar --directory /usr/local/bin --extract --file - --gzip --strip-components 2 go/bin/gofmt; fi \
+ && pip install --no-cache-dir "gitlint==${gitlint}"; fi \
+ && if [ -n "${gofmt}" ]; then wget --no-verbose --output-document - "https://dl.google.com/go/go${gofmt}.linux-amd64.tar.gz" | tar --directory /usr/local/bin --extract --file - --gzip --strip-components 2 go/bin/gofmt; fi \
  && if [ -n "${golangci_lint}" ]; then apk add --no-cache "go${_apk_go}" \
- && wget --output-document - https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s "v${golangci_lint}"; fi \
+ && wget --no-verbose --output-document - https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s "v${golangci_lint}"; fi \
  && if [ -n "${google_java_format}" ]; then apk add --no-cache "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
  && mkdir /opt/google-java-format \
- && wget --output-document /opt/google-java-format/google-java-format.jar "https://github.com/google/google-java-format/releases/download/google-java-format-${google_java_format}/google-java-format-${google_java_format}-all-deps.jar" \
+ && wget --no-verbose --output-document /opt/google-java-format/google-java-format.jar "https://github.com/google/google-java-format/releases/download/google-java-format-${google_java_format}/google-java-format-${google_java_format}-all-deps.jar" \
  && printf '#!/bin/sh\n\njava -jar /opt/google-java-format/google-java-format.jar "$@"\n' > /usr/local/bin/google-java-format \
  && chmod +x /usr/local/bin/google-java-format; fi \
- && if [ -n "${hadolint}" ]; then wget --output-document /usr/local/bin/hadolint "https://github.com/hadolint/hadolint/releases/download/v${hadolint}/hadolint-Linux-x86_64" \
+ && if [ -n "${hadolint}" ]; then wget --no-verbose --output-document /usr/local/bin/hadolint "https://github.com/hadolint/hadolint/releases/download/v${hadolint}/hadolint-Linux-x86_64" \
  && chmod +x /usr/local/bin/hadolint; fi \
  && if [ -n "${hindent}" ]; then apk add --no-cache "gmp-dev${_apk_gmp_dev}" \
- && wget --output-document /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
- && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk \
+ && wget --no-verbose --output-document /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
+ && wget --no-verbose https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk \
  && apk add --no-cache glibc-2.32-r0.apk \
  && rm glibc-2.32-r0.apk; fi \
  && if [ -n "${hlint}" ]; then apk add --no-cache "cabal${_apk_cabal}" "ghc${_apk_ghc}" "gmp${_apk_gmp}" "libffi${_apk_libffi}" "musl-dev${_apk_musl_dev}" "ncurses-dev${_apk_ncurses_dev}" "wget${_apk_wget}" \
@@ -194,7 +194,7 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && if [ -n "${jsonlint}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "jsonlint@${jsonlint}"; fi \
  && if [ -n "${ktlint}" ]; then apk add --no-cache "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
- && wget --directory-prefix /usr/local/bin "https://github.com/pinterest/ktlint/releases/download/${ktlint}/ktlint" \
+ && wget --directory-prefix /usr/local/bin --no-verbose "https://github.com/pinterest/ktlint/releases/download/${ktlint}/ktlint" \
  && chmod +x /usr/local/bin/ktlint; fi \
  && if [ -n "${luafmt}" ]; then apk add --no-cache "git${_apk_git}" "yarn${_apk_yarn}" \
  && yarn global add "lua-fmt@${luafmt}"; fi \
@@ -204,7 +204,7 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && ln -s "${HOME}/.composer/vendor/bin/phplint" /usr/local/bin/phplint; fi \
  && if [ -n "${pmd}" ]; then apk add --no-cache "bash${_apk_bash}" "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
  && tmp="$(mktemp -d)" \
- && wget --output-document "${tmp}/pmd.zip" "https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmd}/pmd-bin-${pmd}.zip" \
+ && wget --no-verbose --output-document "${tmp}/pmd.zip" "https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmd}/pmd-bin-${pmd}.zip" \
  && unzip -d "${tmp}" "${tmp}/pmd.zip" \
  && mv "${tmp}/pmd-bin-${pmd}" /opt/pmd \
  && rm -fr "${tmp}" \
@@ -224,7 +224,7 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && if [ -n "${prettier_xml}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "@prettier/plugin-xml@${prettier_xml}" "prettier@${_yarn_prettier}"; fi \
  && if [ -n "${pyflakes}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
- && pip install "pyflakes==${pyflakes}"; fi \
+ && pip install --no-cache-dir "pyflakes==${pyflakes}"; fi \
  && if [ -n "${pylint}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}"; fi \
  && if [ -n "${repolinter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "repolinter@${repolinter}"; fi \
@@ -232,18 +232,18 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && gem install --no-document "rubocop:${rubocop}"; fi \
  && if [ -n "${scalafmt}" ]; then apk add --no-cache "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
  && coursier_executable="$(mktemp)" \
- && wget --output-document "${coursier_executable}" "https://github.com/coursier/coursier/releases/download/v${_coursier}/coursier" \
+ && wget --no-verbose --output-document "${coursier_executable}" "https://github.com/coursier/coursier/releases/download/v${_coursier}/coursier" \
  && chmod +x "${coursier_executable}" \
  && "${coursier_executable}" bootstrap "org.scalameta:scalafmt-cli_2.12:${scalafmt}" --main org.scalafmt.cli.Cli --output /usr/local/bin/scalafmt --repository sonatype:snapshots --standalone \
  && rm "${coursier_executable}"; fi \
  && if [ -n "${shellcheck}" ]; then mkdir /opt/shellcheck \
- && wget --output-document - "https://github.com/koalaman/shellcheck/releases/download/v${shellcheck}/shellcheck-v${shellcheck}.linux.x86_64.tar.xz" | tar --directory /opt/shellcheck --extract --file - --strip-components 1 --xz \
+ && wget --no-verbose --output-document - "https://github.com/koalaman/shellcheck/releases/download/v${shellcheck}/shellcheck-v${shellcheck}.linux.x86_64.tar.xz" | tar --directory /opt/shellcheck --extract --file - --strip-components 1 --xz \
  && ln -s /opt/shellcheck/shellcheck /usr/local/bin/shellcheck; fi \
- && if [ -n "${shfmt}" ]; then wget --output-document /usr/local/bin/shfmt "https://github.com/mvdan/sh/releases/download/v${shfmt}/shfmt_v${shfmt}_linux_386" \
+ && if [ -n "${shfmt}" ]; then wget --no-verbose --output-document /usr/local/bin/shfmt "https://github.com/mvdan/sh/releases/download/v${shfmt}/shfmt_v${shfmt}_linux_386" \
  && chmod +x /usr/local/bin/shfmt; fi \
  && if [ -n "${spotbugs}" ]; then apk add --no-cache "openjdk11-jre-headless${_apk_openjdk11_jre_headless}" \
  && mkdir /opt/spotbugs \
- && wget --output-document - "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz" | tar --directory /opt/spotbugs --extract --file - --gzip --strip-components 1 \
+ && wget --no-verbose --output-document - "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${spotbugs}/spotbugs-${spotbugs}.tgz" | tar --directory /opt/spotbugs --extract --file - --gzip --strip-components 1 \
  && chmod +x /opt/spotbugs/bin/spotbugs \
  && ln -s /opt/spotbugs/bin/spotbugs /usr/local/bin/spotbugs; fi \
  && if [ -n "${standard}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
@@ -258,14 +258,14 @@ RUN if [ -n "${addons_linter}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && printf '#!/bin/sh\n\njava -jar %s "$@"\n' '/usr/local/share/.config/yarn/global/node_modules/vnu-jar/build/dist/vnu.jar' > /usr/local/bin/vnu \
  && chmod +x /usr/local/bin/vnu; fi \
  && if [ -n "${wemake_python_styleguide}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
- && pip install "wemake-python-styleguide==${wemake_python_styleguide}"; fi \
+ && pip install --no-cache-dir "wemake-python-styleguide==${wemake_python_styleguide}"; fi \
  && if [ -n "${xmllint}" ]; then apk add --no-cache "libxml2-utils~=${xmllint}"; fi \
  && if [ -n "${xo}" ]; then apk add --no-cache "yarn${_apk_yarn}" \
  && yarn global add "xo@${xo}"; fi \
  && if [ -n "${yamllint}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
- && pip install "yamllint==${yamllint}"; fi \
+ && pip install --no-cache-dir "yamllint==${yamllint}"; fi \
  && if [ -n "${yapf}" ]; then apk add --no-cache "py3-pip${_apk_py3_pip}" \
- && pip install "yapf==${yapf}"; fi
+ && pip install --no-cache-dir "yapf==${yapf}"; fi
 COPY --from=black /opt/black* /var/empty /opt/black/
 COPY --from=clang_tidy /usr/local/bin/clang-tidy* /var/empty /usr/local/bin/
 COPY --from=hindent /usr/local/bin/hindent* /var/empty /usr/local/bin/
