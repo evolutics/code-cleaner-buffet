@@ -29,13 +29,13 @@ def _get_latest_tag():
 
 
 def _generate_dockerfile():
-    with pathlib.Path("Dockerfile").open("w") as dockerfile:
+    with pathlib.Path("Dockerfile").open("w", encoding="utf-8") as dockerfile:
         subprocess.run(["buffet", "assemble", "dishes"], check=True, stdout=dockerfile)
 
 
 def _generate_readme(tag):
     _generate_template_partials(tag)
-    with pathlib.Path("README.md").open("w") as readme:
+    with pathlib.Path("README.md").open("w", encoding="utf-8") as readme:
         subprocess.run(
             [
                 "buffet",

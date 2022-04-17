@@ -54,7 +54,7 @@ def _get_tests(dish_to_versions):
 
 def _test_dish_version(dish, version):
     with _temporary_file(prefix=f"{dish}.") as arguments_path:
-        with arguments_path.open("w") as arguments_file:
+        with arguments_path.open("w", encoding="utf-8") as arguments_file:
             json.dump({dish: version}, arguments_file)
         subprocess.run(
             ["buffet", "test", "--arguments", str(arguments_path), "dishes"], check=True
