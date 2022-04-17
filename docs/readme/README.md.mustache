@@ -57,7 +57,7 @@ Prerequisites: Docker and Git.
    **Example:** Check your code with
 
    ```bash
-   docker run --rm --volume "$(pwd)":/workdir plate \
+   docker run --rm --volume "${PWD}":/workdir plate \
      sh -c 'black --check --diff . && prettier --check "**/*.+(md|yaml|yml)"'
    ```
 
@@ -139,7 +139,7 @@ script:
 <dt>What is the default working directory?</dt>
 <dd>
 
-It is `/workdir`. You may mount to it with `docker run --volume "$(pwd)":/workdir …`.
+It is `/workdir`. You may mount to it with `docker run --volume "${PWD}":/workdir …`.
 
 </dd>
 
