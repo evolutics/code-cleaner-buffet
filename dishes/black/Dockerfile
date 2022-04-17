@@ -21,7 +21,7 @@ LABEL org.opencontainers.image.url='https://github.com/psf/black'
 LABEL info.evolutics.buffet.categories='Formatter'
 LABEL info.evolutics.buffet.languages='Python'
 LABEL info.evolutics.buffet.versions-url='https://pypi.org/project/black/'
-LABEL info.evolutics.buffet.version-example='21.5b1'
+LABEL info.evolutics.buffet.version-example='22.3.0'
 
 RUN apk add --no-cache "python3${_apk_python3}"
 COPY --from=black /opt/black /opt/black
