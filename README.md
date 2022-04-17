@@ -27,7 +27,7 @@ Prerequisites: Docker and Git.
 
 1. **Choose** the code cleaners you need from the [list below](#index), and decide on a version for each.
 
-   **Example:** In a project with Python, YAML, and Markdown code, you may choose the code formatters [Black](#black) 21.5b1 and [Prettier](#prettier) 2.3.0.
+   **Example:** In a project with Python, YAML, and Markdown code, you may choose the code formatters [Black](#black) 22.3.0 and [Prettier](#prettier) 2.6.2.
 
 1. **Build** your own Docker image by running
 
@@ -46,8 +46,8 @@ Prerequisites: Docker and Git.
 
    ```bash
    docker build \
-     --build-arg black=21.5b1 \
-     --build-arg prettier=2.3.0 \
+     --build-arg black=22.3.0 \
+     --build-arg prettier=2.6.2 \
      --tag plate \
      https://github.com/evolutics/code-cleaner-buffet.git#0.17.0
    ```
@@ -92,7 +92,7 @@ jobs:
     runs-on: ubuntu-latest
     container: me/plate:1.2.3
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: black --check --diff .
 ```
 
@@ -587,7 +587,7 @@ astyle --version \
 
 ```bash
 docker build \
-  --build-arg black=21.5b1 \
+  --build-arg black=22.3.0 \
   --tag plate \
   https://github.com/evolutics/code-cleaner-buffet.git#0.17.0
 docker run -it --rm plate
@@ -1482,7 +1482,7 @@ pmd pmd -help \
 
 ```bash
 docker build \
-  --build-arg prettier=2.3.0 \
+  --build-arg prettier=2.6.2 \
   --tag plate \
   https://github.com/evolutics/code-cleaner-buffet.git#0.17.0
 docker run -it --rm plate
